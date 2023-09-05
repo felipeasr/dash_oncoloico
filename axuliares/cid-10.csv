@@ -1,0 +1,110 @@
+diag;CID
+C00;C00- Neoplasia maligna do lábio
+C01;C01- Neoplasia maligna da base da língua
+C02;C02- Neoplasia maligna de outras partes e de partes não especificadas da língua
+C03;C03- Neoplasia maligna da gengiva
+C04;C04- Neoplasia maligna do assoalho da boca
+C05;C05- Neoplasia maligna do palato
+C06;C06- Neoplasia maligna de outras partes e de partes não especificadas da boca
+C07;C07- Neoplasia maligna da glândula parótida
+C08;C08- Neoplasia maligna de outras glândulas salivares maiores e as não especificadas
+C09;C09- Neoplasia maligna da amígdala
+C10;C10- Neoplasia maligna da orofaringe
+C11;C11- Neoplasia maligna da nasofaringe
+C12;C12- Neoplasia maligna do seio piriforme
+C13;C13- Neoplasia maligna da hipofaringe
+C14;C14- Neoplasia maligna de outras localizações e de localizações mal definida
+C15;C15- Neoplasia maligna do esôfago
+C16;C16- Neoplasia maligna do estômago
+C17;C17- Neoplasia maligna do intestino delgado
+C18;C18- Neoplasia maligna do cólon
+C19;C19- Neoplasia maligna da junção retossigmóide
+C20;C20- Neoplasia maligna do reto
+C21;C21- Neoplasia maligna do ânus e do canal anal
+C22;C22- Neoplasia maligna do fígado e das vias biliares intra-hepáticas
+C23;C23- Neoplasia maligna da vesícula biliar
+C24;C24- Neoplasia maligna de outras partes
+C25;C25- Neoplasia maligna do pâncreas
+C26;C26- Neoplasia maligna de outros órgãos digestivos e de localizações mal definidas no aparelho dige
+C30;C30- Neoplasia maligna da cavidade nasal e do ouvido médio
+C31;C31- Neoplasia maligna dos seios da face
+C32;C32- Neoplasia maligna da laringe
+C33;C33- Neoplasia maligna da traquéia
+C34;C34- Neoplasia maligna dos brônquios e dos pulmões
+C37;C37- Neoplasia maligna do timo
+C38;C38- Neoplasia maligna do coração
+C39;C39- Neoplasia maligna de outras localizações e de localizações mal definidas do aparelho respirató
+C40;C40- Neoplasia maligna dos ossos e cartilagens articulares dos membros
+C41;C41- Neoplasia maligna dos ossos e das cartilagens articulares de outras localizações e de localiza
+C43;C43- Melanoma maligno da pele
+C44;C44- Outras neoplasias malignas da pele
+C45;C45- Mesotelioma
+C46;C46- Sarcoma de Kaposi
+C47;C47- Neoplasia maligna dos nervos periféricos e do sistema nervoso autônomo
+C48;C48- Neoplasia maligna dos tecidos moles do retroperitônio e do peritônio
+C49;C49- Neoplasia maligna do tecido conjuntivo e de outros tecidos moles
+C50;C50- Neoplasia maligna da mama
+C51;C51- Neoplasia maligna da vulva
+C52;C52- Neoplasia maligna da vagina
+C53;C53- Neoplasia maligna do colo do útero
+C54;C54- Neoplasia maligna do corpo do útero
+C55;C55- Neoplasia maligna do útero
+C56;C56- Neoplasia maligna do ovário
+C57;C57- Neoplasia maligna de outros órgãos genitais femininos e dos não especificados
+C58;C58- Neoplasia maligna da placenta
+C60;C60- Neoplasia maligna do pênis
+C61;C61- Neoplasia maligna da próstata
+C62;C62- Neoplasia maligna dos testículos
+C63;C63- Neoplasia maligna de outros órgãos genitais masculinos e dos não especificados
+C64;C64- Neoplasia maligna do rim
+C65;C65- Neoplasia maligna da pelve renal
+C66;C66- Neoplasia maligna dos ureteres
+C67;C67- Neoplasia maligna da bexiga
+C68;C68- Neoplasia maligna de outros órgãos urinários e dos não especificados
+C69;C69- Neoplasia maligna do olho e anexos
+C70;C70- Neoplasia maligna das meninges
+C71;C71- Neoplasia maligna do encéfalo
+C72;C72- Neoplasia maligna da medula espinhal
+C73;C73- Neoplasia maligna da glândula tireóide
+C74;C74- Neoplasia maligna da glândula supra-renal [glândula adrenal]
+C75;C75- Neoplasia maligna de outras glândulas endócrinas e de estruturas relacionadas
+C76;C76- Neoplasia maligna de outras localizações e de localizações mal definidas
+C77;C77- Neoplasia maligna secundária e não especificada dos gânglios linfáticos
+C78;C78- Neoplasia maligna secundária dos órgãos respiratórios e digestivos
+C79;C79- Neoplasia maligna secundária de outras localizações
+C80;C80- Neoplasia maligna
+C81;C81- Doença de Hodgkin
+C82;C82- Linfoma não Hodgkin
+C83;C83- Linfoma não Hodgkin difuso
+C84;C84- Linfomas de células T cutâneas e periféricas
+C85;C85- Linfoma não Hodgkin de outros tipos e de tipo não especificado
+C88;C88- Doenças imunoproliferativas malignas
+C90;C90- Mieloma múltiplo e neoplasias malignas de plasmócitos
+C91;C91- Leucemia linfóide
+C92;C92- Leucemia mielóide
+C93;C93- Leucemia monocítica
+C94;C94- Outras leucemias de células de tipo especificado
+C95;C95- Leucemia de tipo celular não especificado
+C96;C96- Outras neoplasias malignas e as não especificadas dos tecidos linfático
+C97;C97- Neoplasias malignas de localizações múltiplas independentes (primárias)
+D00;D00- Carcinoma in situ da cavidade oral
+D01;D01- Carcinoma in situ de outros órgãos digestivos
+D02;D02- Carcinoma in situ do ouvido médio e do aparelho respiratório
+D03;D03- Melanoma in situ
+D04;D04- Carcinoma in situ da pele
+D05;D05- Carcinoma in situ da mama
+D06;D06- Carcinoma in situ do colo do útero (cérvix)
+D07;D07- Carcinoma in situ de outros órgãos genitais e dos não especificados
+D09;D09- Carcinoma in situ de outras localizações e das não especificadas
+D37;D37- Neoplasia de comportamento incerto ou desconhecido da cavidade oral e dos órgãos digestivos
+D38;D38- Neoplasia de comportamento incerto ou desconhecido do ouvido médio e dos órgãos respiratórios
+D39;D39- Neoplasia de comportamento incerto ou desconhecido dos órgãos genitais femininos
+D40;D40- Neoplasia de comportamento incerto ou desconhecido dos órgãos genitais masculinos
+D41;D41- Neoplasia de comportamento incerto ou desconhecido dos órgãos urinários
+D42;D42- Neoplasia de comportamento incerto ou desconhecido das meninges
+D43;D43- Neoplasia de comportamento incerto ou desconhecido do encéfalo e do sistema nervoso central
+D44;D44- Neoplasia de comportamento incerto ou desconhecido das glândulas endócrinas
+D45;D45- Policitemia vera
+D46;D46- Síndromes mielodisplásicas
+D47;D47- Outras neoplasias de comportamento incerto ou desconhecido dos tecidos linfático
+D48;D48- Neoplasia de comportamento incerto ou desconhecido de outras localizações e de localizações nã
