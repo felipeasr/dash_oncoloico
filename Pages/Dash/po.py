@@ -9,6 +9,8 @@ dados2 = pd.read_csv(caminho_do_csv)
 
 def pagepo():
     st.title('Painel Oncologico :bar_chart:')
+  
+    st.markdown(''' Os dados estão atualizados até :orange[Julho de 2023]''')
     # Função para filtrar dados com base no estado selecionado
     def filtrar_por_estado_diag(data, estado):
         if estado == "Todos":
