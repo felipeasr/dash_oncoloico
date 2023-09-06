@@ -11,6 +11,8 @@ from streamlit_modal import Modal
 import Pages.Dash.po as pagepo
 import Pages.about as pageabout
 
+
+
 st.set_page_config(
     page_title="Dashboard DataSUS",
     page_icon="bar_chart",
@@ -22,6 +24,9 @@ st.set_page_config(
         'About': "# This is a header. This is an *extremely* cool app!"
     }
 )
+
+with st.spinner('Wait for it...'):
+    time.sleep(2)
 
 
 #Funçoes
