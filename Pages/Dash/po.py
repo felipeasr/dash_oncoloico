@@ -2,12 +2,13 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
-
+import Pages.about as pageabout
 # Carregue seus dados CSV aqui
 caminho_do_csv = 'Painel_BR_0_19_3.csv'
 dados2 = pd.read_csv(caminho_do_csv)
 
 def pagepo():
+    st.title('Painel Oncologico :bar_chart:')
     # Função para filtrar dados com base no estado selecionado
     def filtrar_por_estado_diag(data, estado):
         if estado == "Todos":
@@ -107,7 +108,7 @@ def pagepo():
         )])
 
         fig_diagnósticos.update_layout(
-            title='Maiores Diagnósticos (CID-10) em 10 Anos',
+            title='10 Doenças diagnosticadas',
             legend=dict(
                 orientation='v',
                 font=dict(size=14),
@@ -159,7 +160,7 @@ def pagepo():
         )])
 
         fig_Trat.update_layout(
-            title='Maiores Trat (CID-10) em 10 Anos',
+            title='10 Doenças tratadas',
             legend=dict(
                 orientation='v',
                 font=dict(size=14),

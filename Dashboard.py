@@ -9,6 +9,7 @@ import folium
 import random
 from streamlit_modal import Modal
 import Pages.Dash.po as pagepo
+import Pages.about as pageabout
 
 st.set_page_config(
     page_title="Dashboard DataSUS",
@@ -42,10 +43,11 @@ def formata_numero(valor, prefixo = ''):
     return f'{prefixo} {valor:.2f} milhões'
 
 
-st.title('Dashboard DataSUS BR :bar_chart:')
-
 Page_cliente = st.sidebar.selectbox(
-    'Dashboards', ['Painel Oncologico', 'Sim','Sobre'], 0)
+    'Dashboards', ['Sobre','Painel Oncologico', 'Sim'], 0)
+if Page_cliente == 'Sobre':
+    #st.experimental_set_query_params()
+    pageabout.pageabout()
 if Page_cliente == 'Painel Oncologico':
     #st.experimental_set_query_params()
     pagepo.pagepo()
