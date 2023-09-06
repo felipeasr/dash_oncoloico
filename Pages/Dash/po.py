@@ -119,7 +119,8 @@ def pagepo():
         quanti_paciente_Trat_ANO = data2.groupby('ANO_TRATAM')['UF_TRATAM'].count().reset_index()
         quanti_paciente_Trat_ANO.rename(columns={'ANO_TRATAM': 'Ano Tratamento', 'UF_TRATAM': 'Quantidade de Pacientes'}, inplace=True)
 
-        
+        total_pacientes_atendidos = quanti_paciente_Trat_ANO['Quantidade de Pacientes'].sum()
+
  
         fig2 = px.bar(
             quanti_paciente_Trat_ANO,
@@ -174,13 +175,14 @@ def pagepo():
             st.plotly_chart(fig, use_container_width=True)
 
         with coluna2:
-            st.metric('Quantidade de Pacientes Tratados em 10 Anos', len(data2))
+            st.metric('Quantidade de Pacientes Tratados em 10 Anos',total_pacientes_atendidos)
             st.plotly_chart(fig2, use_container_width=True)
         st.plotly_chart(fig_diagnósticos, use_container_width=True)
         st.plotly_chart(fig_Trat, use_container_width=True)
 
     # Barra lateral para seleção de estado
     st.sidebar.title("Filtros")
+    #trat = dados2['UF_DIAGN']
     selected_estado = st.sidebar.selectbox('Selecione um Estado:', ["Todos"] + dados2['UF_DIAGN'].unique().tolist())
 
     # Obtenha a lista de estabelecimentos com base no estado selecionado
