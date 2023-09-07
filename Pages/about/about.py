@@ -3,8 +3,10 @@ import streamlit as st
 
 def pageabout():
     # Título da página
+       
   # Centralize todos os elementos
-    st.header('Bem-vindo aos Dashboards de Oncológia Pediátrica', divider='orange')
+    st.header('Bem-vindo aos Dashboards de Oncológia Pediátrica',divider='orange')
+    
     
     # Informações sobre a aplicação (centralizado)
     st.markdown("""

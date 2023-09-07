@@ -9,7 +9,7 @@ import folium
 import random
 from streamlit_modal import Modal
 import Pages.Dash.po as pagepo
-import Pages.about as pageabout
+import Pages.about.about as pageabout
 
 
 
