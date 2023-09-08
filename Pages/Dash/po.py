@@ -184,7 +184,8 @@ def pagepo():
         )
         
         data2['TEMPO_TRAT'] = data2['TEMPO_TRAT'].replace(['99.999', '9999','99999.0','0.0'], 'Sem Informação')
-        tabela_relacao = data2[['DIAG_DETH', 'TEMPO_TRAT']]
+        #data2.rename(columns={'DIAG_DETH': 'Diagnóstico', 'TEMPO_TRAT': 'Tempo de Tratamento'}, inplace=True)
+        tabela_relacao = pd.crosstab(data2['DIAG_DETH'], data2['TEMPO_TRAT'])
         
         # Crie o gráfico de barras
         
@@ -201,7 +202,9 @@ def pagepo():
             st.plotly_chart(fig2, use_container_width=True)
         st.plotly_chart(fig_diagnósticos, use_container_width=True)
         st.plotly_chart(fig_Trat, use_container_width=True)
-        st.dataframe(tabela_relacao)
+        #st.write(tabela_relacao)
+        st.write("Tabela de Contagem de Casos por Diagnóstico e Tempo de Tratamento")
+        st.dataframe(tabela_relacao,use_container_width=True)
 
     # Barra lateral para seleção de estado
     st.sidebar.title("Filtros")
