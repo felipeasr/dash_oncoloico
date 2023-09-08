@@ -7,11 +7,13 @@ import Pages.about as pageabout
 caminho_do_csv = 'Painel_BR_0_19_3.csv'
 dados2 = pd.read_csv(caminho_do_csv)
 
+
 def pagepo():
     st.title('Painel Oncologico :bar_chart:')
-  
+
     st.markdown(''' Os dados estão atualizados até :orange[Julho de 2023]''')
     # Função para filtrar dados com base no estado selecionado
+
     def filtrar_por_estado_diag(data, estado):
         if estado == "Todos":
             return data
@@ -54,12 +56,15 @@ def pagepo():
             return data2[data2['UF_TRATAM'] == estado]['CNES_DIAG'].unique().tolist()
 
     # Função para criar e exibir gráficos com base nos dados filtrados
-    def exibir_graficos(data,data2):
-        quanti_paciente_Diag_ANO = data.groupby('ANO_DIAGN')['UF_DIAGN'].count().reset_index()
-        quanti_paciente_Diag_ANO.rename(columns={'ANO_DIAGN': 'Ano Diagnóstico', 'UF_DIAGN': 'Quantidade de Pacientes'}, inplace=True)
-       
-        diagnósticos_mais_frequentes = data['DIAG_DETH'].value_counts().head(10)
-  
+    def exibir_graficos(data, data2):
+        quanti_paciente_Diag_ANO = data.groupby(
+            'ANO_DIAGN')['UF_DIAGN'].count().reset_index()
+        quanti_paciente_Diag_ANO.rename(columns={
+                                        'ANO_DIAGN': 'Ano Diagnóstico', 'UF_DIAGN': 'Quantidade de Pacientes'}, inplace=True)
+
+        diagnósticos_mais_frequentes = data['DIAG_DETH'].value_counts().head(
+            10)
+
         fig = px.bar(
             quanti_paciente_Diag_ANO,
             x='Ano Diagnóstico',
@@ -77,11 +82,12 @@ def pagepo():
             height=600
         )
 
-        fig.update_traces(text=quanti_paciente_Diag_ANO['Quantidade de Pacientes'], textposition='auto')
+        fig.update_traces(
+            text=quanti_paciente_Diag_ANO['Quantidade de Pacientes'], textposition='auto')
         trat_mais_frequentes = data2['DIAG_DETH'].value_counts().head(10)
 
         all_labels = set(trat_mais_frequentes.index) | set(
-        diagnósticos_mais_frequentes.index)
+            diagnósticos_mais_frequentes.index)
 
         colors = px.colors.qualitative.Pastel
        # um dicionário de mapeamento de rótulos para cores em cada gráfico
@@ -93,19 +99,21 @@ def pagepo():
                 idx = list(all_labels).index(label)
                 label_to_color[label] = colors[idx % len(colors)]
 
+    
     # Crie um conjunto de cores diferente para rótulos ausentes em ambos os gráficos
         remaining_labels = all_labels - set(label_to_color.keys())
         remaining_colors = px.colors.qualitative.Set3
 
         for idx, label in enumerate(remaining_labels):
-            label_to_color[label] = remaining_colors[idx % len(remaining_colors)]
-            
+            label_to_color[label] = remaining_colors[idx %
+                                                     len(remaining_colors)]
+
         fig_diagnósticos = go.Figure(data=[go.Pie(
             labels=diagnósticos_mais_frequentes.index,
             values=diagnósticos_mais_frequentes.values,
             hole=0.3,
             marker=dict(colors=[label_to_color[label]
-                    for label in diagnósticos_mais_frequentes.index]),
+                                for label in diagnósticos_mais_frequentes.index]),
             textinfo='percent'
         )])
 
@@ -119,12 +127,14 @@ def pagepo():
             height=600,
             font=dict(size=20),
         )
-        quanti_paciente_Trat_ANO = data2.groupby('ANO_TRATAM')['UF_TRATAM'].count().reset_index()
-        quanti_paciente_Trat_ANO.rename(columns={'ANO_TRATAM': 'Ano Tratamento', 'UF_TRATAM': 'Quantidade de Pacientes'}, inplace=True)
+        quanti_paciente_Trat_ANO = data2.groupby(
+            'ANO_TRATAM')['UF_TRATAM'].count().reset_index()
+        quanti_paciente_Trat_ANO.rename(columns={
+                                        'ANO_TRATAM': 'Ano Tratamento', 'UF_TRATAM': 'Quantidade de Pacientes'}, inplace=True)
 
-        total_pacientes_atendidos = quanti_paciente_Trat_ANO['Quantidade de Pacientes'].sum()
+        total_pacientes_atendidos = quanti_paciente_Trat_ANO['Quantidade de Pacientes'].sum(
+        )
 
- 
         fig2 = px.bar(
             quanti_paciente_Trat_ANO,
             x='Ano Tratamento',
@@ -140,11 +150,12 @@ def pagepo():
             font=dict(size=14),
             width=800,
             height=600
-            
+
         )
 
-        fig2.update_traces(text=quanti_paciente_Trat_ANO['Quantidade de Pacientes'], textposition='auto')
-   
+        fig2.update_traces(
+            text=quanti_paciente_Trat_ANO['Quantidade de Pacientes'], textposition='auto')
+
         color_palette = px.colors.qualitative.Pastel
 
         category_color_mapping = {
@@ -157,7 +168,7 @@ def pagepo():
             values=trat_mais_frequentes.values,
             hole=0.3,
             marker=dict(colors=[label_to_color[label]
-                    for label in trat_mais_frequentes.index]),
+                                for label in trat_mais_frequentes.index]),
             textinfo='percent'
         )])
 
@@ -171,37 +182,59 @@ def pagepo():
             height=600,
             font=dict(size=20),
         )
+        
+        data2['TEMPO_TRAT'] = data2['TEMPO_TRAT'].replace(['99.999', '9999','99999.0','0.0'], 'Sem Informação')
+        tabela_relacao = data2[['DIAG_DETH', 'TEMPO_TRAT']]
+        
+        # Crie o gráfico de barras
+        
         coluna1, coluna2 = st.columns(2)
 
         with coluna1:
-            st.metric('Quantidade de Pacientes Diagnosticados em 10 Anos', len(data))
+            st.metric(
+                'Quantidade de Pacientes Diagnosticados em 10 Anos', len(data))
             st.plotly_chart(fig, use_container_width=True)
 
         with coluna2:
-            st.metric('Quantidade de Pacientes Tratados em 10 Anos',total_pacientes_atendidos)
+            st.metric('Quantidade de Pacientes Tratados em 10 Anos',
+                      total_pacientes_atendidos)
             st.plotly_chart(fig2, use_container_width=True)
         st.plotly_chart(fig_diagnósticos, use_container_width=True)
         st.plotly_chart(fig_Trat, use_container_width=True)
+        st.dataframe(tabela_relacao)
 
     # Barra lateral para seleção de estado
     st.sidebar.title("Filtros")
-    #trat = dados2['UF_DIAGN']
-    selected_estado = st.sidebar.selectbox('Selecione um Estado:', ["Todos"] + dados2['UF_DIAGN'].unique().tolist())
+    # trat = dados2['UF_DIAGN']
+    selected_estado = st.sidebar.selectbox(
+        'Selecione um Estado:', ["Todos"] + dados2['UF_DIAGN'].unique().tolist())
 
     # Obtenha a lista de estabelecimentos com base no estado selecionado
-    estabelecimentos_disponiveis = obter_estabelecimentos_por_estado_diag(dados2, selected_estado)
+    estabelecimentos_disponiveis = obter_estabelecimentos_por_estado_diag(
+        dados2, selected_estado)
 
     # Barra lateral para seleção de estabelecimento
-    selected_estabelecimento = st.sidebar.selectbox('Selecione um Estabelecimento:', ["Todos"] + estabelecimentos_disponiveis)
+    if selected_estado != "Todos":
+        selected_estabelecimento = st.sidebar.selectbox('Selecione um Estabelecimento:', [
+            "Todos"] + obter_estabelecimentos_por_estado_diag(dados2, selected_estado))
+    else:
+        selected_estabelecimento = "Todos"
 
-    # Filtrar dados com base nas seleções da barra lateral
+    selected_idade = st.sidebar.slider("Selecione uma faixa etária:", min_value=0, max_value=19, value=(0, 19))
+
+    # Modifique as funções de filtragem para considerar a idade selecionada
+    def filtrar_por_idade(data, idade_range):
+        return data[(data['IDADE'] >= idade_range[0]) & (data['IDADE'] <= idade_range[1])]
+
     dados_filtrados_diag = filtrar_por_estado_diag(dados2, selected_estado)
     dados_filtrados_diag = filtrar_por_estabelecimento_diag(dados_filtrados_diag, selected_estabelecimento)
+    dados_filtrados_diag = filtrar_por_idade(dados_filtrados_diag, selected_idade)
 
     dados_filtrados_trat = filtrar_por_estado_trat(dados2, selected_estado)
     dados_filtrados_trat = filtrar_por_estabelecimento_trat(dados_filtrados_trat, selected_estabelecimento)
+    dados_filtrados_trat = filtrar_por_idade(dados_filtrados_trat, selected_idade)
 
+    
     # Exibir gráficos com base nos dados filtrados
-    
-    exibir_graficos(dados_filtrados_diag,dados_filtrados_trat)
-    
+
+    exibir_graficos(dados_filtrados_diag, dados_filtrados_trat)
