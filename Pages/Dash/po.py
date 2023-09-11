@@ -182,11 +182,26 @@ def pagepo():
             height=600,
             font=dict(size=20),
         )
+        bins_tempo_tratamento = [ -91, -61, -31, -1, 0, 10, 20, 30, 40, 50, 60, 90, 120, 300, 365, 730,9999, float('inf')]
+
+
+    # Defina as categorias de tempo de tratamento
+        categorias_tempo_tratamento = ['-90 dias a -61 dias', '-60 dias a -31 dias', '-30 dias a -1 dia', 'mesmo dia (tempo 0 dia)', 
+                                    '1 a 10 dias', '11 a 20 dias', '21 a 30 dias', '31 a 40 dias', '41 a 50 dias', '51 a 60 dias', 
+                                    '61 a 90 dias', '91 a 120 dias', '121 dias a 300 dias', '301 dias a 365 dias', '366 a 730 dias', 
+                                    'mais de dois anos','Sem Informação']
+
         
-        data2['TEMPO_TRAT'] = data2['TEMPO_TRAT'].replace(['99.999', '9999','99999.0','0.0'], 'Sem Informação')
-        #data2.rename(columns={'DIAG_DETH': 'Diagnóstico', 'TEMPO_TRAT': 'Tempo de Tratamento'}, inplace=True)
-        tabela_relacao = pd.crosstab(data2['DIAG_DETH'], data2['TEMPO_TRAT'])
         
+
+        #data2['TEMPO_TRAT'] = data2['TEMPO_TRAT'].replace(['99.999', '9999','99999.0','0.0'], 'Sem Informação')
+        data['Categorias Tempo Tratamento'] = pd.cut(data['TEMPO_TRAT'], bins=bins_tempo_tratamento, labels=categorias_tempo_tratamento)
+
+        # Adicione uma coluna "Total" para representar o total de casos em cada linha
+        data['Total'] = 1
+
+        # Crie a tabela de contagem usando crosstab
+        tabela_contagem = pd.crosstab(data['DIAG_DETH'], data['Categorias Tempo Tratamento'], margins=True, margins_name="Total")    
         # Crie o gráfico de barras
         
         coluna1, coluna2 = st.columns(2)
@@ -204,7 +219,7 @@ def pagepo():
         st.plotly_chart(fig_Trat, use_container_width=True)
         #st.write(tabela_relacao)
         st.write("Tabela de Contagem de Casos por Diagnóstico e Tempo de Tratamento")
-        st.dataframe(tabela_relacao,use_container_width=True)
+        st.dataframe(tabela_contagem,use_container_width=True)
 
     # Barra lateral para seleção de estado
     st.sidebar.title("Filtros")
