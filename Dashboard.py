@@ -26,7 +26,7 @@ st.set_page_config(
 )
 
 with st.spinner('Wait for it...'):
-    time.sleep(2)
+    time.sleep(0.5)
 
 
 #Funçoes
