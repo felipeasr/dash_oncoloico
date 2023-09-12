@@ -4,8 +4,8 @@ import plotly.express as px
 import plotly.graph_objects as go
 import Pages.about as pageabout
 # Carregue seus dados CSV aqui
-caminho_do_csv = 'teste.csv'
-dados2 = pd.read_csv(caminho_do_csv)
+caminho_do_csv = 'Painel_BR.csv'
+dados2 = pd.read_csv(caminho_do_csv,encoding='utf-8')
 
 
 def pagepo():
@@ -134,7 +134,7 @@ def pagepo():
 
         total_pacientes_atendidos = quanti_paciente_Trat_ANO['Quantidade de Pacientes'].sum(
         )
-        modalidade = data2['TRATAMENTO'].value_counts()
+        modalidade = data['TRATAMENTO'].value_counts()
 
         # Crie um gráfico Plotly Pie separadamente
         fig_modalidade = go.Figure(data=[go.Pie(
@@ -143,6 +143,16 @@ def pagepo():
             hole=0.3,
             textinfo='percent'
         )])
+        fig_modalidade.update_layout(
+            title='Primeiro tratamento registrado',
+            legend=dict(
+                orientation='v',
+                font=dict(size=14),
+            ),
+            width=800,
+            height=600,
+            font=dict(size=20),
+        )
 
 
         fig2 = px.bar(
