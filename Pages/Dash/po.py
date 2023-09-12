@@ -158,11 +158,6 @@ def pagepo():
 
         color_palette = px.colors.qualitative.Pastel
 
-        category_color_mapping = {
-            'DIAG_DETH': color_palette[0],
-            'DIAG_DETH': color_palette[1],
-        }
-
         fig_Trat = go.Figure(data=[go.Pie(
             labels=trat_mais_frequentes.index,
             values=trat_mais_frequentes.values,
