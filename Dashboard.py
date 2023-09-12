@@ -14,7 +14,7 @@ import Pages.about.about as pageabout
 
 
 st.set_page_config(
-    page_title="Dashboard DataSUS",
+    page_title="Dashboard Oncologico",
     page_icon="bar_chart",
     layout="wide",
     initial_sidebar_state="expanded",
@@ -24,7 +24,14 @@ st.set_page_config(
         'About': "# This is a header. This is an *extremely* cool app!"
     }
 )
-
+hide_st_style = """
+            <style>
+            #MainMenu {visibility: hidden;}
+            footer {visibility: hidden;}
+            header {visibility: hidden;}
+            </style>
+            """
+st.markdown(hide_st_style, unsafe_allow_html=True)
 with st.spinner('Wait for it...'):
     time.sleep(0.5)
 

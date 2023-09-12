@@ -12,7 +12,7 @@ def pageabout():
     st.markdown("""
         <div style='text-align: start;'>
             <p>Os dados contidos nesses dashboards são provenientes do <a href='https://opendatasus.saude.gov.br/'>OPENDATSUS</a>.</p>
-            <p>Os dados do dashboard do painel oncológico estão atualizados até junho de 2023. Neste dashboard, você encontrará informações sobre a quantidade de casos por ano, local de atendimento, os maiores diagnósticos e tempo de tratamento em cada hospital.</p>
+            <p>Os dados do dashboard do painel oncológico estão atualizados até Julho de 2023. Neste dashboard, você encontrará informações sobre a quantidade de casos por ano, local de atendimento, os maiores diagnósticos e tempo de tratamento em cada hospital.</p>
         </div>
     """, unsafe_allow_html=True)
 
