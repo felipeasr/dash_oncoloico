@@ -234,7 +234,7 @@ def pagepo():
         st.plotly_chart(fig_diagnósticos, use_container_width=True)
         st.plotly_chart(fig_Trat, use_container_width=True)
         #st.write(tabela_relacao)
-        st.plotly_chart(fig_modalidade, use_container_width=True)
+        st.plotly_chart(fig_modalidade, use_container_width=False)
         st.write("Tabela de Contagem de Casos por Diagnóstico e Tempo de Tratamento")
         st.dataframe(tabela_contagem,use_container_width=True)
 
@@ -250,7 +250,7 @@ def pagepo():
 
     # Barra lateral para seleção de estabelecimento
     if selected_estado != "Todos":
-        selected_estabelecimento = st.sidebar.selectbox('Selecione um Estabelecimento:', [
+        selected_estabelecimento = st.sidebar.selectbox('Selecione um Estabelecimento de Saúde:', [
             "Todos"] + obter_estabelecimentos_por_estado_diag(dados2, selected_estado))
     else:
         selected_estabelecimento = "Todos"
