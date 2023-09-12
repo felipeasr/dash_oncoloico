@@ -234,7 +234,7 @@ def pagepo():
         st.plotly_chart(fig_diagnósticos, use_container_width=True)
         st.plotly_chart(fig_Trat, use_container_width=True)
         #st.write(tabela_relacao)
-        st.plotly_chart(fig_modalidade, use_container_width=True)
+        st.plotly_chart(fig_modalidade, use_container_width=False)
         st.write("Tabela de Contagem de Casos por Diagnóstico e Tempo de Tratamento")
         st.dataframe(tabela_contagem,use_container_width=True)
 
