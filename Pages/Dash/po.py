@@ -4,7 +4,7 @@ import plotly.express as px
 import plotly.graph_objects as go
 import Pages.about as pageabout
 # Carregue seus dados CSV aqui
-caminho_do_csv = 'Painel_BR_0_19_3.csv'
+caminho_do_csv = 'teste.csv'
 dados2 = pd.read_csv(caminho_do_csv)
 
 
@@ -134,6 +134,16 @@ def pagepo():
 
         total_pacientes_atendidos = quanti_paciente_Trat_ANO['Quantidade de Pacientes'].sum(
         )
+        modalidade = data2['TRATAMENTO'].value_counts()
+
+        # Crie um gráfico Plotly Pie separadamente
+        fig_modalidade = go.Figure(data=[go.Pie(
+            labels=modalidade.index,
+            values=modalidade.values,
+            hole=0.3,
+            textinfo='percent'
+        )])
+
 
         fig2 = px.bar(
             quanti_paciente_Trat_ANO,
@@ -177,6 +187,7 @@ def pagepo():
             height=600,
             font=dict(size=20),
         )
+       
         bins_tempo_tratamento = [ -91, -61, -31, -1, 0, 10, 20, 30, 40, 50, 60, 90, 120, 300, 365, 730,9999, float('inf')]
 
 
@@ -213,6 +224,7 @@ def pagepo():
         st.plotly_chart(fig_diagnósticos, use_container_width=True)
         st.plotly_chart(fig_Trat, use_container_width=True)
         #st.write(tabela_relacao)
+        st.plotly_chart(fig_modalidade, use_container_width=True)
         st.write("Tabela de Contagem de Casos por Diagnóstico e Tempo de Tratamento")
         st.dataframe(tabela_contagem,use_container_width=True)
 
