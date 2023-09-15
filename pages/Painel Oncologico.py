@@ -29,6 +29,7 @@ def cook_breakfast():
     msg.toast('Ready!', icon="🥞")
 
 
+
 if st.sidebar.button('Atualizar'):
     cook_breakfast()
 # Carregue seus dados CSV aqui
