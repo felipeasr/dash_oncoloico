@@ -18,7 +18,7 @@ hide_st_style = """
             </style>
             """
 st.markdown(hide_st_style, unsafe_allow_html=True)
-with st.spinner('...'):
+with st.spinner(''):
     time.sleep(0.5)
     
 def cook_breakfast():
@@ -336,11 +336,10 @@ def exibir_graficos(data, data2):
     # st.write(tabela_relacao)
     st.write("Tabela de Contagem de Casos por Diagnóstico e Tempo de Tratamento")
     st.dataframe(tabela_contagem, use_container_width=True)
-    st.plotly_chart(fig4, use_container_width=True)
 
     # Barra lateral para seleção de estado
 st.sidebar.title("Filtros")
-# trat = dados2['UF_DIAGN']
+
 selected_estado = st.sidebar.selectbox(
     'Selecione um Estado:', ["Todos"] + dados2['UF_DIAGN'].unique().tolist())
 
