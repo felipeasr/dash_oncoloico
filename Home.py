@@ -8,6 +8,7 @@ import time
 import folium
 import random
 from streamlit_modal import Modal
+from streamlit_elements import elements, mui, html
 
 st.set_page_config(
     page_title="Dashboard Oncologico",
@@ -24,22 +25,8 @@ hide_st_style = """
             </style>
             """
 st.markdown(hide_st_style, unsafe_allow_html=True)
-with st.spinner('Wait for it...'):
+with st.spinner('...'):
     time.sleep(0.5)
-
-
-# Funçoes
-def cook_breakfast():
-    msg = st.toast('Gathering ingredients...')
-    time.sleep(1)
-    msg.toast('Cooking...')
-    time.sleep(1)
-    msg.toast('Ready!', icon="🥞")
-
-
-if st.sidebar.button('Atualizar'):
-    cook_breakfast()
-
 
 def formata_numero(valor, prefixo=''):
     for unidade in ['', 'mil']:
@@ -75,3 +62,89 @@ with col2:
 
 with col3:
     st.write("")
+
+with elements("nivo_charts"):
+
+    # Streamlit Elements includes 45 dataviz components powered by Nivo.
+
+    from streamlit_elements import nivo
+
+    DATA = [
+        { "taste": "fruity", "chardonay": 93, "carmenere": 61, "syrah": 114 },
+        { "taste": "bitter", "chardonay": 91, "carmenere": 37, "syrah": 72 },
+        { "taste": "heavy", "chardonay": 56, "carmenere": 95, "syrah": 99 },
+        { "taste": "strong", "chardonay": 64, "carmenere": 90, "syrah": 30 },
+        { "taste": "sunny", "chardonay": 119, "carmenere": 94, "syrah": 103 },
+    ]
+
+    with mui.Box(sx={"height": 500}):
+        nivo.Radar(
+            data=DATA,
+            keys=[ "chardonay", "carmenere", "syrah" ],
+            indexBy="taste",
+            valueFormat=">-.2f",
+            margin={ "top": 70, "right": 80, "bottom": 40, "left": 80 },
+            borderColor={ "from": "color" },
+            gridLabelOffset=36,
+            dotSize=10,
+            dotColor={ "theme": "background" },
+            dotBorderWidth=2,
+            motionConfig="wobbly",
+            legends=[
+                {
+                    "anchor": "top-left",
+                    "direction": "column",
+                    "translateX": -50,
+                    "translateY": -40,
+                    "itemWidth": 80,
+                    "itemHeight": 20,
+                    "itemTextColor": "#999",
+                    "symbolSize": 12,
+                    "symbolShape": "circle",
+                    "effects": [
+                        {
+                            "on": "hover",
+                            "style": {
+                                "itemTextColor": "#000"
+                            }
+                        }
+                    ]
+                }
+            ],
+            theme={
+                "background": "#FFFFFF",
+                "textColor": "#31333F",
+                "tooltip": {
+                    "container": {
+                        "background": "#FFFFFF",
+                        "color": "#31333F",
+                    }
+                }
+            }
+        )
+with elements("style_mui_sx"):
+
+    # For Material UI elements, use the 'sx' property.
+    #
+    # <Box
+    #   sx={{
+    #     bgcolor: 'background.paper',
+    #     boxShadow: 1,
+    #     borderRadius: 2,
+    #     p: 2,
+    #     minWidth: 300,
+    #   }}
+    # >
+    #   Some text in a styled box
+    # </Box>
+
+    mui.Box(
+        "Some text in a styled box",
+        sx={
+            "bgcolor": "background.paper",
+            "boxShadow": 1,
+            "borderRadius": 2,
+            "p": 2,
+            "minWidth": 300,
+        }
+    )

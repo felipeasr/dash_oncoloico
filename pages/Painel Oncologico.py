@@ -18,9 +18,19 @@ hide_st_style = """
             </style>
             """
 st.markdown(hide_st_style, unsafe_allow_html=True)
-with st.spinner('Wait for it...'):
+with st.spinner('...'):
     time.sleep(0.5)
+    
+def cook_breakfast():
+    msg = st.toast('Gathering ingredients...')
+    time.sleep(1)
+    msg.toast('Cooking...')
+    time.sleep(1)
+    msg.toast('Ready!', icon="🥞")
 
+
+if st.sidebar.button('Atualizar'):
+    cook_breakfast()
 # Carregue seus dados CSV aqui
 caminho_do_csv = 'Painel_BR.csv'
 dados2 = pd.read_csv(caminho_do_csv, encoding='utf-8')
@@ -237,15 +247,41 @@ def exibir_graficos(data, data2):
                                    'mais de dois anos', 'Sem Informação']
 
     #data2['TEMPO_TRAT'] = data2['TEMPO_TRAT'].replace(['99.999', '9999','99999.0','0.0'], 'Sem Informação')
-    data['Categorias Tempo Tratamento'] = pd.cut(
-        data['TEMPO_TRAT'], bins=bins_tempo_tratamento, labels=categorias_tempo_tratamento)
+    data2['Categorias Tempo Tratamento'] = pd.cut(
+        data2['TEMPO_TRAT'], bins=bins_tempo_tratamento, labels=categorias_tempo_tratamento)
 
     # Adicione uma coluna "Total" para representar o total de casos em cada linha
-    data['Total'] = 1
+    data2['Total'] = 1
 
     # Crie a tabela de contagem usando crosstab
     tabela_contagem = pd.crosstab(
-        data['DIAG_DETH'], data['Categorias Tempo Tratamento'], margins=True, margins_name="Total")
+    data2['DIAG_DETH'], data2['Categorias Tempo Tratamento'], margins=True, margins_name="Total")
+    tabela_contagem_grafico = pd.crosstab(
+    data2['DIAG_DETH'], data2['Categorias Tempo Tratamento'], margins=True, margins_name="Total")
+
+   # Exclua a coluna "Total" da tabela de contagem
+    tabela_contagem_grafico = tabela_contagem_grafico.iloc[:-1, :-1]
+
+    # Reorganize a tabela para que possa ser usada com o Plotly Sunburst
+    tabela_contagem_grafico.reset_index(inplace=True)
+    tabela_contagem_melted = tabela_contagem_grafico.melt(id_vars=['DIAG_DETH'], value_vars=tabela_contagem_grafico.columns[1:])
+
+    # Crie um gráfico Sunburst
+   
+    fig4 = px.sunburst(
+    tabela_contagem_melted, 
+    path=['DIAG_DETH', 'Categorias Tempo Tratamento'], 
+    values='value',
+    width=1200,  # Largura da figura
+    height=1000, # Altura da figura
+)
+
+
+    # Personalize o layout do gráfico, se necessário
+    fig4.update_layout(
+        title='Gráfico Sunburst de Casos por Diagnóstico e Tempo de Tratamento'
+    )
+
 
     # Crie o gráfico de barras
     fig3 = go.Figure()
@@ -282,6 +318,8 @@ def exibir_graficos(data, data2):
     )
 
     coluna1, coluna2 = st.columns(2)
+    
+    #st.write(selected_estabelecimento)
 
     with coluna1:
         st.metric(
@@ -290,15 +328,15 @@ def exibir_graficos(data, data2):
     with coluna2:
         st.metric('Quantidade de Pacientes Tratados em 10 Anos',
                   total_pacientes_atendidos)
-
+        
     st.plotly_chart(fig3, use_container_width=True)
     st.plotly_chart(fig_diagnósticos, use_container_width=True)
     st.plotly_chart(fig_Trat, use_container_width=True)
-
-    # st.write(tabela_relacao)
     st.plotly_chart(fig_modalidade, use_container_width=False)
+    # st.write(tabela_relacao)
     st.write("Tabela de Contagem de Casos por Diagnóstico e Tempo de Tratamento")
     st.dataframe(tabela_contagem, use_container_width=True)
+    st.plotly_chart(fig4, use_container_width=True)
 
     # Barra lateral para seleção de estado
 st.sidebar.title("Filtros")
