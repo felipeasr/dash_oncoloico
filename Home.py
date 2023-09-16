@@ -8,7 +8,6 @@ import time
 import folium
 import random
 from streamlit_modal import Modal
-from streamlit_elements import elements, mui, html
 
 st.set_page_config(
     page_title="Dashboard Oncologico",
@@ -28,12 +27,14 @@ st.markdown(hide_st_style, unsafe_allow_html=True)
 with st.spinner('...'):
     time.sleep(0.5)
 
+
 def formata_numero(valor, prefixo=''):
     for unidade in ['', 'mil']:
         if valor < 1000:
             return f'{prefixo} {valor:.2f} {unidade}'
         valor /= 1000
     return f'{prefixo} {valor:.2f} milhões'
+
 
   # Centralize todos os elementos
 st.header('Bem-vindo aos Dashboards de Oncológia Pediátrica', divider='orange')
