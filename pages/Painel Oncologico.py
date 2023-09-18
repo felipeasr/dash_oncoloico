@@ -247,17 +247,17 @@ def exibir_graficos(data, data2):
                                    'mais de dois anos', 'Sem Informação']
 
     #data2['TEMPO_TRAT'] = data2['TEMPO_TRAT'].replace(['99.999', '9999','99999.0','0.0'], 'Sem Informação')
-    data2['Categorias Tempo Tratamento'] = pd.cut(
-        data2['TEMPO_TRAT'], bins=bins_tempo_tratamento, labels=categorias_tempo_tratamento)
+    data['Categorias Tempo Tratamento'] = pd.cut(
+        data['TEMPO_TRAT'], bins=bins_tempo_tratamento, labels=categorias_tempo_tratamento)
 
     # Adicione uma coluna "Total" para representar o total de casos em cada linha
-    data2['Total'] = 1
+    data['Total'] = 1
 
     # Crie a tabela de contagem usando crosstab
     tabela_contagem = pd.crosstab(
-    data2['DIAG_DETH'], data2['Categorias Tempo Tratamento'], margins=True, margins_name="Total")
+    data['DIAG_DETH'], data['Categorias Tempo Tratamento'], margins=True, margins_name="Total")
     tabela_contagem_grafico = pd.crosstab(
-    data2['DIAG_DETH'], data2['Categorias Tempo Tratamento'], margins=True, margins_name="Total")
+    data['DIAG_DETH'], data['Categorias Tempo Tratamento'], margins=True, margins_name="Total")
 
    # Exclua a coluna "Total" da tabela de contagem
     tabela_contagem_grafico = tabela_contagem_grafico.iloc[:-1, :-1]
