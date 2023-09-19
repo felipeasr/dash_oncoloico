@@ -330,7 +330,8 @@ def exibir_graficos(data, data2):
         st.metric('Quantidade de Pacientes Tratados em 10 Anos',
                   total_pacientes_atendidos)
         
-    st.plotly_chart(fig3, use_container_width=True)
+
+    st.plotly_chart(fig3, use_container_width=True,)
     st.plotly_chart(fig_diagnósticos, use_container_width=True)
     st.plotly_chart(fig_Trat, use_container_width=True)
     st.plotly_chart(fig_modalidade, use_container_width=True)
