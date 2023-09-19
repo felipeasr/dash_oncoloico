@@ -314,7 +314,7 @@ def exibir_graficos(data, data2):
         title='Quantidade de Pacientes Diagnosticados e Tratados por Ano',
         showlegend=True,
         font=dict(size=14),
-        width=1980,  # Aumente o tamanho do gráfico horizontalmente
+        width=1980,  
         height=600
     )
 
