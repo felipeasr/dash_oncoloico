@@ -280,7 +280,7 @@ def exibir_graficos(data, data2):
 
     # Personalize o layout do gráfico, se necessário
     fig4.update_layout(
-        title='Gráfico Sunburst de Casos por Diagnóstico e Tempo de Tratamento'
+        title='Gráfico de Casos por Diagnóstico e Tempo de Tratamento'
     )
 
 
@@ -335,6 +335,7 @@ def exibir_graficos(data, data2):
     st.plotly_chart(fig_Trat, use_container_width=True)
     st.plotly_chart(fig_modalidade, use_container_width=False)
     # st.write(tabela_relacao)
+    st.plotly_chart(fig4)
     st.write("Tabela de Contagem de Casos por Diagnóstico e Tempo de Tratamento")
     st.dataframe(tabela_contagem, use_container_width=True)
 
