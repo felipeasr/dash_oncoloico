@@ -18,7 +18,7 @@ hide_st_style = """
             </style>
             """
 st.markdown(hide_st_style, unsafe_allow_html=True)
-with st.spinner('...'):
+with st.spinner(''):
     time.sleep(0.5)
     
 def cook_breakfast():
@@ -27,6 +27,7 @@ def cook_breakfast():
     msg.toast('Cooking...')
     time.sleep(1)
     msg.toast('Ready!', icon="🥞")
+
 
 
 if st.sidebar.button('Atualizar'):
@@ -158,15 +159,39 @@ def exibir_graficos(data, data2):
     )])
 
     fig_diagnósticos.update_layout(
-        title='10 Doenças diagnosticadas',
-        legend=dict(
-            orientation='v',
-            font=dict(size=14),
-        ),
-        width=800,
-        height=600,
-        font=dict(size=20),
-    )
+    title='10 Doenças diagnosticadas',
+    legend=dict(
+        orientation='h',  # Posição horizontal da legenda
+        yanchor="bottom",  # Ancoragem da legenda na parte inferior
+        y=-1.02,  # Distância vertical da legenda em relação ao gráfico
+        xanchor="center",  # Ancoragem horizontal no centro
+        x=0.5  # Posição horizontal da legenda no centro
+    ),
+    width=1000,
+    height=800,
+    font=dict(size=20),)
+    fig_Trat = go.Figure(data=[go.Pie(
+        labels=trat_mais_frequentes.index,
+        values=trat_mais_frequentes.values,
+        hole=0.3,
+        marker=dict(colors=[label_to_color[label]
+                            for label in trat_mais_frequentes.index]),
+        textinfo='percent'
+    )])
+
+    fig_Trat.update_layout(
+    title='10 Doenças tratadas',
+    legend=dict(
+        orientation='h',  # Posição horizontal da legenda
+        yanchor="bottom",  # Ancoragem da legenda na parte inferior
+        y=-1.02,  # Distância vertical da legenda em relação ao gráfico
+        xanchor="center",  # Ancoragem horizontal no centro
+        x=0.5  # Posição horizontal da legenda no centro
+    ),
+    width=1000,
+    height=800,
+    font=dict(size=20),)
+    
     quanti_paciente_Trat_ANO = data2.groupby(
         'ANO_TRATAM')['UF_TRATAM'].count().reset_index()
     quanti_paciente_Trat_ANO.rename(columns={
@@ -217,25 +242,7 @@ def exibir_graficos(data, data2):
 
     color_palette = px.colors.qualitative.Pastel
 
-    fig_Trat = go.Figure(data=[go.Pie(
-        labels=trat_mais_frequentes.index,
-        values=trat_mais_frequentes.values,
-        hole=0.3,
-        marker=dict(colors=[label_to_color[label]
-                            for label in trat_mais_frequentes.index]),
-        textinfo='percent'
-    )])
-
-    fig_Trat.update_layout(
-        title='10 Doenças tratadas',
-        legend=dict(
-            orientation='v',
-            font=dict(size=14),
-        ),
-        width=800,
-        height=600,
-        font=dict(size=20),
-    )
+    
 
     bins_tempo_tratamento = [-91, -61, -31, -1, 0, 10, 20, 30,
                              40, 50, 60, 90, 120, 300, 365, 730, 9999, float('inf')]
@@ -313,9 +320,14 @@ def exibir_graficos(data, data2):
         title='Quantidade de Pacientes Diagnosticados e Tratados por Ano',
         showlegend=True,
         font=dict(size=14),
-        width=1980,  # Aumente o tamanho do gráfico horizontalmente
+        width=1980,  
         height=600
     )
+    
+    fig3.update_xaxes(
+    tickmode='array',
+    tickvals=quanti_paciente_Diag_ANO['Ano Diagnóstico'],
+)
 
     coluna1, coluna2 = st.columns(2)
     
@@ -328,6 +340,25 @@ def exibir_graficos(data, data2):
     with coluna2:
         st.metric('Quantidade de Pacientes Tratados em 10 Anos',
                   total_pacientes_atendidos)
+
+    st.plotly_chart(fig3, use_container_width=True,)
+    col1, col2 = st.columns(2) 
+    with col1:
+        st.plotly_chart(fig_diagnósticos, use_container_width=True)
+
+    with col2:
+        st.plotly_chart(fig_Trat, use_container_width=True)
+   
+    st.plotly_chart(fig_modalidade, use_container_width=True)
+    #st.plotly_chart(fig_diagnósticos, use_container_width=True)
+    #st.plotly_chart(fig_Trat, use_container_width=True)
+    # st.write(tabela_relacao)
+    st.plotly_chart(fig4)
+    st.write("Tabela de Contagem de Casos por Diagnóstico e Tempo de Tratamento")
+    st.dataframe(tabela_contagem, use_container_width=True)
+     # Divide a tela em duas colunas
+
+
         
     st.plotly_chart(fig3, use_container_width=True)
     st.plotly_chart(fig_diagnósticos, use_container_width=True)
@@ -338,9 +369,10 @@ def exibir_graficos(data, data2):
     st.write("Tabela de Contagem de Casos por Diagnóstico e Tempo de Tratamento")
     st.dataframe(tabela_contagem, use_container_width=True)
 
+
     # Barra lateral para seleção de estado
 st.sidebar.title("Filtros")
-# trat = dados2['UF_DIAGN']
+
 selected_estado = st.sidebar.selectbox(
     'Selecione um Estado:', ["Todos"] + dados2['UF_DIAGN'].unique().tolist())
 
