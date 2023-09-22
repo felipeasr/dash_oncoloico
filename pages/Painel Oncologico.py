@@ -3,6 +3,8 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 import time
+import pages.apacs.apacquimio as apacquimio
+import pages.apacs.apacradio as apacradio
 st.set_page_config(
     page_title="Dashboard Oncologico",
     page_icon="bar_chart",
@@ -377,6 +379,7 @@ else:
 selected_idade = st.sidebar.slider(
     "Selecione uma faixa etária:", min_value=0, max_value=19, value=(0, 19))
 
+
 # Modifique as funções de filtragem para considerar a idade selecionada
 
 
@@ -394,7 +397,15 @@ dados_filtrados_trat = filtrar_por_estabelecimento_trat(
     dados_filtrados_trat, selected_estabelecimento)
 dados_filtrados_trat = filtrar_por_idade(dados_filtrados_trat, selected_idade)
 
-
 # Exibir gráficos com base nos dados filtrados
-
 exibir_graficos(dados_filtrados_diag, dados_filtrados_trat)
+if selected_estado == "RS":
+    Page_cliente = st.sidebar.selectbox(
+    'APACS', ['Selecione uma Apac','Quimio', 'Radio'])
+
+    if Page_cliente == 'Quimio':
+        apacquimio.apacquimio()
+
+    if Page_cliente == 'Radio':
+        st.experimental_set_query_params()
+        apacradio.apacradio()
