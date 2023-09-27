@@ -401,11 +401,11 @@ dados_filtrados_trat = filtrar_por_idade(dados_filtrados_trat, selected_idade)
 exibir_graficos(dados_filtrados_diag, dados_filtrados_trat)
 if selected_estado == "RS":
     Page_cliente = st.sidebar.selectbox(
-    'APACS', ['Selecione uma Apac','Quimio', 'Radio'])
+    'APACS', ['Selecione uma Apac','Quimioterapia', 'Radioterapia'])
 
-    if Page_cliente == 'Quimio':
+    if Page_cliente == 'Quimioterapia':
         apacquimio.apacquimio()
 
-    if Page_cliente == 'Radio':
+    if Page_cliente == 'Radioterapia':
         st.experimental_set_query_params()
         apacradio.apacradio()
