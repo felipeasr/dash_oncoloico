@@ -5,6 +5,7 @@ import plotly.graph_objects as go
 import time
 import pages.apacs.apacquimio as apacquimio
 import pages.apacs.apacradio as apacradio
+import pages.maps.Mapa_Oncologico as map
 st.set_page_config(
     page_title="Dashboard Oncologico",
     page_icon="bar_chart",
@@ -400,6 +401,7 @@ dados_filtrados_trat = filtrar_por_idade(dados_filtrados_trat, selected_idade)
 # Exibir gráficos com base nos dados filtrados
 exibir_graficos(dados_filtrados_diag, dados_filtrados_trat)
 if selected_estado == "RS":
+    
     Page_cliente = st.sidebar.selectbox(
     'APACS', ['Selecione uma Apac','Quimioterapia', 'Radioterapia'])
 
@@ -409,3 +411,4 @@ if selected_estado == "RS":
     if Page_cliente == 'Radioterapia':
         st.experimental_set_query_params()
         apacradio.apacradio()
+   # map.map()
