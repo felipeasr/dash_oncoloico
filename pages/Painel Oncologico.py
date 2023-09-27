@@ -388,11 +388,13 @@ def filtrar_por_idade(data, idade_range):
     return data[(data['IDADE'] >= idade_range[0]) & (data['IDADE'] <= idade_range[1])]
 
 
+#Dianostico
 dados_filtrados_diag = filtrar_por_estado_diag(dados2, selected_estado)
 dados_filtrados_diag = filtrar_por_estabelecimento_diag(
     dados_filtrados_diag, selected_estabelecimento)
 dados_filtrados_diag = filtrar_por_idade(dados_filtrados_diag, selected_idade)
 
+#Trat
 dados_filtrados_trat = filtrar_por_estado_trat(dados2, selected_estado)
 dados_filtrados_trat = filtrar_por_estabelecimento_trat(
     dados_filtrados_trat, selected_estabelecimento)
