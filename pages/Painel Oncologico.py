@@ -214,11 +214,14 @@ def exibir_graficos(data, data2):
     fig_modalidade.update_layout(
         title='Primeiro tratamento registrado',
         legend=dict(
-            orientation='v',
-            font=dict(size=14),
+            orientation='h',
+            yanchor="bottom",
+            y=-0.5,
+            xanchor="center",
+            x=0.5
         ),
-        width=800,
-        height=600,
+        width=1000,
+        height=800,
         font=dict(size=20),
     )
 
@@ -331,7 +334,28 @@ def exibir_graficos(data, data2):
     tickmode='array',
     tickvals=quanti_paciente_Diag_ANO['Ano Diagnóstico'],
 )
+    sexo_counts = data['SEXO'].value_counts()
 
+    fig_donut = go.Figure(data=[go.Pie(
+        labels=sexo_counts.index,
+        values=sexo_counts.values,
+        hole=0.3,
+        textinfo='percent'
+    )])
+
+    fig_donut.update_layout(
+        title='Distribuição por Sexo',
+        legend=dict(
+            orientation='h',
+            yanchor="bottom",
+            y=-0.5,
+            xanchor="center",
+            x=0.5
+        ),
+        width=1000,
+        height=800,
+        font=dict(size=20),
+    )
     coluna1, coluna2 = st.columns(2)
     
     #st.write(selected_estabelecimento)
@@ -348,11 +372,14 @@ def exibir_graficos(data, data2):
     col1, col2 = st.columns(2) 
     with col1:
         st.plotly_chart(fig_diagnósticos, use_container_width=True)
+        st.plotly_chart(fig_modalidade, use_container_width=True)
 
     with col2:
         st.plotly_chart(fig_Trat, use_container_width=True)
+        st.plotly_chart(fig_donut,use_container_width=True)
    
-    st.plotly_chart(fig_modalidade, use_container_width=True)
+    
+    
     #st.plotly_chart(fig_diagnósticos, use_container_width=True)
     #st.plotly_chart(fig_Trat, use_container_width=True)
     # st.write(tabela_relacao)
