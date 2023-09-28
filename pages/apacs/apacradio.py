@@ -15,5 +15,4 @@ def apacradio():
     caminho_do_csv = 'apacRadio.csv'
     dadosradio = pd.read_csv(caminho_do_csv, encoding='utf-8')
     st.dataframe(dadosradio, use_container_width=True)
-    st.metric(
-        'Quantidade de Apacs de Radioterapia em 10 anos', len(dadosradio))
+    st.metric('Quantidade de Apacs de Radioterapia em 10 anos', len(dadosradio))
