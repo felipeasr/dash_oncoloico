@@ -406,6 +406,7 @@ def exibir_graficos(data, data2):
 
     with col2:
         st.plotly_chart(fig_Trat, use_container_width=True)
+
         st.plotly_chart(fig_donut, use_container_width=True)
 
     # st.plotly_chart(fig_diagnósticos, use_container_width=True)
@@ -419,6 +420,7 @@ def exibir_graficos(data, data2):
         "Tabela de Contagem de Casos por Diagnóstico e Pirmeiro tratamento registrado")
     st.dataframe(tabela_contagem2)
     # st.pyplot(plt)
+
 
     # Barra lateral para seleção de estado
 st.sidebar.title("Filtros")
