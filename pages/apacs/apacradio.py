@@ -5,8 +5,6 @@ import pandas as pd
 
 def apacradio():
 
-    with st.spinner():
-        time.sleep(0.2)
     st.header('', divider='orange')
     st.title('APAC RADIO')
     st.write('Em construção')
