@@ -6,7 +6,7 @@ import time
 import pages.apacs.apacquimio as apacquimio
 import pages.apacs.apacradio as apacradio
 import pages.maps.Mapa_Oncologico as map
-import matplotlib.pyplot as plt
+
 st.set_page_config(
     page_title="Dashboard Oncologico",
     page_icon="bar_chart",
