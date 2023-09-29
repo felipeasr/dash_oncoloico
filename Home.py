@@ -24,8 +24,8 @@ hide_st_style = """
             </style>
             """
 st.markdown(hide_st_style, unsafe_allow_html=True)
-with st.spinner('...'):
-    time.sleep(0.5)
+with st.spinner():
+    time.sleep(0.2)
 
 
 def formata_numero(valor, prefixo=''):

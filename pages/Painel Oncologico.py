@@ -3,6 +3,10 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 import time
+import pages.apacs.apacquimio as apacquimio
+import pages.apacs.apacradio as apacradio
+import pages.maps.Mapa_Oncologico as map
+import matplotlib.pyplot as plt
 st.set_page_config(
     page_title="Dashboard Oncologico",
     page_icon="bar_chart",
@@ -20,14 +24,14 @@ hide_st_style = """
 st.markdown(hide_st_style, unsafe_allow_html=True)
 with st.spinner(''):
     time.sleep(0.5)
-    
+
+
 def cook_breakfast():
     msg = st.toast('Gathering ingredients...')
     time.sleep(1)
     msg.toast('Cooking...')
     time.sleep(1)
     msg.toast('Ready!', icon="🥞")
-
 
 
 if st.sidebar.button('Atualizar'):
@@ -159,17 +163,17 @@ def exibir_graficos(data, data2):
     )])
 
     fig_diagnósticos.update_layout(
-    title='10 Doenças diagnosticadas',
-    legend=dict(
-        orientation='h',  # Posição horizontal da legenda
-        yanchor="bottom",  # Ancoragem da legenda na parte inferior
-        y=-1.02,  # Distância vertical da legenda em relação ao gráfico
-        xanchor="center",  # Ancoragem horizontal no centro
-        x=0.5  # Posição horizontal da legenda no centro
-    ),
-    width=1000,
-    height=800,
-    font=dict(size=20),)
+        title='10 Doenças diagnosticadas',
+        legend=dict(
+            orientation='h',  # Posição horizontal da legenda
+            yanchor="bottom",  # Ancoragem da legenda na parte inferior
+            y=-1.02,  # Distância vertical da legenda em relação ao gráfico
+            xanchor="center",  # Ancoragem horizontal no centro
+            x=0.5  # Posição horizontal da legenda no centro
+        ),
+        width=1000,
+        height=800,
+        font=dict(size=20),)
     fig_Trat = go.Figure(data=[go.Pie(
         labels=trat_mais_frequentes.index,
         values=trat_mais_frequentes.values,
@@ -180,18 +184,18 @@ def exibir_graficos(data, data2):
     )])
 
     fig_Trat.update_layout(
-    title='10 Doenças tratadas',
-    legend=dict(
-        orientation='h',  # Posição horizontal da legenda
-        yanchor="bottom",  # Ancoragem da legenda na parte inferior
-        y=-1.02,  # Distância vertical da legenda em relação ao gráfico
-        xanchor="center",  # Ancoragem horizontal no centro
-        x=0.5  # Posição horizontal da legenda no centro
-    ),
-    width=1000,
-    height=800,
-    font=dict(size=20),)
-    
+        title='10 Doenças tratadas',
+        legend=dict(
+            orientation='h',  # Posição horizontal da legenda
+            yanchor="bottom",  # Ancoragem da legenda na parte inferior
+            y=-1.02,  # Distância vertical da legenda em relação ao gráfico
+            xanchor="center",  # Ancoragem horizontal no centro
+            x=0.5  # Posição horizontal da legenda no centro
+        ),
+        width=1000,
+        height=800,
+        font=dict(size=20),)
+
     quanti_paciente_Trat_ANO = data2.groupby(
         'ANO_TRATAM')['UF_TRATAM'].count().reset_index()
     quanti_paciente_Trat_ANO.rename(columns={
@@ -211,11 +215,14 @@ def exibir_graficos(data, data2):
     fig_modalidade.update_layout(
         title='Primeiro tratamento registrado',
         legend=dict(
-            orientation='v',
-            font=dict(size=14),
+            orientation='h',
+            yanchor="bottom",
+            y=-0.5,
+            xanchor="center",
+            x=0.5
         ),
-        width=800,
-        height=600,
+        width=1000,
+        height=800,
         font=dict(size=20),
     )
 
@@ -242,8 +249,6 @@ def exibir_graficos(data, data2):
 
     color_palette = px.colors.qualitative.Pastel
 
-    
-
     bins_tempo_tratamento = [-91, -61, -31, -1, 0, 10, 20, 30,
                              40, 50, 60, 90, 120, 300, 365, 730, 9999, float('inf')]
 
@@ -253,7 +258,7 @@ def exibir_graficos(data, data2):
                                    '61 a 90 dias', '91 a 120 dias', '121 dias a 300 dias', '301 dias a 365 dias', '366 a 730 dias',
                                    'mais de dois anos', 'Sem Informação']
 
-    #data2['TEMPO_TRAT'] = data2['TEMPO_TRAT'].replace(['99.999', '9999','99999.0','0.0'], 'Sem Informação')
+    # data2['TEMPO_TRAT'] = data2['TEMPO_TRAT'].replace(['99.999', '9999','99999.0','0.0'], 'Sem Informação')
     data['Categorias Tempo Tratamento'] = pd.cut(
         data['TEMPO_TRAT'], bins=bins_tempo_tratamento, labels=categorias_tempo_tratamento)
 
@@ -262,33 +267,32 @@ def exibir_graficos(data, data2):
 
     # Crie a tabela de contagem usando crosstab
     tabela_contagem = pd.crosstab(
-    data['DIAG_DETH'], data['Categorias Tempo Tratamento'], margins=True, margins_name="Total")
+        data['DIAG_DETH'], data['Categorias Tempo Tratamento'], margins=True, margins_name="Total")
     tabela_contagem_grafico = pd.crosstab(
-    data['DIAG_DETH'], data['Categorias Tempo Tratamento'], margins=True, margins_name="Total")
+        data['DIAG_DETH'], data['Categorias Tempo Tratamento'], margins=True, margins_name="Total")
 
    # Exclua a coluna "Total" da tabela de contagem
     tabela_contagem_grafico = tabela_contagem_grafico.iloc[:-1, :-1]
 
     # Reorganize a tabela para que possa ser usada com o Plotly Sunburst
     tabela_contagem_grafico.reset_index(inplace=True)
-    tabela_contagem_melted = tabela_contagem_grafico.melt(id_vars=['DIAG_DETH'], value_vars=tabela_contagem_grafico.columns[1:])
+    tabela_contagem_melted = tabela_contagem_grafico.melt(
+        id_vars=['DIAG_DETH'], value_vars=tabela_contagem_grafico.columns[1:])
 
     # Crie um gráfico Sunburst
-   
-    fig4 = px.sunburst(
-    tabela_contagem_melted, 
-    path=['DIAG_DETH', 'Categorias Tempo Tratamento'], 
-    values='value',
-    width=1200,  # Largura da figura
-    height=1000, # Altura da figura
-)
 
+    fig4 = px.sunburst(
+        tabela_contagem_melted,
+        path=['DIAG_DETH', 'Categorias Tempo Tratamento'],
+        values='value',
+        width=1200,  # Largura da figura
+        height=1000,  # Altura da figura
+    )
 
     # Personalize o layout do gráfico, se necessário
     fig4.update_layout(
         title='Gráfico de Casos por Diagnóstico e Tempo de Tratamento'
     )
-
 
     # Crie o gráfico de barras
     fig3 = go.Figure()
@@ -320,18 +324,71 @@ def exibir_graficos(data, data2):
         title='Quantidade de Pacientes Diagnosticados e Tratados por Ano',
         showlegend=True,
         font=dict(size=14),
-        width=1980,  
+        width=1980,
         height=600
     )
-    
-    fig3.update_xaxes(
-    tickmode='array',
-    tickvals=quanti_paciente_Diag_ANO['Ano Diagnóstico'],
-)
 
+    fig3.update_xaxes(
+        tickmode='array',
+        tickvals=quanti_paciente_Diag_ANO['Ano Diagnóstico'],
+    )
+    sexo_counts = data['SEXO'].value_counts()
+
+    fig_donut = go.Figure(data=[go.Pie(
+        labels=sexo_counts.index,
+        values=sexo_counts.values,
+        hole=0.3,
+        textinfo='percent'
+    )])
+
+    fig_donut.update_layout(
+        title='Distribuição por Sexo',
+        legend=dict(
+            orientation='h',
+            yanchor="bottom",
+            y=-0.5,
+            xanchor="center",
+            x=0.5
+        ),
+        width=1000,
+        height=800,
+        font=dict(size=20),
+    )
+
+    # Agrupe os dados por TRATAMENTO e DIAG_DETH e conte o número de ocorrências
+    # Crie a tabela de contagem usando crosstab
+    tabela_contagem2 = pd.crosstab(
+        data['DIAG_DETH'], data['TRATAMENTO'], margins=True, margins_name="Total")
+    tabela_contagem_grafico2 = pd.crosstab(
+        data['DIAG_DETH'], data['TRATAMENTO'], margins=True, margins_name="Total")
+
+    # Exclua a coluna "Total" da tabela de contagem
+    tabela_contagem_grafico2 = tabela_contagem_grafico2.iloc[:-1, :-1]
+
+    # Reorganize a tabela para que possa ser usada com o Plotly Sunburst
+    tabela_contagem_grafico2.reset_index(inplace=True)
+    tabela_contagem_melted2 = tabela_contagem_grafico2.melt(
+        id_vars=['DIAG_DETH'], value_vars=tabela_contagem_grafico2.columns[1:])
+
+    # Crie um gráfico Sunburst
+    fig_primeiro_TRAT = px.sunburst(
+        tabela_contagem_melted2,
+        path=['DIAG_DETH', 'TRATAMENTO'],
+        values='value',
+        width=1200,  # Largura da figura
+        height=1000,  # Altura da figura
+        color_discrete_sequence=px.colors.sequential.Viridis
+    )
+
+    # Personalize o layout do gráfico, se necessário
+    fig_primeiro_TRAT.update_layout(
+        title='Gráfico de Casos por Diagnóstico e Primeiro tratamento registrado'
+    )
+
+    # Crie um gráfico de mosaico
     coluna1, coluna2 = st.columns(2)
-    
-    #st.write(selected_estabelecimento)
+
+    # st.write(selected_estabelecimento)
 
     with coluna1:
         st.metric(
@@ -342,21 +399,28 @@ def exibir_graficos(data, data2):
                   total_pacientes_atendidos)
 
     st.plotly_chart(fig3, use_container_width=True,)
-    col1, col2 = st.columns(2) 
+    col1, col2 = st.columns(2)
     with col1:
         st.plotly_chart(fig_diagnósticos, use_container_width=True)
+        st.plotly_chart(fig_modalidade, use_container_width=True)
 
     with col2:
         st.plotly_chart(fig_Trat, use_container_width=True)
-   
-    st.plotly_chart(fig_modalidade, use_container_width=True)
-    #st.plotly_chart(fig_diagnósticos, use_container_width=True)
-    #st.plotly_chart(fig_Trat, use_container_width=True)
+
+        st.plotly_chart(fig_donut, use_container_width=True)
+
+    # st.plotly_chart(fig_diagnósticos, use_container_width=True)
+    # st.plotly_chart(fig_Trat, use_container_width=True)
     # st.write(tabela_relacao)
     st.plotly_chart(fig4)
     st.write("Tabela de Contagem de Casos por Diagnóstico e Tempo de Tratamento")
-    st.dataframe(tabela_contagem, use_container_width=True)
-     
+    st.dataframe(tabela_contagem)
+    st.plotly_chart(fig_primeiro_TRAT, use_container_width=True)
+    st.write(
+        "Tabela de Contagem de Casos por Diagnóstico e Pirmeiro tratamento registrado")
+    st.dataframe(tabela_contagem2)
+    # st.pyplot(plt)
+
 
     # Barra lateral para seleção de estado
 st.sidebar.title("Filtros")
@@ -385,17 +449,27 @@ def filtrar_por_idade(data, idade_range):
     return data[(data['IDADE'] >= idade_range[0]) & (data['IDADE'] <= idade_range[1])]
 
 
+# Dianostico
 dados_filtrados_diag = filtrar_por_estado_diag(dados2, selected_estado)
 dados_filtrados_diag = filtrar_por_estabelecimento_diag(
     dados_filtrados_diag, selected_estabelecimento)
 dados_filtrados_diag = filtrar_por_idade(dados_filtrados_diag, selected_idade)
-
+# Trat
 dados_filtrados_trat = filtrar_por_estado_trat(dados2, selected_estado)
 dados_filtrados_trat = filtrar_por_estabelecimento_trat(
     dados_filtrados_trat, selected_estabelecimento)
 dados_filtrados_trat = filtrar_por_idade(dados_filtrados_trat, selected_idade)
-
-
 # Exibir gráficos com base nos dados filtrados
-
 exibir_graficos(dados_filtrados_diag, dados_filtrados_trat)
+if selected_estado == "RS":
+
+    Page_cliente = st.sidebar.selectbox(
+        'APACS', ['Selecione uma Apac', 'Quimioterapia', 'Radioterapia'])
+
+    if Page_cliente == 'Quimioterapia':
+        apacquimio.apacquimio()
+
+    if Page_cliente == 'Radioterapia':
+        st.experimental_set_query_params()
+        apacradio.apacradio()
+   # map.map()
