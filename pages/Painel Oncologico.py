@@ -37,7 +37,7 @@ def cook_breakfast():
 if st.sidebar.button('Atualizar'):
     cook_breakfast()
 # Carregue seus dados CSV aqui
-caminho_do_csv = 'Painel_BR.csv'
+caminho_do_csv = 'Painel_BR_Final.csv'
 dados2 = pd.read_csv(caminho_do_csv, encoding='utf-8')
 
 
@@ -334,11 +334,22 @@ def exibir_graficos(data, data2):
     )
     sexo_counts = data['SEXO'].value_counts()
 
+# Defina as cores para Masculino (azul claro) e Feminino (vermelho claro)
+
+    sexo_counts = data['SEXO'].value_counts()
+
+    # Crie um dicionário que mapeia os rótulos para as cores desejadas
+    cores = {'Masculino': '#ADD8E6', 'Feminino': '#FFC0CB'}
+
+    # Crie uma lista de cores com base nos rótulos no DataFrame
+    cores_grafico = [cores[label] for label in sexo_counts.index]
+
     fig_donut = go.Figure(data=[go.Pie(
         labels=sexo_counts.index,
         values=sexo_counts.values,
         hole=0.3,
-        textinfo='percent'
+        textinfo='percent',
+        marker_colors=cores_grafico  # Use a lista de cores personalizadas
     )])
 
     fig_donut.update_layout(
@@ -385,6 +396,31 @@ def exibir_graficos(data, data2):
         title='Gráfico de Casos por Diagnóstico e Primeiro tratamento registrado'
     )
 
+   # Filtrar os dados para população masculina e feminina
+    dados_masculinos = data[data['SEXO'] == 'Masculino']
+    dados_femininos = data[data['SEXO'] == 'Feminino']
+
+    # Adicionar uma coluna 'Sexo' para representar o sexo de cada linha
+    dados_masculinos['Sexo'] = 'Masculino'
+    dados_femininos['Sexo'] = 'Feminino'
+
+    # Combinar os dados das duas populações
+    dados_combinados = pd.concat([dados_masculinos, dados_femininos])
+
+    # Contar a quantidade de diagnósticos para cada sexo e diagnóstico
+    contagem_diag_sexo = dados_combinados.groupby(
+        ['Sexo', 'DIAG_DETH']).size().reset_index(name='Quantidade')
+
+    # Criar o treemap que mostra a população masculina e feminina
+    fig_populacao_sexo = px.treemap(
+        contagem_diag_sexo,
+        path=[px.Constant('População'), 'Sexo', 'DIAG_DETH'],
+        values='Quantidade',
+        title='População Masculina e Feminina por Diagnóstico',
+        color="Sexo",
+        color_discrete_map={"(?)": "white", "Masculino": "#ADD8E6", "Feminino": "#FFC0CB",
+                            },
+    )
     # Crie um gráfico de mosaico
     coluna1, coluna2 = st.columns(2)
 
@@ -407,6 +443,7 @@ def exibir_graficos(data, data2):
     with col2:
         st.plotly_chart(fig_Trat, use_container_width=True)
         st.plotly_chart(fig_donut, use_container_width=True)
+    st.plotly_chart(fig_populacao_sexo, use_container_width=True)
 
     # st.plotly_chart(fig_diagnósticos, use_container_width=True)
     # st.plotly_chart(fig_Trat, use_container_width=True)
@@ -418,7 +455,9 @@ def exibir_graficos(data, data2):
     st.write(
         "Tabela de Contagem de Casos por Diagnóstico e Pirmeiro tratamento registrado")
     st.dataframe(tabela_contagem2)
+
     # st.pyplot(plt)
+
 
     # Barra lateral para seleção de estado
 st.sidebar.title("Filtros")
