@@ -442,6 +442,7 @@ def exibir_graficos(data, data2):
 
     with col2:
         st.plotly_chart(fig_Trat, use_container_width=True)
+
         st.plotly_chart(fig_donut, use_container_width=True)
     st.plotly_chart(fig_populacao_sexo, use_container_width=True)
 
