@@ -6,7 +6,7 @@ import time
 import pages.apacs.apacquimio as apacquimio
 import pages.apacs.apacradio as apacradio
 import pages.maps.Mapa_Oncologico as map
-import matplotlib.pyplot as plt
+
 st.set_page_config(
     page_title="Dashboard Oncologico",
     page_icon="bar_chart",
@@ -418,8 +418,9 @@ def exibir_graficos(data, data2):
         values='Quantidade',
         title='População Masculina e Feminina por Diagnóstico',
         color="Sexo",
-        color_discrete_map={"(?)": "white", "Masculino": "#ADD8E6", "Feminino": "#FFC0CB",
-                            },
+        color_discrete_map={
+            "(?)": "white", "Masculino": "#ADD8E6", "Feminino": "#FFC0CB", },
+        height=800,
     )
     # Crie um gráfico de mosaico
     coluna1, coluna2 = st.columns(2)
@@ -458,7 +459,6 @@ def exibir_graficos(data, data2):
     st.dataframe(tabela_contagem2)
 
     # st.pyplot(plt)
-
 
     # Barra lateral para seleção de estado
 st.sidebar.title("Filtros")
