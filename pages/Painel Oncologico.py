@@ -444,7 +444,7 @@ def exibir_graficos(data, data2):
        # st.metric('Quantidade de Pacientes Tratados em 10 Anos', total_pacientes_atendidos)
         st.markdown(
             f'<div style="border: 2px solid #f7c98d; padding: 10px; border-radius: 5px; font-size: 20px;background-color: #f7c98d">'
-            f'<h4>Quantidade de Pacientes Diagnosticados em 10 Anos:</h4>'
+            f'<h4>Quantidade de Pacientes Tratados em 10 Anos:</h4>'
             f'<p style="font-size: 25px;font-weight: bold">{total_pacientes_atendidos}</p>'
             f'</div>',
             unsafe_allow_html=True
