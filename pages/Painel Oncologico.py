@@ -397,8 +397,8 @@ def exibir_graficos(data, data2):
     )
 
    # Filtrar os dados para população masculina e feminina
-    dados_masculinos = data[data['SEXO'] == 'Masculino']
-    dados_femininos = data[data['SEXO'] == 'Feminino']
+    dados_masculinos = data[data['SEXO'] == 'Masculino'].copy()
+    dados_femininos = data[data['SEXO'] == 'Feminino'].copy()
 
     # Adicionar uma coluna 'Sexo' para representar o sexo de cada linha
     dados_masculinos['Sexo'] = 'Masculino'
@@ -426,14 +426,29 @@ def exibir_graficos(data, data2):
     coluna1, coluna2 = st.columns(2)
 
     # st.write(selected_estabelecimento)
+    quantidade_pacientes = len(data)
+
+# Use st.markdown para criar um retângulo em volta da informação
 
     with coluna1:
-        st.metric(
-            'Quantidade de Pacientes Diagnosticados em 10 Anos', len(data))
+        # st.metric('Quantidade de Pacientes Diagnosticados em 10 Anos', len(data))
+        st.markdown(
+            f'<div style="border: 2px solid #f7c98d; padding: 10px; border-radius: 5px; font-size: 20px;background-color: #f7c98d">'
+            f'<h4>Quantidade de Pacientes Diagnosticados em 10 Anos:</h4>'
+            f'<p style="font-size: 25px;font-weight: bold">{quantidade_pacientes}</p>'
+            f'</div>',
+            unsafe_allow_html=True
+        )
 
     with coluna2:
-        st.metric('Quantidade de Pacientes Tratados em 10 Anos',
-                  total_pacientes_atendidos)
+       # st.metric('Quantidade de Pacientes Tratados em 10 Anos', total_pacientes_atendidos)
+        st.markdown(
+            f'<div style="border: 2px solid #f7c98d; padding: 10px; border-radius: 5px; font-size: 20px;background-color: #f7c98d">'
+            f'<h4>Quantidade de Pacientes Diagnosticados em 10 Anos:</h4>'
+            f'<p style="font-size: 25px;font-weight: bold">{total_pacientes_atendidos}</p>'
+            f'</div>',
+            unsafe_allow_html=True
+        )
 
     st.plotly_chart(fig3, use_container_width=True,)
     col1, col2 = st.columns(2)
