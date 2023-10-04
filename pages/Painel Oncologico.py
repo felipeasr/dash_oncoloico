@@ -25,18 +25,6 @@ st.markdown(hide_st_style, unsafe_allow_html=True)
 with st.spinner(''):
     time.sleep(0.5)
 
-
-def cook_breakfast():
-    msg = st.toast('Gathering ingredients...')
-    time.sleep(1)
-    msg.toast('Cooking...')
-    time.sleep(1)
-    msg.toast('Ready!', icon="🥞")
-
-
-if st.sidebar.button('Atualizar'):
-    cook_breakfast()
-# Carregue seus dados CSV aqui
 caminho_do_csv = 'Painel_BR_Final.csv'
 dados2 = pd.read_csv(caminho_do_csv, encoding='utf-8')
 
