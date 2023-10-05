@@ -5,14 +5,12 @@ import plotly.graph_objects as go
 import time
 import pages.apacs.apacquimio as apacquimio
 import pages.apacs.apacradio as apacradio
-import pages.maps.Mapa_Oncologico as map
 
 st.set_page_config(
     page_title="Dashboard Oncologico",
     page_icon="bar_chart",
     layout="wide",
-    initial_sidebar_state="expanded",
-
+    initial_sidebar_state="auto",
 )
 hide_st_style = """
             <style>
@@ -21,7 +19,7 @@ hide_st_style = """
             header {visibility: hidden;}
             </style>
             """
-st.markdown(hide_st_style, unsafe_allow_html=True)
+# st.markdown(hide_st_style, unsafe_allow_html=True)
 with st.spinner(''):
     time.sleep(0.5)
 
@@ -165,7 +163,7 @@ def exibir_graficos(data, data2):
     fig_diagnósticos.update_layout(
         title='10 Doenças diagnosticadas',
         legend=dict(
-            orientation='h',  # Posição horizontal da legenda
+            orientation='v',  # Posição horizontal da legenda
             yanchor="bottom",  # Ancoragem da legenda na parte inferior
             y=-1.02,  # Distância vertical da legenda em relação ao gráfico
             xanchor="center",  # Ancoragem horizontal no centro
@@ -186,7 +184,7 @@ def exibir_graficos(data, data2):
     fig_Trat.update_layout(
         title='10 Doenças tratadas',
         legend=dict(
-            orientation='h',  # Posição horizontal da legenda
+            orientation='v',  # Posição horizontal da legenda
             yanchor="bottom",  # Ancoragem da legenda na parte inferior
             y=-1.02,  # Distância vertical da legenda em relação ao gráfico
             xanchor="center",  # Ancoragem horizontal no centro
@@ -428,22 +426,21 @@ def exibir_graficos(data, data2):
     # st.write(selected_estabelecimento)
     quantidade_pacientes = len(data)
 
-# Use st.markdown para criar um retângulo em volta da informação
-
     with coluna1:
         # st.metric('Quantidade de Pacientes Diagnosticados em 10 Anos', len(data))
         st.markdown(
-            f'<div style="border: 2px solid #f7c98d; padding: 10px; border-radius: 5px; font-size: 20px;background-color: #f7c98d">'
+            f'<div style="border: 2px solid #f4834e; padding: 10px; border-radius: 5px; font-size: 20px;">'
             f'<h4>Quantidade de Pacientes Diagnosticados em 10 Anos:</h4>'
             f'<p style="font-size: 25px;font-weight: bold">{quantidade_pacientes}</p>'
             f'</div>',
             unsafe_allow_html=True
+            # background-color: #f6e6b9
         )
 
     with coluna2:
        # st.metric('Quantidade de Pacientes Tratados em 10 Anos', total_pacientes_atendidos)
         st.markdown(
-            f'<div style="border: 2px solid #f7c98d; padding: 10px; border-radius: 5px; font-size: 20px;background-color: #f7c98d">'
+            f'<div style="border: 2px solid #f4834e; padding: 10px; border-radius: 5px; font-size: 20px;">'
             f'<h4>Quantidade de Pacientes Tratados em 10 Anos:</h4>'
             f'<p style="font-size: 25px;font-weight: bold">{total_pacientes_atendidos}</p>'
             f'</div>',
@@ -454,26 +451,31 @@ def exibir_graficos(data, data2):
     col1, col2 = st.columns(2)
     with col1:
         st.plotly_chart(fig_diagnósticos, use_container_width=True)
-        st.plotly_chart(fig_modalidade, use_container_width=True)
 
     with col2:
         st.plotly_chart(fig_Trat, use_container_width=True)
 
-        st.plotly_chart(fig_donut, use_container_width=True)
+    # Criar uma barra de divisão com estilo personalizado
+    st.markdown('<hr style="border: 0.5px solid #d0d0d3; ; height: 0.5px;" />',
+                unsafe_allow_html=True)
+
     st.plotly_chart(fig_populacao_sexo, use_container_width=True)
+    st.plotly_chart(fig_donut, use_container_width=True)
+    st.markdown('<hr style="border: 0.5px solid #d0d0d3; ; height: 0.5px;" />',
+                unsafe_allow_html=True)
 
     # st.plotly_chart(fig_diagnósticos, use_container_width=True)
     # st.plotly_chart(fig_Trat, use_container_width=True)
     # st.write(tabela_relacao)
     st.plotly_chart(fig4)
-    st.write("Tabela de Contagem de Casos por Diagnóstico e Tempo de Tratamento")
+    st.write(
+        "Tabela de Contagem de Casos por Diagnóstico e Tempo do diagnostico ao primeiro Tratamento")
     st.dataframe(tabela_contagem)
     st.plotly_chart(fig_primeiro_TRAT, use_container_width=True)
     st.write(
         "Tabela de Contagem de Casos por Diagnóstico e Pirmeiro tratamento registrado")
     st.dataframe(tabela_contagem2)
-
-    # st.pyplot(plt)
+    st.plotly_chart(fig_modalidade, use_container_width=True)
 
     # Barra lateral para seleção de estado
 st.sidebar.title("Filtros")
