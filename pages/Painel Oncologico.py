@@ -46,7 +46,7 @@ st.markdown(''' Os dados estão atualizados até :orange[Julho de 2023]''')
 
 
 def filtrar_por_estado_diag(data, estado):
-    if estado == "Todos":
+    if estado == "BR":
         return data
     else:
         return data[data['UF_DIAGN'] == estado]
@@ -64,7 +64,7 @@ def filtrar_por_estabelecimento_diag(data, estabelecimento):
 
 
 def obter_estabelecimentos_por_estado_diag(data, estado):
-    if estado == "Todos":
+    if estado == "BR":
         return data['CNES_DIAG'].unique().tolist()
     else:
         return data[data['UF_DIAGN'] == estado]['CNES_DIAG'].unique().tolist()
@@ -73,7 +73,7 @@ def obter_estabelecimentos_por_estado_diag(data, estado):
 
 
 def filtrar_por_estado_trat(data2, estado):
-    if estado == "Todos":
+    if estado == "BR":
         return data2
     else:
         return data2[data2['UF_TRATAM'] == estado]
@@ -91,7 +91,7 @@ def filtrar_por_estabelecimento_trat(data2, estabelecimento):
 
 
 def obter_estabelecimentos_por_estado_trat(data2, estado):
-    if estado == "Todos":
+    if estado == "BR":
         return data2['CNES_DIAG'].unique().tolist()
     else:
         return data2[data2['UF_TRATAM'] == estado]['CNES_DIAG'].unique().tolist()
@@ -213,11 +213,8 @@ def exibir_graficos(data, data2):
     fig_modalidade.update_layout(
         title='Primeiro tratamento registrado',
         legend=dict(
-            orientation='h',
-            yanchor="bottom",
-            y=-0.5,
-            xanchor="center",
-            x=0.5
+            orientation='v',
+
         ),
         width=1000,
         height=800,
@@ -353,11 +350,8 @@ def exibir_graficos(data, data2):
     fig_donut.update_layout(
         title='Distribuição de casos por Sexo',
         legend=dict(
-            orientation='h',
-            yanchor="bottom",
-            y=-0.5,
-            xanchor="center",
-            x=0.5
+            orientation='v',
+
         ),
         width=1000,
         height=800,
@@ -484,14 +478,14 @@ def exibir_graficos(data, data2):
 st.sidebar.title("Filtros")
 
 selected_estado = st.sidebar.selectbox(
-    'Selecione um Estado:', ["Todos"] + dados2['UF_DIAGN'].unique().tolist())
+    'Selecione um Estado:', ["BR"] + dados2['UF_DIAGN'].unique().tolist())
 
 # Obtenha a lista de estabelecimentos com base no estado selecionado
 estabelecimentos_disponiveis = obter_estabelecimentos_por_estado_diag(
     dados2, selected_estado)
 
 # Barra lateral para seleção de estabelecimento
-if selected_estado != "Todos":
+if selected_estado != "BR":
     selected_estabelecimento = st.sidebar.selectbox('Selecione um Estabelecimento de Saúde:', [
         "Todos"] + obter_estabelecimentos_por_estado_diag(dados2, selected_estado))
 else:
