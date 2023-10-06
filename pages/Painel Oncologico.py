@@ -351,7 +351,7 @@ def exibir_graficos(data, data2):
     )])
 
     fig_donut.update_layout(
-        title='Distribuição por Sexo',
+        title='Distribuição de casos por Sexo',
         legend=dict(
             orientation='h',
             yanchor="bottom",
