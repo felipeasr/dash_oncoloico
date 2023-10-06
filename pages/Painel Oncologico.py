@@ -458,9 +458,9 @@ def exibir_graficos(data, data2):
     # Criar uma barra de divisão com estilo personalizado
     st.markdown('<hr style="border: 0.5px solid #d0d0d3; ; height: 0.5px;" />',
                 unsafe_allow_html=True)
-
-    st.plotly_chart(fig_populacao_sexo, use_container_width=True)
     st.plotly_chart(fig_donut, use_container_width=True)
+    st.plotly_chart(fig_populacao_sexo, use_container_width=True)
+
     st.markdown('<hr style="border: 0.5px solid #d0d0d3; ; height: 0.5px;" />',
                 unsafe_allow_html=True)
 
@@ -471,11 +471,14 @@ def exibir_graficos(data, data2):
     st.write(
         "Tabela de Contagem de Casos por Diagnóstico e Tempo do diagnostico ao primeiro Tratamento")
     st.dataframe(tabela_contagem)
+    st.markdown('<hr style="border: 0.5px solid #d0d0d3; ; height: 0.5px;" />',
+                unsafe_allow_html=True)
+    st.plotly_chart(fig_modalidade, use_container_width=True)
     st.plotly_chart(fig_primeiro_TRAT, use_container_width=True)
     st.write(
         "Tabela de Contagem de Casos por Diagnóstico e Pirmeiro tratamento registrado")
     st.dataframe(tabela_contagem2)
-    st.plotly_chart(fig_modalidade, use_container_width=True)
+
 
     # Barra lateral para seleção de estado
 st.sidebar.title("Filtros")
