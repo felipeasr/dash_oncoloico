@@ -155,7 +155,6 @@ def exibir_graficos(data, data2):
     fig.update_traces(
         text=quanti_paciente_Diag_ANO['Quantidade de Pacientes'], textposition='auto')
     trat_mais_frequentes = data2['DIAG_DETH'].value_counts().head(10)
-
     all_labels = set(trat_mais_frequentes.index) | set(
         diagnósticos_mais_frequentes.index)
 
