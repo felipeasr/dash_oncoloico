@@ -177,13 +177,16 @@ def exibir_graficos(data, data2):
         label_to_color[label] = remaining_colors[idx %
                                                  len(remaining_colors)]
 
+    labels_abreviados = [label[:3]
+                         for label in diagnósticos_mais_frequentes.keys()]
+
     fig_diagnósticos = go.Figure(data=[go.Pie(
         labels=diagnósticos_mais_frequentes.index,
         values=diagnósticos_mais_frequentes.values,
         hole=0.3,
         marker=dict(colors=[label_to_color[label]
                             for label in diagnósticos_mais_frequentes.index]),
-        textinfo='percent'
+        textinfo='percent + value'
     )])
 
     fig_diagnósticos.update_layout(
@@ -204,7 +207,7 @@ def exibir_graficos(data, data2):
         hole=0.3,
         marker=dict(colors=[label_to_color[label]
                             for label in trat_mais_frequentes.index]),
-        textinfo='percent'
+        textinfo='percent + value '
     )])
 
     fig_Trat.update_layout(
@@ -234,7 +237,7 @@ def exibir_graficos(data, data2):
         labels=modalidade.index,
         values=modalidade.values,
         hole=0.3,
-        textinfo='percent'
+        textinfo='percent+label+ value'
     )])
     fig_modalidade.update_layout(
         title='Primeiro tratamento registrado',
@@ -369,7 +372,7 @@ def exibir_graficos(data, data2):
         labels=sexo_counts.index,
         values=sexo_counts.values,
         hole=0.3,
-        textinfo='percent',
+        textinfo='percent+ label+ value',
         marker_colors=cores_grafico  # Use a lista de cores personalizadas
     )])
 
@@ -406,7 +409,8 @@ def exibir_graficos(data, data2):
         values='value',
         width=1200,  # Largura da figura
         height=1000,  # Altura da figura
-        color_discrete_sequence=px.colors.sequential.Viridis
+        color_discrete_sequence=px.colors.sequential.Viridis,
+
     )
 
     # Personalize o layout do gráfico, se necessário
