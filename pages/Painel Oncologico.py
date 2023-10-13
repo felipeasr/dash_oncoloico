@@ -5,6 +5,7 @@ import plotly.graph_objects as go
 import time
 import pages.apacs.apacquimio as apacquimio
 import pages.apacs.apacradio as apacradio
+theme_plotly = None  # None or streamlit
 
 st.set_page_config(
     page_title="Dashboard Oncologico",
@@ -246,7 +247,7 @@ def exibir_graficos(data, data2):
 
         ),
         width=1000,
-        height=800,
+        height=900,
         font=dict(size=20),
     )
 
@@ -478,6 +479,8 @@ def exibir_graficos(data, data2):
 
     with col2:
         st.plotly_chart(fig_Trat, use_container_width=True)
+    with st.expander("Veja mais informções"):
+        st.write("🖱️Dica Passe um pouse no grafico para ter mais informações")
 
     # Criar uma barra de divisão com estilo personalizado
     st.markdown('<hr style="border: 0.5px solid #d0d0d3; ; height: 0.5px;" />',
@@ -502,7 +505,6 @@ def exibir_graficos(data, data2):
     st.write(
         "Tabela de Contagem de Casos por Diagnóstico e Pirmeiro tratamento registrado")
     st.dataframe(tabela_contagem2)
-
 
     # Barra lateral para seleção de estado
 st.sidebar.title("Filtros")
