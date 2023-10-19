@@ -69,7 +69,7 @@ def obter_estabelecimentos_por_estado_diag(data, estado):
     if estado == "BR":
         return data['CNES_DIAG'].unique().tolist()
     else:
-        return data[data['UF_DIAGN'] == estado]['CNES_DIAG'].unique().tolist()
+        return data[data['UF_TRATAM'] == estado]['CNES_TRAT'].unique().tolist()
 
 # Função para filtrar dados com base no estado selecionado
 
@@ -96,7 +96,7 @@ def obter_estabelecimentos_por_estado_trat(data2, estado):
     if estado == "BR":
         return data2['CNES_DIAG'].unique().tolist()
     else:
-        return data2[data2['UF_TRATAM'] == estado]['CNES_DIAG'].unique().tolist()
+        return data2[data2['UF_TRATAM'] == estado]['CNES_TRAT'].unique().tolist()
 
 # Função para criar e exibir gráficos com base nos dados filtrados
 
@@ -506,7 +506,7 @@ def exibir_graficos(data, data2):
 st.sidebar.title("Filtros")
 
 selected_estado = st.sidebar.selectbox(
-    'Selecione um Estado:', ["BR"] + dados2['UF_DIAGN'].unique().tolist())
+    'Selecione um Estado:', ["BR"] + dados2['UF_TRATAM'].unique().tolist())
 
 # Obtenha a lista de estabelecimentos com base no estado selecionado
 estabelecimentos_disponiveis = obter_estabelecimentos_por_estado_trat(
