@@ -506,7 +506,7 @@ def exibir_graficos(data, data2):
 st.sidebar.title("Filtros")
 
 selected_estado = st.sidebar.selectbox(
-    'Selecione um Estado:', ["BR"] + dados2['UF_TRATAM'].unique().tolist())
+    'Selecione um Estado:', ["BR"] + dados2['UF_DIAGN'].unique().tolist())
 
 # Obtenha a lista de estabelecimentos com base no estado selecionado
 estabelecimentos_disponiveis = obter_estabelecimentos_por_estado_trat(
