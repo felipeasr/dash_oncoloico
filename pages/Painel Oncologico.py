@@ -5,14 +5,14 @@ import plotly.graph_objects as go
 import time
 import pages.apacs.apacquimio as apacquimio
 import pages.apacs.apacradio as apacradio
-import pages.maps.Mapa_Oncologico as map
+
+theme_plotly = None  # None or streamlit
 
 st.set_page_config(
     page_title="Dashboard Oncologico",
     page_icon="bar_chart",
     layout="wide",
-    initial_sidebar_state="expanded",
-
+    initial_sidebar_state="auto",
 )
 hide_st_style = """
             <style>
@@ -21,7 +21,7 @@ hide_st_style = """
             header {visibility: hidden;}
             </style>
             """
-st.markdown(hide_st_style, unsafe_allow_html=True)
+# st.markdown(hide_st_style, unsafe_allow_html=True)
 with st.spinner(''):
     time.sleep(0.5)
 
@@ -32,11 +32,11 @@ dados2 = pd.read_csv(caminho_do_csv, encoding='utf-8')
 st.title('Painel Oncologico :bar_chart:')
 
 st.markdown(''' Os dados estão atualizados até :orange[Julho de 2023]''')
+
+
 # Função para filtrar dados com base no estado selecionado
-
-
 def filtrar_por_estado_diag(data, estado):
-    if estado == "Todos":
+    if estado == "BR":
         return data
     else:
         return data[data['UF_DIAGN'] == estado]
@@ -54,7 +54,7 @@ def filtrar_por_estabelecimento_diag(data, estabelecimento):
 
 
 def obter_estabelecimentos_por_estado_diag(data, estado):
-    if estado == "Todos":
+    if estado == "BR":
         return data['CNES_DIAG'].unique().tolist()
     else:
         return data[data['UF_DIAGN'] == estado]['CNES_DIAG'].unique().tolist()
@@ -63,7 +63,7 @@ def obter_estabelecimentos_por_estado_diag(data, estado):
 
 
 def filtrar_por_estado_trat(data2, estado):
-    if estado == "Todos":
+    if estado == "BR":
         return data2
     else:
         return data2[data2['UF_TRATAM'] == estado]
@@ -81,7 +81,7 @@ def filtrar_por_estabelecimento_trat(data2, estabelecimento):
 
 
 def obter_estabelecimentos_por_estado_trat(data2, estado):
-    if estado == "Todos":
+    if estado == "BR":
         return data2['CNES_DIAG'].unique().tolist()
     else:
         return data2[data2['UF_TRATAM'] == estado]['CNES_DIAG'].unique().tolist()
@@ -118,7 +118,6 @@ def exibir_graficos(data, data2):
     fig.update_traces(
         text=quanti_paciente_Diag_ANO['Quantidade de Pacientes'], textposition='auto')
     trat_mais_frequentes = data2['DIAG_DETH'].value_counts().head(10)
-
     all_labels = set(trat_mais_frequentes.index) | set(
         diagnósticos_mais_frequentes.index)
 
@@ -141,19 +140,22 @@ def exibir_graficos(data, data2):
         label_to_color[label] = remaining_colors[idx %
                                                  len(remaining_colors)]
 
+    labels_abreviados = [label[:3]
+                         for label in diagnósticos_mais_frequentes.keys()]
+
     fig_diagnósticos = go.Figure(data=[go.Pie(
         labels=diagnósticos_mais_frequentes.index,
         values=diagnósticos_mais_frequentes.values,
         hole=0.3,
         marker=dict(colors=[label_to_color[label]
                             for label in diagnósticos_mais_frequentes.index]),
-        textinfo='percent'
+        textinfo='percent + value'
     )])
 
     fig_diagnósticos.update_layout(
         title='10 Doenças diagnosticadas',
         legend=dict(
-            orientation='h',  # Posição horizontal da legenda
+            orientation='v',  # Posição horizontal da legenda
             yanchor="bottom",  # Ancoragem da legenda na parte inferior
             y=-1.02,  # Distância vertical da legenda em relação ao gráfico
             xanchor="center",  # Ancoragem horizontal no centro
@@ -168,13 +170,13 @@ def exibir_graficos(data, data2):
         hole=0.3,
         marker=dict(colors=[label_to_color[label]
                             for label in trat_mais_frequentes.index]),
-        textinfo='percent'
+        textinfo='percent + value '
     )])
 
     fig_Trat.update_layout(
         title='10 Doenças tratadas',
         legend=dict(
-            orientation='h',  # Posição horizontal da legenda
+            orientation='v',  # Posição horizontal da legenda
             yanchor="bottom",  # Ancoragem da legenda na parte inferior
             y=-1.02,  # Distância vertical da legenda em relação ao gráfico
             xanchor="center",  # Ancoragem horizontal no centro
@@ -198,19 +200,16 @@ def exibir_graficos(data, data2):
         labels=modalidade.index,
         values=modalidade.values,
         hole=0.3,
-        textinfo='percent'
+        textinfo='percent+label+ value'
     )])
     fig_modalidade.update_layout(
         title='Primeiro tratamento registrado',
         legend=dict(
-            orientation='h',
-            yanchor="bottom",
-            y=-0.5,
-            xanchor="center",
-            x=0.5
+            orientation='v',
+
         ),
         width=1000,
-        height=800,
+        height=900,
         font=dict(size=20),
     )
 
@@ -336,18 +335,15 @@ def exibir_graficos(data, data2):
         labels=sexo_counts.index,
         values=sexo_counts.values,
         hole=0.3,
-        textinfo='percent',
+        textinfo='percent+ label+ value',
         marker_colors=cores_grafico  # Use a lista de cores personalizadas
     )])
 
     fig_donut.update_layout(
-        title='Distribuição por Sexo',
+        title='Distribuição de casos por Sexo',
         legend=dict(
-            orientation='h',
-            yanchor="bottom",
-            y=-0.5,
-            xanchor="center",
-            x=0.5
+            orientation='v',
+
         ),
         width=1000,
         height=800,
@@ -376,7 +372,8 @@ def exibir_graficos(data, data2):
         values='value',
         width=1200,  # Largura da figura
         height=1000,  # Altura da figura
-        color_discrete_sequence=px.colors.sequential.Viridis
+        color_discrete_sequence=px.colors.sequential.Viridis,
+
     )
 
     # Personalize o layout do gráfico, se necessário
@@ -410,28 +407,49 @@ def exibir_graficos(data, data2):
             "(?)": "white", "Masculino": "#ADD8E6", "Feminino": "#FFC0CB", },
         height=800,
     )
-    # Crie um gráfico de mosaico
-    coluna1, coluna2 = st.columns(2)
-
+    prefixo = "Estado: "
+    sufixo = ""
+    # Defina o tamanho da fonte e a cor de fundo para a variável
+    tamanho_da_fonte = "24px"
+    cor_de_fundo = "#f3b54b"  # Cor de fundo laranja
+    # Use HTML embutido para destacar a variável com tamanho de fonte e cor de fundo
+    st.markdown(
+        f"<span style='font-size: {tamanho_da_fonte};'>"
+        f"{prefixo}<span style='background-color: {cor_de_fundo};'>{selected_estado}</span>{sufixo}"
+        "</span>",
+        unsafe_allow_html=True
+    )
+    prefixo = "Estabelecimento de Saúde: "
+    sufixo = ""
+    # Defina o tamanho da fonte e a cor de fundo para a variável
+    tamanho_da_fonte = "24px"
+    cor_de_fundo = "#f3b54b"  # Cor de fundo laranja
+    # Use HTML embutido para destacar a variável com tamanho de fonte e cor de fundo
+    st.markdown(
+        f"<span style='font-size: {tamanho_da_fonte};'>"
+        f"{prefixo}<span style='background-color: {cor_de_fundo};'>{selected_estabelecimento}</span>{sufixo}"
+        "</span>",
+        unsafe_allow_html=True
+    )
     # st.write(selected_estabelecimento)
     quantidade_pacientes = len(data)
-
-# Use st.markdown para criar um retângulo em volta da informação
-
+    coluna1, coluna2 = st.columns(2)
     with coluna1:
+
         # st.metric('Quantidade de Pacientes Diagnosticados em 10 Anos', len(data))
         st.markdown(
-            f'<div style="border: 2px solid #f7c98d; padding: 10px; border-radius: 5px; font-size: 20px;background-color: #f7c98d">'
+            f'<div style="border: 2px solid #f4834e; padding: 10px; border-radius: 5px; font-size: 20px;">'
             f'<h4>Quantidade de Pacientes Diagnosticados em 10 Anos:</h4>'
             f'<p style="font-size: 25px;font-weight: bold">{quantidade_pacientes}</p>'
             f'</div>',
             unsafe_allow_html=True
+            # background-color: #f6e6b9
         )
 
     with coluna2:
        # st.metric('Quantidade de Pacientes Tratados em 10 Anos', total_pacientes_atendidos)
         st.markdown(
-            f'<div style="border: 2px solid #f7c98d; padding: 10px; border-radius: 5px; font-size: 20px;background-color: #f7c98d">'
+            f'<div style="border: 2px solid #f4834e; padding: 10px; border-radius: 5px; font-size: 20px;">'
             f'<h4>Quantidade de Pacientes Tratados em 10 Anos:</h4>'
             f'<p style="font-size: 25px;font-weight: bold">{total_pacientes_atendidos}</p>'
             f'</div>',
@@ -442,41 +460,50 @@ def exibir_graficos(data, data2):
     col1, col2 = st.columns(2)
     with col1:
         st.plotly_chart(fig_diagnósticos, use_container_width=True)
-        st.plotly_chart(fig_modalidade, use_container_width=True)
 
     with col2:
         st.plotly_chart(fig_Trat, use_container_width=True)
+   # with st.expander("Veja mais informções"):
+       # st.write("🖱️Dica Passe um pouse no grafico para ter mais informações")
 
-        st.plotly_chart(fig_donut, use_container_width=True)
+    # Criar uma barra de divisão com estilo personalizado
+    st.markdown('<hr style="border: 0.5px solid #d0d0d3; ; height: 0.5px;" />',
+                unsafe_allow_html=True)
+    st.plotly_chart(fig_donut, use_container_width=True)
     st.plotly_chart(fig_populacao_sexo, use_container_width=True)
+
+    st.markdown('<hr style="border: 0.5px solid #d0d0d3; ; height: 0.5px;" />',
+                unsafe_allow_html=True)
 
     # st.plotly_chart(fig_diagnósticos, use_container_width=True)
     # st.plotly_chart(fig_Trat, use_container_width=True)
     # st.write(tabela_relacao)
     st.plotly_chart(fig4)
-    st.write("Tabela de Contagem de Casos por Diagnóstico e Tempo de Tratamento")
+    st.write(
+        "Tabela de Contagem de Casos por Diagnóstico e Tempo do diagnostico ao primeiro Tratamento")
     st.dataframe(tabela_contagem)
+    st.markdown('<hr style="border: 0.5px solid #d0d0d3; ; height: 0.5px;" />',
+                unsafe_allow_html=True)
+    st.plotly_chart(fig_modalidade, use_container_width=True)
     st.plotly_chart(fig_primeiro_TRAT, use_container_width=True)
     st.write(
         "Tabela de Contagem de Casos por Diagnóstico e Pirmeiro tratamento registrado")
     st.dataframe(tabela_contagem2)
 
-    # st.pyplot(plt)
-
     # Barra lateral para seleção de estado
 st.sidebar.title("Filtros")
 
 selected_estado = st.sidebar.selectbox(
-    'Selecione um Estado:', ["Todos"] + dados2['UF_DIAGN'].unique().tolist())
+    'Selecione um Estado:', ["BR"] + dados2['UF_DIAGN'].unique().tolist())
 
 # Obtenha a lista de estabelecimentos com base no estado selecionado
-estabelecimentos_disponiveis = obter_estabelecimentos_por_estado_diag(
+estabelecimentos_disponiveis = obter_estabelecimentos_por_estado_trat(
     dados2, selected_estado)
 
 # Barra lateral para seleção de estabelecimento
-if selected_estado != "Todos":
+if selected_estado != "BR":
     selected_estabelecimento = st.sidebar.selectbox('Selecione um Estabelecimento de Saúde:', [
-        "Todos"] + obter_estabelecimentos_por_estado_diag(dados2, selected_estado))
+        "Todos"] + obter_estabelecimentos_por_estado_trat(dados2, selected_estado))
 else:
     selected_estabelecimento = "Todos"
 
