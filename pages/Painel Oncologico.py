@@ -5,6 +5,7 @@ import plotly.graph_objects as go
 import time
 import pages.apacs.apacquimio as apacquimio
 import pages.apacs.apacradio as apacradio
+
 theme_plotly = None  # None or streamlit
 
 st.set_page_config(
@@ -43,36 +44,9 @@ dados2 = pd.read_csv(caminho_do_csv, encoding='utf-8')
 st.title('Painel Oncologico :bar_chart:')
 
 st.markdown(''' Os dados estão atualizados até :orange[Julho de 2023]''')
+
+
 # Função para filtrar dados com base no estado selecionado
-st.markdown('''<style>
-/* Tooltip container */
-
-/* Tooltip text */
-.tooltip .tooltiptext {
-  visibility: hidden;
-  width: 120px;
-  background-color: black;
-  color: #fff;
-  text-align: center;
-  padding: 5px 0;
-  border-radius: 6px;
- 
-  /* Position the tooltip text - see examples below! */
-  position: absolute;
-  z-index: 1;
-}
-
-/* Show the tooltip text when you mouse over the tooltip container */
-.tooltip:hover .tooltiptext {
-  visibility: visible;
-}
-</style>
-
-<div class="tooltip">Hover over me
-  <span class="tooltiptext">Tooltip text</span>
-</div''', unsafe_allow_html=True)
-
-
 def filtrar_por_estado_diag(data, estado):
     if estado == "BR":
         return data
@@ -445,13 +419,35 @@ def exibir_graficos(data, data2):
             "(?)": "white", "Masculino": "#ADD8E6", "Feminino": "#FFC0CB", },
         height=800,
     )
-    # Crie um gráfico de mosaico
-    coluna1, coluna2 = st.columns(2)
-
+    prefixo = "Estado: "
+    sufixo = ""
+    # Defina o tamanho da fonte e a cor de fundo para a variável
+    tamanho_da_fonte = "24px"
+    cor_de_fundo = "#f3b54b"  # Cor de fundo laranja
+    # Use HTML embutido para destacar a variável com tamanho de fonte e cor de fundo
+    st.markdown(
+        f"<span style='font-size: {tamanho_da_fonte};'>"
+        f"{prefixo}<span style='background-color: {cor_de_fundo};'>{selected_estado}</span>{sufixo}"
+        "</span>",
+        unsafe_allow_html=True
+    )
+    prefixo = "Estabelecimento de Saúde: "
+    sufixo = ""
+    # Defina o tamanho da fonte e a cor de fundo para a variável
+    tamanho_da_fonte = "24px"
+    cor_de_fundo = "#f3b54b"  # Cor de fundo laranja
+    # Use HTML embutido para destacar a variável com tamanho de fonte e cor de fundo
+    st.markdown(
+        f"<span style='font-size: {tamanho_da_fonte};'>"
+        f"{prefixo}<span style='background-color: {cor_de_fundo};'>{selected_estabelecimento}</span>{sufixo}"
+        "</span>",
+        unsafe_allow_html=True
+    )
     # st.write(selected_estabelecimento)
     quantidade_pacientes = len(data)
-
+    coluna1, coluna2 = st.columns(2)
     with coluna1:
+
         # st.metric('Quantidade de Pacientes Diagnosticados em 10 Anos', len(data))
         st.markdown(
             f'<div style="border: 2px solid #f4834e; padding: 10px; border-radius: 5px; font-size: 20px;">'
@@ -479,8 +475,8 @@ def exibir_graficos(data, data2):
 
     with col2:
         st.plotly_chart(fig_Trat, use_container_width=True)
-    with st.expander("Veja mais informções"):
-        st.write("🖱️Dica Passe um pouse no grafico para ter mais informações")
+   # with st.expander("Veja mais informções"):
+       # st.write("🖱️Dica Passe um pouse no grafico para ter mais informações")
 
     # Criar uma barra de divisão com estilo personalizado
     st.markdown('<hr style="border: 0.5px solid #d0d0d3; ; height: 0.5px;" />',
@@ -513,13 +509,13 @@ selected_estado = st.sidebar.selectbox(
     'Selecione um Estado:', ["BR"] + dados2['UF_DIAGN'].unique().tolist())
 
 # Obtenha a lista de estabelecimentos com base no estado selecionado
-estabelecimentos_disponiveis = obter_estabelecimentos_por_estado_diag(
+estabelecimentos_disponiveis = obter_estabelecimentos_por_estado_trat(
     dados2, selected_estado)
 
 # Barra lateral para seleção de estabelecimento
 if selected_estado != "BR":
     selected_estabelecimento = st.sidebar.selectbox('Selecione um Estabelecimento de Saúde:', [
-        "Todos"] + obter_estabelecimentos_por_estado_diag(dados2, selected_estado))
+        "Todos"] + obter_estabelecimentos_por_estado_trat(dados2, selected_estado))
 else:
     selected_estabelecimento = "Todos"
 
