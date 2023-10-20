@@ -278,7 +278,6 @@ def exibir_graficos(data, data2):
     else:
         data2['Categorias Tempo Tratamento'] = pd.cut(
             data2['TEMPO_TRAT'], bins=bins_tempo_tratamento, labels=categorias_tempo_tratamento)
-
         # Adicione uma coluna "Total" para representar o total de casos em cada linha
         data2['Total'] = 1
         variaveltabelacontagemaux = pd.crosstab(
