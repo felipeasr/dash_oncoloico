@@ -26,6 +26,7 @@ with st.spinner(''):
     time.sleep(0.5)
 
 
+
 def cook_breakfast():
     msg = st.toast('Gathering ingredients...')
     time.sleep(1)
@@ -38,6 +39,7 @@ if st.sidebar.button('Atualizar'):
     cook_breakfast()
 # Carregue seus dados CSV aqui
 caminho_do_csv = 'PainelOncoBr.csv'
+
 dados2 = pd.read_csv(caminho_do_csv, encoding='utf-8')
 
 
