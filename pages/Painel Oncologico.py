@@ -37,7 +37,7 @@ def cook_breakfast():
 if st.sidebar.button('Atualizar'):
     cook_breakfast()
 # Carregue seus dados CSV aqui
-caminho_do_csv = 'Painel_BR_Final.csv'
+caminho_do_csv = 'PainelOncoBr.csv'
 dados2 = pd.read_csv(caminho_do_csv, encoding='utf-8')
 
 
@@ -87,14 +87,14 @@ def filtrar_por_estabelecimento_trat(data2, estabelecimento):
     if estabelecimento == "Todos":
         return data2
     else:
-        return data2[data2['CNES_DIAG'] == estabelecimento]
+        return data2[data2['CNES_TRAT'] == estabelecimento]
 
 # Função para obter uma lista de estabelecimentos com base no estado selecionado
 
 
 def obter_estabelecimentos_por_estado_trat(data2, estado):
     if estado == "BR":
-        return data2['CNES_DIAG'].unique().tolist()
+        return data2['CNES_TRAT'].unique().tolist()
     else:
         return data2[data2['UF_TRATAM'] == estado]['CNES_TRAT'].unique().tolist()
 
@@ -176,6 +176,7 @@ def exibir_graficos(data, data2):
         width=1000,
         height=800,
         font=dict(size=20),)
+
     fig_Trat = go.Figure(data=[go.Pie(
         labels=trat_mais_frequentes.index,
         values=trat_mais_frequentes.values,
@@ -205,12 +206,18 @@ def exibir_graficos(data, data2):
 
     total_pacientes_atendidos = quanti_paciente_Trat_ANO['Quantidade de Pacientes'].sum(
     )
-    modalidade = data['TRATAMENTO'].value_counts()
+    variavelauxmodalidade = data['TRATAMENTO'].value_counts()
+    if not variavelauxmodalidade.empty:
+        # Aqui, variavelauxmodalidade não está vazia, então você pode usá-la.
+        variavelauxmodalidade = data['TRATAMENTO'].value_counts()
+    else:
+        # Caso contrário, use data2 para calcular os valores.
+        variavelauxmodalidade = data2['TRATAMENTO'].value_counts()
 
     # Crie um gráfico Plotly Pie separadamente
     fig_modalidade = go.Figure(data=[go.Pie(
-        labels=modalidade.index,
-        values=modalidade.values,
+        labels=variavelauxmodalidade.index,
+        values=variavelauxmodalidade.values,
         hole=0.3,
         textinfo='percent+label+ value'
     )])
@@ -263,20 +270,36 @@ def exibir_graficos(data, data2):
 
     # Adicione uma coluna "Total" para representar o total de casos em cada linha
     data['Total'] = 1
-
-    # Crie a tabela de contagem usando crosstab
-    tabela_contagem = pd.crosstab(
+    variaveltabelacontagemaux = pd.crosstab(
         data['DIAG_DETH'], data['Categorias Tempo Tratamento'], margins=True, margins_name="Total")
-    tabela_contagem_grafico = pd.crosstab(
-        data['DIAG_DETH'], data['Categorias Tempo Tratamento'], margins=True, margins_name="Total")
+    if not variaveltabelacontagemaux.empty:
+        variaveltabelacontagemaux = pd.crosstab(
+            data['DIAG_DETH'], data['Categorias Tempo Tratamento'], margins=True, margins_name="Total")
+    else:
+        data2['Categorias Tempo Tratamento'] = pd.cut(
+            data2['TEMPO_TRAT'], bins=bins_tempo_tratamento, labels=categorias_tempo_tratamento)
 
-   # Exclua a coluna "Total" da tabela de contagem
-    tabela_contagem_grafico = tabela_contagem_grafico.iloc[:-1, :-1]
+        # Adicione uma coluna "Total" para representar o total de casos em cada linha
+        data2['Total'] = 1
+        variaveltabelacontagemaux = pd.crosstab(
+            data2['DIAG_DETH'], data2['Categorias Tempo Tratamento'], margins=True, margins_name="Total")
+
+    variaveltabelacontagemGraficoaux = pd.crosstab(
+        data['DIAG_DETH'], data['Categorias Tempo Tratamento'], margins=True, margins_name="Total")
+    if not variaveltabelacontagemGraficoaux.empty:
+        variaveltabelacontagemGraficoaux = pd.crosstab(
+            data['DIAG_DETH'], data['Categorias Tempo Tratamento'], margins=True, margins_name="Total")
+    else:
+        variaveltabelacontagemGraficoaux = pd.crosstab(
+            data2['DIAG_DETH'], data2['Categorias Tempo Tratamento'], margins=True, margins_name="Total")
+
+  # Exclua a coluna "Total" da tabela de contagem
+    variaveltabelacontagemGraficoaux = variaveltabelacontagemGraficoaux.iloc[:-1, :-1]
 
     # Reorganize a tabela para que possa ser usada com o Plotly Sunburst
-    tabela_contagem_grafico.reset_index(inplace=True)
-    tabela_contagem_melted = tabela_contagem_grafico.melt(
-        id_vars=['DIAG_DETH'], value_vars=tabela_contagem_grafico.columns[1:])
+    variaveltabelacontagemGraficoaux.reset_index(inplace=True)
+    tabela_contagem_melted = variaveltabelacontagemGraficoaux.melt(
+        id_vars=['DIAG_DETH'], value_vars=variaveltabelacontagemGraficoaux.columns[1:])
 
     # Crie um gráfico Sunburst
 
@@ -308,7 +331,7 @@ def exibir_graficos(data, data2):
 
     # Adicione o segundo gráfico (quantidade de pacientes tratados por ano)
     fig3.add_trace(go.Bar(
-        x=quanti_paciente_Diag_ANO['Ano Diagnóstico'],
+        x=quanti_paciente_Trat_ANO['Ano Tratamento'],
         y=quanti_paciente_Trat_ANO['Quantidade de Pacientes'],
         name='Tratamento',
         marker_color='#F6BDC0',
@@ -331,21 +354,21 @@ def exibir_graficos(data, data2):
         tickmode='array',
         tickvals=quanti_paciente_Diag_ANO['Ano Diagnóstico'],
     )
-    sexo_counts = data['SEXO'].value_counts()
-
-# Defina as cores para Masculino (azul claro) e Feminino (vermelho claro)
-
-    sexo_counts = data['SEXO'].value_counts()
+    variavelauxsexo = data['SEXO'].value_counts()
+    if not variavelauxsexo.empty:
+        variavelauxsexo = data['SEXO'].value_counts()
+    else:
+        variavelauxsexo = data2['SEXO'].value_counts()
 
     # Crie um dicionário que mapeia os rótulos para as cores desejadas
     cores = {'Masculino': '#ADD8E6', 'Feminino': '#FFC0CB'}
 
     # Crie uma lista de cores com base nos rótulos no DataFrame
-    cores_grafico = [cores[label] for label in sexo_counts.index]
+    cores_grafico = [cores[label] for label in variavelauxsexo.index]
 
     fig_donut = go.Figure(data=[go.Pie(
-        labels=sexo_counts.index,
-        values=sexo_counts.values,
+        labels=variavelauxsexo.index,
+        values=variavelauxsexo.values,
         hole=0.3,
         textinfo='percent+ label+ value',
         marker_colors=cores_grafico  # Use a lista de cores personalizadas
@@ -363,19 +386,34 @@ def exibir_graficos(data, data2):
     )
 
     # Agrupe os dados por TRATAMENTO e DIAG_DETH e conte o número de ocorrências
+
+    tabela_contagem2_aux = pd.crosstab(
+        data['DIAG_DETH'], data['TRATAMENTO'], margins=True, margins_name="Total")
+    if not tabela_contagem2_aux.empty:
+        tabela_contagem2_aux = pd.crosstab(
+            data['DIAG_DETH'], data['TRATAMENTO'], margins=True, margins_name="Total")
+    else:
+        tabela_contagem2_aux = pd.crosstab(
+            data2['DIAG_DETH'], data2['TRATAMENTO'], margins=True, margins_name="Total")
+
+    tabela_contagem_grafico2_aux = pd.crosstab(
+        data['DIAG_DETH'], data['TRATAMENTO'], margins=True, margins_name="Total")
+    if not tabela_contagem_grafico2_aux.empty:
+        tabela_contagem_grafico2_aux = pd.crosstab(
+            data['DIAG_DETH'], data['TRATAMENTO'], margins=True, margins_name="Total")
+    else:
+        tabela_contagem_grafico2_aux = pd.crosstab(
+            data2['DIAG_DETH'], data2['TRATAMENTO'], margins=True, margins_name="Total")
+
     # Crie a tabela de contagem usando crosstab
-    tabela_contagem2 = pd.crosstab(
-        data['DIAG_DETH'], data['TRATAMENTO'], margins=True, margins_name="Total")
-    tabela_contagem_grafico2 = pd.crosstab(
-        data['DIAG_DETH'], data['TRATAMENTO'], margins=True, margins_name="Total")
 
     # Exclua a coluna "Total" da tabela de contagem
-    tabela_contagem_grafico2 = tabela_contagem_grafico2.iloc[:-1, :-1]
+    tabela_contagem_grafico2_aux = tabela_contagem_grafico2_aux.iloc[:-1, :-1]
 
     # Reorganize a tabela para que possa ser usada com o Plotly Sunburst
-    tabela_contagem_grafico2.reset_index(inplace=True)
-    tabela_contagem_melted2 = tabela_contagem_grafico2.melt(
-        id_vars=['DIAG_DETH'], value_vars=tabela_contagem_grafico2.columns[1:])
+    tabela_contagem_grafico2_aux.reset_index(inplace=True)
+    tabela_contagem_melted2 = tabela_contagem_grafico2_aux.melt(
+        id_vars=['DIAG_DETH'], value_vars=tabela_contagem_grafico2_aux.columns[1:])
 
     # Crie um gráfico Sunburst
     fig_primeiro_TRAT = px.sunburst(
@@ -393,16 +431,25 @@ def exibir_graficos(data, data2):
         title='Gráfico de Casos por Diagnóstico e Primeiro tratamento registrado'
     )
 
-   # Filtrar os dados para população masculina e feminina
-    dados_masculinos = data[data['SEXO'] == 'Masculino'].copy()
-    dados_femininos = data[data['SEXO'] == 'Feminino'].copy()
+  # Filtrar os dados para população masculina e feminina
+    dados_masculinos_aux = data[data['SEXO'] == 'Masculino'].copy()
+    if not dados_masculinos_aux.empty:
+        dados_masculinos_aux = data[data['SEXO'] == 'Masculino'].copy()
+    else:
+        dados_masculinos_aux = data2[data2['SEXO'] == 'Masculino'].copy()
+
+    dados_femininos_aux = data[data['SEXO'] == 'Feminino'].copy()
+    if not dados_femininos_aux.empty:
+        dados_femininos_aux = data[data['SEXO'] == 'Feminino'].copy()
+    else:
+        dados_femininos_aux = data2[data2['SEXO'] == 'Feminino'].copy()
 
     # Adicionar uma coluna 'Sexo' para representar o sexo de cada linha
-    dados_masculinos['Sexo'] = 'Masculino'
-    dados_femininos['Sexo'] = 'Feminino'
+    dados_masculinos_aux['Sexo'] = 'Masculino'
+    dados_femininos_aux['Sexo'] = 'Feminino'
 
     # Combinar os dados das duas populações
-    dados_combinados = pd.concat([dados_masculinos, dados_femininos])
+    dados_combinados = pd.concat([dados_masculinos_aux, dados_femininos_aux])
 
     # Contar a quantidade de diagnósticos para cada sexo e diagnóstico
     contagem_diag_sexo = dados_combinados.groupby(
@@ -459,7 +506,7 @@ def exibir_graficos(data, data2):
         )
 
     with coluna2:
-       # st.metric('Quantidade de Pacientes Tratados em 10 Anos', total_pacientes_atendidos)
+        # st.metric('Quantidade de Pacientes Tratados em 10 Anos', total_pacientes_atendidos)
         st.markdown(
             f'<div style="border: 2px solid #f4834e; padding: 10px; border-radius: 5px; font-size: 20px;">'
             f'<h4>Quantidade de Pacientes Tratados em 10 Anos:</h4>'
@@ -475,8 +522,8 @@ def exibir_graficos(data, data2):
 
     with col2:
         st.plotly_chart(fig_Trat, use_container_width=True)
-   # with st.expander("Veja mais informções"):
-       # st.write("🖱️Dica Passe um pouse no grafico para ter mais informações")
+  # with st.expander("Veja mais informções"):
+        # st.write("🖱️Dica Passe um pouse no grafico para ter mais informações")
 
     # Criar uma barra de divisão com estilo personalizado
     st.markdown('<hr style="border: 0.5px solid #d0d0d3; ; height: 0.5px;" />',
@@ -491,16 +538,15 @@ def exibir_graficos(data, data2):
     # st.plotly_chart(fig_Trat, use_container_width=True)
     # st.write(tabela_relacao)
     st.plotly_chart(fig4)
-    st.write(
-        "Tabela de Contagem de Casos por Diagnóstico e Tempo do diagnostico ao primeiro Tratamento")
-    st.dataframe(tabela_contagem)
+    st.write("Tabela de Contagem de Casos por Diagnóstico e Tempo do      diagnostico ao primeiro Tratamento")
+    st.dataframe(variaveltabelacontagemaux)
     st.markdown('<hr style="border: 0.5px solid #d0d0d3; ; height: 0.5px;" />',
                 unsafe_allow_html=True)
     st.plotly_chart(fig_modalidade, use_container_width=True)
     st.plotly_chart(fig_primeiro_TRAT, use_container_width=True)
     st.write(
         "Tabela de Contagem de Casos por Diagnóstico e Pirmeiro tratamento registrado")
-    st.dataframe(tabela_contagem2)
+    st.dataframe(tabela_contagem2_aux)
 
     # Barra lateral para seleção de estado
 st.sidebar.title("Filtros")
@@ -509,8 +555,7 @@ selected_estado = st.sidebar.selectbox(
     'Selecione um Estado:', ["BR"] + dados2['UF_DIAGN'].unique().tolist())
 
 # Obtenha a lista de estabelecimentos com base no estado selecionado
-estabelecimentos_disponiveis = obter_estabelecimentos_por_estado_trat(
-    dados2, selected_estado)
+
 
 # Barra lateral para seleção de estabelecimento
 if selected_estado != "BR":
@@ -538,8 +583,9 @@ dados_filtrados_diag = filtrar_por_idade(dados_filtrados_diag, selected_idade)
 dados_filtrados_trat = filtrar_por_estado_trat(dados2, selected_estado)
 dados_filtrados_trat = filtrar_por_estabelecimento_trat(
     dados_filtrados_trat, selected_estabelecimento)
-dados_filtrados_trat = filtrar_por_idade(dados_filtrados_trat, selected_idade)
+
 # Exibir gráficos com base nos dados filtrados
+
 exibir_graficos(dados_filtrados_diag, dados_filtrados_trat)
 if selected_estado == "RS":
 
@@ -552,4 +598,4 @@ if selected_estado == "RS":
     if Page_cliente == 'Radioterapia':
         st.experimental_set_query_params()
         apacradio.apacradio()
-   # map.map()
+  # map.map()
