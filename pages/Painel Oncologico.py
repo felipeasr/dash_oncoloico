@@ -26,7 +26,6 @@ with st.spinner(''):
     time.sleep(0.5)
 
 
-
 def cook_breakfast():
     msg = st.toast('Gathering ingredients...')
     time.sleep(1)
@@ -272,8 +271,7 @@ def exibir_graficos(data, data2):
 
     # Adicione uma coluna "Total" para representar o total de casos em cada linha
     data['Total'] = 1
-    variaveltabelacontagemaux = pd.crosstab(
-        data['DIAG_DETH'], data['Categorias Tempo Tratamento'], margins=True, margins_name="Total")
+    variaveltabelacontagemaux = data['DIAG_DETH']
     if not variaveltabelacontagemaux.empty:
         variaveltabelacontagemaux = pd.crosstab(
             data['DIAG_DETH'], data['Categorias Tempo Tratamento'], margins=True, margins_name="Total")
@@ -286,8 +284,7 @@ def exibir_graficos(data, data2):
         variaveltabelacontagemaux = pd.crosstab(
             data2['DIAG_DETH'], data2['Categorias Tempo Tratamento'], margins=True, margins_name="Total")
 
-    variaveltabelacontagemGraficoaux = pd.crosstab(
-        data['DIAG_DETH'], data['Categorias Tempo Tratamento'], margins=True, margins_name="Total")
+    variaveltabelacontagemGraficoaux = data['DIAG_DETH']
     if not variaveltabelacontagemGraficoaux.empty:
         variaveltabelacontagemGraficoaux = pd.crosstab(
             data['DIAG_DETH'], data['Categorias Tempo Tratamento'], margins=True, margins_name="Total")
@@ -389,8 +386,7 @@ def exibir_graficos(data, data2):
 
     # Agrupe os dados por TRATAMENTO e DIAG_DETH e conte o número de ocorrências
 
-    tabela_contagem2_aux = pd.crosstab(
-        data['DIAG_DETH'], data['TRATAMENTO'], margins=True, margins_name="Total")
+    tabela_contagem2_aux = data['DIAG_DETH']
     if not tabela_contagem2_aux.empty:
         tabela_contagem2_aux = pd.crosstab(
             data['DIAG_DETH'], data['TRATAMENTO'], margins=True, margins_name="Total")
@@ -398,8 +394,7 @@ def exibir_graficos(data, data2):
         tabela_contagem2_aux = pd.crosstab(
             data2['DIAG_DETH'], data2['TRATAMENTO'], margins=True, margins_name="Total")
 
-    tabela_contagem_grafico2_aux = pd.crosstab(
-        data['DIAG_DETH'], data['TRATAMENTO'], margins=True, margins_name="Total")
+    tabela_contagem_grafico2_aux = data['DIAG_DETH']
     if not tabela_contagem_grafico2_aux.empty:
         tabela_contagem_grafico2_aux = pd.crosstab(
             data['DIAG_DETH'], data['TRATAMENTO'], margins=True, margins_name="Total")
