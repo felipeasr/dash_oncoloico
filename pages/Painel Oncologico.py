@@ -134,7 +134,28 @@ def exibir_graficos(data, data2):
     all_labels = set(trat_mais_frequentes.index) | set(
         diagnósticos_mais_frequentes.index)
 
-    colors = px.colors.qualitative.Pastel
+    colors = [
+        '#FF5733'
+        '#4A90E2'
+        '#8DB600'
+        '#FFC300'
+        '#9B59B6'
+        '#3F72AF'
+        '#E74C3C'
+        '#F1C40F'
+        '#7D3C98'
+        '#27AE60'
+        '#D35400'
+        '#A569BD'
+        '#3498DB'
+        '#F39C12'
+        '#34495E'
+        '#E74C3C'
+        '#1ABC9C'
+        '#D35400'
+        '#9B59B6'
+        '#E67E22'
+    ]
     # um dicionário de mapeamento de rótulos para cores em cada gráfico
     label_to_color = {}
 
@@ -184,7 +205,7 @@ def exibir_graficos(data, data2):
         hole=0.3,
         marker=dict(colors=[label_to_color[label]
                             for label in trat_mais_frequentes.index]),
-        textinfo='percent + value '
+        textinfo='percent + value'
     )])
 
     fig_Trat.update_layout(
@@ -220,7 +241,7 @@ def exibir_graficos(data, data2):
         labels=variavelauxmodalidade.index,
         values=variavelauxmodalidade.values,
         hole=0.3,
-        textinfo='percent+label+ value'
+        textinfo='percent+label+value'
     )])
     fig_modalidade.update_layout(
         title='Primeiro tratamento registrado',
@@ -256,7 +277,7 @@ def exibir_graficos(data, data2):
 
     color_palette = px.colors.qualitative.Pastel
 
-    bins_tempo_tratamento = [-91, -61, -31, -1, 0, 10, 20, 30,
+    bins_tempo_tratamento = [-900, -61, -31, -1, 0, 10, 20, 30,
                              40, 50, 60, 90, 120, 300, 365, 730, 9999, float('inf')]
 
     # Defina as categorias de tempo de tratamento
@@ -534,8 +555,15 @@ def exibir_graficos(data, data2):
     # st.plotly_chart(fig_Trat, use_container_width=True)
     # st.write(tabela_relacao)
     st.plotly_chart(fig4)
-    st.write("Tabela de Contagem de Casos por Diagnóstico e Tempo do      diagnostico ao primeiro Tratamento")
+    st.write(
+        "Tabela de Contagem de Casos por Diagnóstico e Tempo do diagnostico ao primeiro Tratamento")
     st.dataframe(variaveltabelacontagemaux)
+    with st.expander("Veja a Explicação"):
+        st.write("Para os casos com informação de tratamento, o campo é composto de dois subcampos. O primeiro, de 1 dígito indica se o tratamento ocorreu antes ou depois do laudo de diagnóstico:")
+        st.write(
+            " - ( + ) tratamento com data registrada posterior ao laudo diagnóstico")
+        st.write(
+            " - ( - ) tratamento com data registrada anterior ao laudo diagnóstico")
     st.markdown('<hr style="border: 0.5px solid #d0d0d3; ; height: 0.5px;" />',
                 unsafe_allow_html=True)
     st.plotly_chart(fig_modalidade, use_container_width=True)
@@ -543,6 +571,7 @@ def exibir_graficos(data, data2):
     st.write(
         "Tabela de Contagem de Casos por Diagnóstico e Pirmeiro tratamento registrado")
     st.dataframe(tabela_contagem2_aux)
+
 
     # Barra lateral para seleção de estado
 st.sidebar.title("Filtros")
