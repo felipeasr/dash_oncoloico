@@ -37,7 +37,7 @@ def cook_breakfast():
 if st.sidebar.button('Atualizar'):
     cook_breakfast()
 # Carregue seus dados CSV aqui
-caminho_do_csv = 'PainelOncoBr.csv'
+caminho_do_csv = 'PainelOncoBr_Completo.csv'
 
 dados2 = pd.read_csv(caminho_do_csv, encoding='utf-8')
 
@@ -95,11 +95,24 @@ def filtrar_por_estabelecimento_trat(data2, estabelecimento):
 
 def obter_estabelecimentos_por_estado_trat(data2, estado):
     if estado == "BR":
-        return data2['CNES_TRAT'].unique().tolist()
+        estabelecimentos = data2['CNES_TRAT'].unique().tolist()
     else:
-        return data2[data2['UF_TRATAM'] == estado]['CNES_TRAT'].unique().tolist()
+        estabelecimentos = data2[data2['UF_TRATAM']
+                                 == estado]['CNES_TRAT'].unique().tolist()
+
+    # Ordena a lista alfabeticamente
+    estabelecimentos.sort()
+
+    return estabelecimentos
 
 # Função para criar e exibir gráficos com base nos dados filtrados
+
+
+def filtrar_por_estabelecimento_trat(data2, estabelecimento):
+    if estabelecimento == "Todos":
+        return data2
+    else:
+        return data2[data2['CNES_TRAT'] == estabelecimento]
 
 
 def exibir_graficos(data, data2):
@@ -495,18 +508,36 @@ def exibir_graficos(data, data2):
         "</span>",
         unsafe_allow_html=True
     )
-    prefixo = "Estabelecimento de Saúde: "
-    sufixo = ""
-    # Defina o tamanho da fonte e a cor de fundo para a variável
-    tamanho_da_fonte = "24px"
-    cor_de_fundo = "#f3b54b"  # Cor de fundo laranja
-    # Use HTML embutido para destacar a variável com tamanho de fonte e cor de fundo
-    st.markdown(
-        f"<span style='font-size: {tamanho_da_fonte};'>"
-        f"{prefixo}<span style='background-color: {cor_de_fundo};'>{selected_estabelecimento}</span>{sufixo}"
-        "</span>",
-        unsafe_allow_html=True
-    )
+
+    if selected_estabelecimento != "Todos":
+        estabelecimento_selecionado = dados_filtrados_trat[
+            dados_filtrados_trat['CNES_TRAT'] == selected_estabelecimento]
+        if not estabelecimento_selecionado.empty:
+            st.subheader("DADOS DO ESTABELECIMENTO")
+
+            # quadro de informações formatado com HTML personalizado
+            st.markdown(
+                f"""
+                <table style="border: 2px solid #f4834e;  border-radius: 5px; font-size: 20px;">
+                <tr >
+                    <td style="font-weight: bold; padding: 8px;">Estabelecimento de Saúde:</td>
+                    <td style="padding: 8px;">{selected_estabelecimento}</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold; padding: 8px;">Habilitação:</td>
+                    <td style="padding: 8px;"> {estabelecimento_selecionado.iloc[0]["SGRUPHAB"]}</td>
+                    <td style="font-weight: bold; padding: 8px;">Gestão:</td>
+                    <td style="padding: 8px;">{estabelecimento_selecionado.iloc[0]["TPGESTAO"]}</td>
+                </tr>
+                </table>
+                """,
+                unsafe_allow_html=True,
+            )
+    # Adiciona espaço entre os quadros
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown('<hr style="border: 0.5px solid #d0d0d3; ; height: 0.5px;" />',
+                unsafe_allow_html=True)
+
     # st.write(selected_estabelecimento)
     quantidade_pacientes = len(data)
     coluna1, coluna2 = st.columns(2)
@@ -575,9 +606,17 @@ def exibir_graficos(data, data2):
 
     # Barra lateral para seleção de estado
 st.sidebar.title("Filtros")
+# Lista de estados únicos
+estados_unicos = dados2['UF_DIAGN'].unique().tolist()
 
-selected_estado = st.sidebar.selectbox(
-    'Selecione um Estado:', ["BR"] + dados2['UF_DIAGN'].unique().tolist())
+# Ordene a lista de estados em ordem alfabética
+estados_unicos.sort()
+
+# Adicione "BR" no topo da lista
+estados_unicos.insert(0, "BR")
+
+# Selecione o estado
+selected_estado = st.sidebar.selectbox('Selecione um Estado:', estados_unicos)
 
 # Obtenha a lista de estabelecimentos com base no estado selecionado
 
