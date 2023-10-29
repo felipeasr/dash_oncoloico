@@ -34,8 +34,8 @@ def cook_breakfast():
     msg.toast('Ready!', icon="🥞")
 
 
-if st.sidebar.button('Atualizar'):
-    cook_breakfast()
+# if st.sidebar.button('Atualizar'):
+#    cook_breakfast()
 # Carregue seus dados CSV aqui
 caminho_do_csv = 'PainelOncoBr_Completo.csv'
 
@@ -602,7 +602,6 @@ def exibir_graficos(data, data2):
     st.write(
         "Tabela de Contagem de Casos por Diagnóstico e Pirmeiro tratamento registrado")
     st.dataframe(tabela_contagem2_aux)
-
 
     # Barra lateral para seleção de estado
 st.sidebar.title("Filtros")
