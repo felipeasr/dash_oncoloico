@@ -541,20 +541,26 @@ def exibir_graficos(data, data2):
     # st.write(selected_estabelecimento)
     quantidade_pacientes = len(data)
     coluna1, coluna2 = st.columns(2)
-    with coluna1:
 
-        # st.metric('Quantidade de Pacientes Diagnosticados em 10 Anos', len(data))
+    # Adicione um estilo CSS para tornar a borda fixa
+    st.markdown(
+        f'<style>'
+        f'.fixed-border {{ position: sticky; top: 0; z-index: 1; background: white; }}'
+        f'</style>',
+        unsafe_allow_html=True
+    )
+
+    with coluna1:
+        # Adicione a classe CSS "fixed-border" para tornar a borda fixa na primeira coluna
         st.markdown(
-            f'<div style="border: 2px solid #f4834e; padding: 10px; border-radius: 5px; font-size: 20px;">'
+            f'<div class="fixed-border" style="border: 2px solid #f4834e; padding: 10px; border-radius: 5px; font-size: 20px;">'
             f'<h4>Quantidade de Pacientes Diagnosticados em 10 Anos:</h4>'
             f'<p style="font-size: 25px;font-weight: bold">{quantidade_pacientes}</p>'
             f'</div>',
             unsafe_allow_html=True
-            # background-color: #f6e6b9
         )
 
     with coluna2:
-        # st.metric('Quantidade de Pacientes Tratados em 10 Anos', total_pacientes_atendidos)
         st.markdown(
             f'<div style="border: 2px solid #f4834e; padding: 10px; border-radius: 5px; font-size: 20px;">'
             f'<h4>Quantidade de Pacientes Tratados em 10 Anos:</h4>'
