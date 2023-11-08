@@ -484,12 +484,12 @@ def exibir_graficos(data, data2):
     )
 
     # Crie um filtro para hospitais habilitados
-    hospitais_habilitados = data2[data2['SGRUPHAB'].str[:4].isin([
-        '1709', '1713', '1711'])]
+    hospitais_habilitados = data2[(data2['SGRUPHAB'].str[:4].isin(
+        ['1709', '1713', '1711'])) & (data2['UF_TRATAM'])]
 
-    # Crie um filtro para hospitais não habilitados
-    hospitais_nao_habilitados = data2[data2['SGRUPHAB']
-                                      == 'Sem Habilitação em Oncologia Pediátrica']
+    # Crie um filtro para hospitais não habilitados em um estado específico
+    hospitais_nao_habilitados = data2[(data2['SGRUPHAB'] == 'Sem Habilitação em Oncologia Pediátrica') & (
+        data2['UF_TRATAM'])]
 
     # Crie um gráfico de pizza para exibir as porcentagens
     coreshab = ['#1f77b4', '#ff7f0e']
@@ -571,7 +571,7 @@ def exibir_graficos(data, data2):
     st.markdown('<hr style="border: 0.5px solid #d0d0d3; ; height: 0.5px;" />',
                 unsafe_allow_html=True)
 
-    if selected_estado != "BR" and selected_estabelecimento == "Todos":
+    if selected_estado != "BR" and selected_estabelecimento == "Todos" or selected_regiao != "Todas":
         st.plotly_chart(graficohabilitacao)
     # st.write(selected_estabelecimento)
     quantidade_pacientes = len(data)
@@ -584,6 +584,10 @@ def exibir_graficos(data, data2):
         f'</style>',
         unsafe_allow_html=True
     )
+    # Formata os números para o formato de milhares (com vírgula separadora de milhares)
+    quantidade_pacientes_formatado = "{:,}".format(quantidade_pacientes)
+    total_pacientes_atendidos_formatado = "{:,}".format(
+        total_pacientes_atendidos)
 
     with coluna1:
         # Adicione a classe CSS "fixed-border" para tornar a borda fixa na primeira coluna
@@ -592,7 +596,7 @@ def exibir_graficos(data, data2):
             f'<div style="border: 2px solid #f4834e; padding: 10px; border-radius: 5px; font-size: 20px;">'
             f'<h4>Quantidade de Pacientes Diagnosticados:</h4>'
 
-            f'<p style="font-size: 25px;font-weight: bold">{quantidade_pacientes}</p>'
+            f'<p style="font-size: 25px;font-weight: bold">{quantidade_pacientes_formatado}</p>'
             f'</div>',
             unsafe_allow_html=True
         )
@@ -601,7 +605,7 @@ def exibir_graficos(data, data2):
         st.markdown(
             f'<div style="border: 2px solid #f4834e; padding: 10px; border-radius: 5px; font-size: 20px;">'
             f'<h4>Quantidade de Pacientes Tratados:</h4>'
-            f'<p style="font-size: 25px;font-weight: bold">{total_pacientes_atendidos}</p>'
+            f'<p style="font-size: 25px;font-weight: bold">{total_pacientes_atendidos_formatado}</p>'
             f'</div>',
             unsafe_allow_html=True
         )
@@ -647,9 +651,7 @@ def exibir_graficos(data, data2):
     st.dataframe(tabela_contagem2_aux)
 
 
-
 # Barra lateral para seleção de estado
-
 st.sidebar.title("Filtros")
 
 anos_unicos = sorted(dados2['ANO_DIAGN'].unique())
