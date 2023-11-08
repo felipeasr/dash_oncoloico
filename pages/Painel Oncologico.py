@@ -37,7 +37,7 @@ def cook_breakfast():
 if st.sidebar.button('Atualizar'):
     cook_breakfast()
 # Carregue seus dados CSV aqui
-caminho_do_csv = 'PainelOncoBr_Completo.csv'
+caminho_do_csv = 'PainelOncoPediatricoBr_Completo.csv'
 
 dados2 = pd.read_csv(caminho_do_csv, encoding='utf-8')
 
@@ -146,7 +146,7 @@ def exibir_graficos(data, data2):
     all_labels = set(trat_mais_frequentes.index) | set(
         diagnósticos_mais_frequentes.index)
 
-    colors = px.colors.qualitative.Set1
+    colors = px.colors.qualitative.Alphabet
 
     # um dicionário de mapeamento de rótulos para cores em cada gráfico
     label_to_color = {}
@@ -634,7 +634,7 @@ def exibir_graficos(data, data2):
     st.dataframe(tabela_contagem2_aux)
 
 
-    # Barra lateral para seleção de estado
+# Barra lateral para seleção de estado
 st.sidebar.title("Filtros")
 
 anos_unicos = sorted(dados2['ANO_DIAGN'].unique())
