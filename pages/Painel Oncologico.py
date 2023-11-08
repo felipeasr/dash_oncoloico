@@ -142,7 +142,12 @@ def exibir_graficos(data, data2):
 
     fig.update_traces(
         text=quanti_paciente_Diag_ANO['Quantidade de Pacientes'], textposition='auto')
-    trat_mais_frequentes = data2['DIAG_DETH'].value_counts().head(10)
+    trat_mais_frequentes = data2.groupby(
+        ['DIAG_DETH', 'UF_TRATAM']).size().unstack().fillna(0)
+    trat_mais_frequentes['Total'] = trat_mais_frequentes.sum(axis=1)
+    trat_mais_frequentes = trat_mais_frequentes.sort_values(
+        by='Total', ascending=False).head(10)
+
     all_labels = set(trat_mais_frequentes.index) | set(
         diagnósticos_mais_frequentes.index)
 
@@ -194,10 +199,10 @@ def exibir_graficos(data, data2):
 
     fig_Trat = go.Figure(data=[go.Pie(
         labels=trat_mais_frequentes.index,
-        values=trat_mais_frequentes.values,
+        values=trat_mais_frequentes['Total'],
         hole=0.3,
         marker=dict(colors=[label_to_color[label]
-                            for label in trat_mais_frequentes.index]),
+                    for label in trat_mais_frequentes.index]),
         textinfo='percent + value'
     )])
 
@@ -693,7 +698,7 @@ def obter_estados_por_regiao(regiao):
 estados_unicos = dados2['UF_DIAGN'].unique().tolist()
 
 # Atualize a lista de estados com base na região selecionada
-if selected_regiao != "BR":
+if selected_regiao != "Todas":
     estados_unicos = obter_estados_por_regiao(selected_regiao)
 
 # Ordene a lista de estados em ordem alfabética
