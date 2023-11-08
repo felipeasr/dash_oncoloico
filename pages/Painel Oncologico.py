@@ -497,7 +497,7 @@ def exibir_graficos(data, data2):
     graficohabilitacao = px.pie(
         names=['Habilitados', 'Não Habilitados'],
         values=[len(hospitais_habilitados), len(hospitais_nao_habilitados)],
-        title=f'Porcentagem de Pacientes Tratados em Serviços Habilitados e Não Habilitados em {selected_estado}',
+        title=f'Porcentagem de Pacientes Tratados em Serviços Habilitados e Não Habilitados',
         color_discrete_sequence=coreshab  # Define as cores manualmente
     )
 
