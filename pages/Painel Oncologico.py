@@ -37,10 +37,9 @@ def cook_breakfast():
 # if st.sidebar.button('Atualizar'):
 #    cook_breakfast()
 # Carregue seus dados CSV aqui
-caminho_do_csv = 'PainelOncoBr_Completo.csv'
+caminho_do_csv = 'PainelOncoPediatricoBr_Completo.csv'
 
 dados2 = pd.read_csv(caminho_do_csv, encoding='utf-8')
-
 
 st.title('Painel Oncologico :bar_chart:')
 
@@ -143,32 +142,17 @@ def exibir_graficos(data, data2):
 
     fig.update_traces(
         text=quanti_paciente_Diag_ANO['Quantidade de Pacientes'], textposition='auto')
-    trat_mais_frequentes = data2['DIAG_DETH'].value_counts().head(10)
+    trat_mais_frequentes = data2.groupby(
+        ['DIAG_DETH', 'UF_TRATAM']).size().unstack().fillna(0)
+    trat_mais_frequentes['Total'] = trat_mais_frequentes.sum(axis=1)
+    trat_mais_frequentes = trat_mais_frequentes.sort_values(
+        by='Total', ascending=False).head(10)
+
     all_labels = set(trat_mais_frequentes.index) | set(
         diagnósticos_mais_frequentes.index)
 
-    colors = [
-        '#FF5733'
-        '#4A90E2'
-        '#8DB600'
-        '#FFC300'
-        '#9B59B6'
-        '#3F72AF'
-        '#E74C3C'
-        '#F1C40F'
-        '#7D3C98'
-        '#27AE60'
-        '#D35400'
-        '#A569BD'
-        '#3498DB'
-        '#F39C12'
-        '#34495E'
-        '#E74C3C'
-        '#1ABC9C'
-        '#D35400'
-        '#9B59B6'
-        '#E67E22'
-    ]
+    colors = px.colors.qualitative.Alphabet
+
     # um dicionário de mapeamento de rótulos para cores em cada gráfico
     label_to_color = {}
 
@@ -210,14 +194,15 @@ def exibir_graficos(data, data2):
         ),
         width=1000,
         height=800,
-        font=dict(size=20),)
+        font=dict(size=20),
+    )
 
     fig_Trat = go.Figure(data=[go.Pie(
         labels=trat_mais_frequentes.index,
-        values=trat_mais_frequentes.values,
+        values=trat_mais_frequentes['Total'],
         hole=0.3,
         marker=dict(colors=[label_to_color[label]
-                            for label in trat_mais_frequentes.index]),
+                    for label in trat_mais_frequentes.index]),
         textinfo='percent + value'
     )])
 
@@ -232,7 +217,8 @@ def exibir_graficos(data, data2):
         ),
         width=1000,
         height=800,
-        font=dict(size=20),)
+        font=dict(size=20),
+    )
 
     quanti_paciente_Trat_ANO = data2.groupby(
         'ANO_TRATAM')['UF_TRATAM'].count().reset_index()
@@ -496,18 +482,65 @@ def exibir_graficos(data, data2):
             "(?)": "white", "Masculino": "#ADD8E6", "Feminino": "#FFC0CB", },
         height=800,
     )
+
+    # Crie um filtro para hospitais habilitados
+    hospitais_habilitados = data2[data2['SGRUPHAB'].str[:4].isin([
+        '1709', '1713', '1711'])]
+
+    # Crie um filtro para hospitais não habilitados
+    hospitais_nao_habilitados = data2[data2['SGRUPHAB']
+                                      == 'Sem Habilitação em Oncologia Pediátrica']
+
+    # Crie um gráfico de pizza para exibir as porcentagens
+    coreshab = ['#1f77b4', '#ff7f0e']
+
+    graficohabilitacao = px.pie(
+        names=['Habilitados', 'Não Habilitados'],
+        values=[len(hospitais_habilitados), len(hospitais_nao_habilitados)],
+        title=f'Porcentagem de Pacientes Tratados em Serviços Habilitados e Não Habilitados em {selected_estado}',
+        color_discrete_sequence=coreshab  # Define as cores manualmente
+    )
+
+    # Personalize o gráfico, se necessário
+    graficohabilitacao.update_traces(textinfo='percent+label+value')
+
+    # Para garantir que a cor azul mais forte esteja associada à label "Habilitados",
+    # você pode inverter a ordem das cores se necessário
+    graficohabilitacao.update_traces(marker=dict(colors=coreshab[::-1]))
+
     prefixo = "Estado: "
     sufixo = ""
     # Defina o tamanho da fonte e a cor de fundo para a variável
     tamanho_da_fonte = "24px"
-    cor_de_fundo = "#f3b54b"  # Cor de fundo laranja
+    cor_de_fundo = "#f3b54b"
+    prefixo2 = "Região: "
+    sufixo2 = ""
+    # Defina o tamanho da fonte e a cor de fundo para a variável
+    tamanho_da_fonte2 = "24px"
+    cor_de_fundo2 = "#f3b54b"
+    # Cor de fundo laranja
     # Use HTML embutido para destacar a variável com tamanho de fonte e cor de fundo
-    st.markdown(
-        f"<span style='font-size: {tamanho_da_fonte};'>"
-        f"{prefixo}<span style='background-color: {cor_de_fundo};'>{selected_estado}</span>{sufixo}"
-        "</span>",
-        unsafe_allow_html=True
-    )
+    if selected_regiao == "Todas":
+        st.markdown(
+            f"<span style='font-size: {tamanho_da_fonte};'>"
+            f"{prefixo}<span style='background-color: {cor_de_fundo};'>{selected_estado}</span>{sufixo}"
+            "</span>",
+            unsafe_allow_html=True
+        )
+    elif selected_regiao != "Todas" and selected_estado != "BR":
+        st.markdown(
+            f"<span style='font-size: {tamanho_da_fonte};'>"
+            f"{prefixo}<span style='background-color: {cor_de_fundo};'>{selected_estado}</span>{sufixo}"
+            "</span>",
+            unsafe_allow_html=True
+        )
+    else:
+        st.markdown(
+            f"<span style='font-size: {tamanho_da_fonte2};'>"
+            f"{prefixo2}<span style='background-color: {cor_de_fundo2};'>{selected_regiao}</span>{sufixo2}"
+            "</span>",
+            unsafe_allow_html=True
+        )
 
     if selected_estabelecimento != "Todos":
         estabelecimento_selecionado = dados_filtrados_trat[
@@ -538,6 +571,8 @@ def exibir_graficos(data, data2):
     st.markdown('<hr style="border: 0.5px solid #d0d0d3; ; height: 0.5px;" />',
                 unsafe_allow_html=True)
 
+    if selected_estado != "BR" and selected_estabelecimento == "Todos":
+        st.plotly_chart(graficohabilitacao)
     # st.write(selected_estabelecimento)
     quantidade_pacientes = len(data)
     coluna1, coluna2 = st.columns(2)
@@ -553,8 +588,10 @@ def exibir_graficos(data, data2):
     with coluna1:
         # Adicione a classe CSS "fixed-border" para tornar a borda fixa na primeira coluna
         st.markdown(
-            f'<div class="fixed-border" style="border: 2px solid #f4834e; padding: 10px; border-radius: 5px; font-size: 20px;">'
-            f'<h4>Quantidade de Pacientes Diagnosticados em 10 Anos:</h4>'
+
+            f'<div style="border: 2px solid #f4834e; padding: 10px; border-radius: 5px; font-size: 20px;">'
+            f'<h4>Quantidade de Pacientes Diagnosticados:</h4>'
+
             f'<p style="font-size: 25px;font-weight: bold">{quantidade_pacientes}</p>'
             f'</div>',
             unsafe_allow_html=True
@@ -563,7 +600,7 @@ def exibir_graficos(data, data2):
     with coluna2:
         st.markdown(
             f'<div style="border: 2px solid #f4834e; padding: 10px; border-radius: 5px; font-size: 20px;">'
-            f'<h4>Quantidade de Pacientes Tratados em 10 Anos:</h4>'
+            f'<h4>Quantidade de Pacientes Tratados:</h4>'
             f'<p style="font-size: 25px;font-weight: bold">{total_pacientes_atendidos}</p>'
             f'</div>',
             unsafe_allow_html=True
@@ -609,10 +646,70 @@ def exibir_graficos(data, data2):
         "Tabela de Contagem de Casos por Diagnóstico e Pirmeiro tratamento registrado")
     st.dataframe(tabela_contagem2_aux)
 
-    # Barra lateral para seleção de estado
+
+
+# Barra lateral para seleção de estado
+
 st.sidebar.title("Filtros")
+
+anos_unicos = sorted(dados2['ANO_DIAGN'].unique())
+selected_anos = st.sidebar.multiselect(
+    'Selecione os Anos:', anos_unicos, default=anos_unicos)
+
+# Lista de regiões do Brasil
+regioes = ["Todas", "Norte", "Nordeste", "Centro-Oeste", "Sudeste", "Sul"]
+
+# Barra lateral para seleção de região
+selected_regiao = st.sidebar.selectbox(
+    'Selecione uma Região do Brasil:', regioes, index=0)
+
+# Função para filtrar dados com base na região selecionada
+
+
+def filtrar_por_regiao(data, regiao):
+    if regiao == "Todas":
+        # Retorna todos os dados se a região for "BR" (Brasil)
+        return data
+    elif regiao == "Norte":
+        # Filtrar dados para a região Norte
+        return data[data['UF_DIAGN'].isin(["AC", "AM", "AP", "PA", "RO", "RR", "TO"])]
+    elif regiao == "Nordeste":
+        # Filtrar dados para a região Nordeste
+        return data[data['UF_DIAGN'].isin(["AL", "BA", "CE", "MA", "PB", "PE", "PI", "RN", "SE"])]
+    elif regiao == "Centro-Oeste":
+        # Filtrar dados para a região Centro-Oeste
+        return data[data['UF_DIAGN'].isin(["DF", "GO", "MS", "MT"])]
+    elif regiao == "Sudeste":
+        # Filtrar dados para a região Sudeste
+        return data[data['UF_DIAGN'].isin(["ES", "MG", "RJ", "SP"])]
+    elif regiao == "Sul":
+        # Filtrar dados para a região Sul
+        return data[data['UF_DIAGN'].isin(["PR", "RS", "SC"])]
+
+
+# Função para obter a lista de estados com base na região selecionada
+def obter_estados_por_regiao(regiao):
+    if regiao == "Todas":
+        # Retorna todos os estados se a região for "BR" (Brasil)
+        return estados_unicos[1:]  # Exclua "BR" da lista
+    elif regiao == "Norte":
+        return ["AC", "AM", "AP", "PA", "RO", "RR", "TO"]
+    elif regiao == "Nordeste":
+        return ["AL", "BA", "CE", "MA", "PB", "PE", "PI", "RN", "SE"]
+    elif regiao == "Centro-Oeste":
+        return ["DF", "GO", "MS", "MT"]
+    elif regiao == "Sudeste":
+        return ["ES", "MG", "RJ", "SP"]
+    elif regiao == "Sul":
+        return ["PR", "RS", "SC"]
+
+
 # Lista de estados únicos
 estados_unicos = dados2['UF_DIAGN'].unique().tolist()
+
+# Atualize a lista de estados com base na região selecionada
+if selected_regiao != "Todas":
+    estados_unicos = obter_estados_por_regiao(selected_regiao)
 
 # Ordene a lista de estados em ordem alfabética
 estados_unicos.sort()
@@ -623,9 +720,6 @@ estados_unicos.insert(0, "BR")
 # Selecione o estado
 selected_estado = st.sidebar.selectbox('Selecione um Estado:', estados_unicos)
 
-# Obtenha a lista de estabelecimentos com base no estado selecionado
-
-
 # Barra lateral para seleção de estabelecimento
 if selected_estado != "BR":
     selected_estabelecimento = st.sidebar.selectbox('Selecione um Estabelecimento de Saúde:', [
@@ -633,28 +727,51 @@ if selected_estado != "BR":
 else:
     selected_estabelecimento = "Todos"
 
-selected_idade = st.sidebar.slider(
-    "Selecione uma faixa etária:", min_value=0, max_value=19, value=(0, 19))
+# Crie um intervalo de idades de 0 a 19 anos
+idades_disponiveis = list(range(20))
 
-# Modifique as funções de filtragem para considerar a idade selecionada
+# Substitua a opção "0 anos" por "Menos de 1 ano" para exibição
+idades_disponiveis_display = ['Menos de 1 ano'] + \
+    [str(i) for i in idades_disponiveis[1:]]
+
+# Use multisseleção para faixa etária
+selected_idades = st.sidebar.multiselect(
+    "Selecione a Idade:", idades_disponiveis_display, default=idades_disponiveis_display)
+
+# Modifique a função de filtragem para considerar as idades selecionadas
 
 
-def filtrar_por_idade(data, idade_range):
-    return data[(data['IDADE'] >= idade_range[0]) & (data['IDADE'] <= idade_range[1])]
+def filtrar_por_idade(data, idades_selecionadas):
+    # Mapeie a opção "Menos de 1 ano" para o valor real 0
+    idades_reais = [0 if idade == 'Menos de 1 ano' else int(
+        idade.split()[0]) for idade in idades_selecionadas]
+    return data[data['IDADE'].isin(idades_reais)]
 
 
-# Dianostico
-dados_filtrados_diag = filtrar_por_estado_diag(dados2, selected_estado)
+def filtrar_por_anos(data, anos):
+    return data[data['ANO_DIAGN'].isin(anos)]
+
+
+# Filtrar os dados de acordo com as seleções feitas
+dados_filtrados_diag = filtrar_por_anos(dados2, selected_anos)
+dados_filtrados_diag = filtrar_por_regiao(
+    dados_filtrados_diag, selected_regiao)
+dados_filtrados_diag = filtrar_por_estado_diag(
+    dados_filtrados_diag, selected_estado)
 dados_filtrados_diag = filtrar_por_estabelecimento_diag(
     dados_filtrados_diag, selected_estabelecimento)
-dados_filtrados_diag = filtrar_por_idade(dados_filtrados_diag, selected_idade)
-# Trat
-dados_filtrados_trat = filtrar_por_estado_trat(dados2, selected_estado)
+dados_filtrados_diag = filtrar_por_idade(dados_filtrados_diag, selected_idades)
+
+dados_filtrados_trat = filtrar_por_anos(dados2, selected_anos)
+dados_filtrados_trat = filtrar_por_regiao(
+    dados_filtrados_trat, selected_regiao)
+dados_filtrados_trat = filtrar_por_estado_trat(
+    dados_filtrados_trat, selected_estado)
 dados_filtrados_trat = filtrar_por_estabelecimento_trat(
     dados_filtrados_trat, selected_estabelecimento)
+dados_filtrados_trat = filtrar_por_idade(dados_filtrados_trat, selected_idades)
 
 # Exibir gráficos com base nos dados filtrados
-
 exibir_graficos(dados_filtrados_diag, dados_filtrados_trat)
 if selected_estado == "RS":
 
