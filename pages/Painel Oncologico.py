@@ -650,9 +650,27 @@ def exibir_graficos(data, data2):
         "Tabela de Contagem de Casos por Diagnóstico e Pirmeiro tratamento registrado")
     st.dataframe(tabela_contagem2_aux)
 
+# Função para filtrar dados com base no estado e diagnóstico selecionados
+
+
+def filtrar_por_diag(data, diagnosticos):
+    if diagnosticos == "Todos":
+        # Retorna todos os dados se "Todos" for selecionado
+        return data
+    else:
+        # Filtra por diagnóstico
+        return data[data['DIAG_DETH'] == diagnosticos]
+
 
 # Barra lateral para seleção de estado
 st.sidebar.title("Filtros")
+
+# Barra lateral para seleção de diagnóstico
+diagnosticos_unicos = sorted(dados2['DIAG_DETH'].unique())
+# Adicione a opção "Todos" à lista de diagnósticos
+diagnosticos_unicos.insert(0, "Todos")
+selected_diagnosticos = st.sidebar.selectbox(
+    'Selecione o Diagnóstico:', diagnosticos_unicos)  # Defina "Todos" como padr
 
 anos_unicos = sorted(dados2['ANO_DIAGN'].unique())
 selected_anos = st.sidebar.multiselect(
@@ -739,8 +757,14 @@ idades_disponiveis_display = ['Menos de 1 ano'] + \
 # Use multisseleção para faixa etária
 selected_idades = st.sidebar.multiselect(
     "Selecione a Idade:", idades_disponiveis_display, default=idades_disponiveis_display)
-
-# Modifique a função de filtragem para considerar as idades selecionadas
+st.sidebar.markdown('<hr style="border: 0.5px solid #d0d0d3; ; height: 0.5px;" />',
+                    unsafe_allow_html=True)
+st.sidebar.download_button(
+    label="Baixar Dados Brutos",
+    data=dados2.to_csv(index=False).encode('utf-8'),
+    file_name='dados_brutos.csv',
+    key='download_button'
+)
 
 
 def filtrar_por_idade(data, idades_selecionadas):
@@ -763,6 +787,8 @@ dados_filtrados_diag = filtrar_por_estado_diag(
 dados_filtrados_diag = filtrar_por_estabelecimento_diag(
     dados_filtrados_diag, selected_estabelecimento)
 dados_filtrados_diag = filtrar_por_idade(dados_filtrados_diag, selected_idades)
+dados_filtrados_diag = filtrar_por_diag(
+    dados_filtrados_diag, selected_diagnosticos)
 
 dados_filtrados_trat = filtrar_por_anos(dados2, selected_anos)
 dados_filtrados_trat = filtrar_por_regiao(
@@ -772,7 +798,9 @@ dados_filtrados_trat = filtrar_por_estado_trat(
 dados_filtrados_trat = filtrar_por_estabelecimento_trat(
     dados_filtrados_trat, selected_estabelecimento)
 dados_filtrados_trat = filtrar_por_idade(dados_filtrados_trat, selected_idades)
-
+dados_filtrados_trat = filtrar_por_diag(
+    dados_filtrados_trat, selected_diagnosticos)
+# dados_filtrados_trat.to_csv('teste.csv')
 # Exibir gráficos com base nos dados filtrados
 exibir_graficos(dados_filtrados_diag, dados_filtrados_trat)
 if selected_estado == "RS":
