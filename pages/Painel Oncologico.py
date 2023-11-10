@@ -759,12 +759,12 @@ selected_idades = st.sidebar.multiselect(
     "Selecione a Idade:", idades_disponiveis_display, default=idades_disponiveis_display)
 st.sidebar.markdown('<hr style="border: 0.5px solid #d0d0d3; ; height: 0.5px;" />',
                     unsafe_allow_html=True)
-st.sidebar.download_button(
-    label="Baixar Dados Brutos",
-    data=dados2.to_csv(index=False).encode('utf-8'),
-    file_name='dados_brutos.csv',
-    key='download_button'
-)
+# st.sidebar.download_button(
+# label="Baixar Dados Brutos",
+# data=dados2.to_csv(index=False).encode('utf-8'),
+# file_name='dados_brutos.csv',
+# key='download_button'
+# )
 
 
 def filtrar_por_idade(data, idades_selecionadas):
