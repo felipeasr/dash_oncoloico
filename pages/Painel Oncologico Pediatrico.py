@@ -41,7 +41,7 @@ caminho_do_csv = 'PainelOncoPediatricoBr_Completo.csv'
 
 dados2 = pd.read_csv(caminho_do_csv, encoding='utf-8')
 
-st.title('Painel Oncologico :bar_chart:')
+st.title('Painel Oncologico Pediatrico :bar_chart:')
 
 st.markdown(''' Os dados estão atualizados até :orange[Julho de 2023]''')
 
@@ -761,7 +761,7 @@ st.sidebar.markdown('<hr style="border: 0.5px solid #d0d0d3; ; height: 0.5px;" /
                     unsafe_allow_html=True)
 # st.sidebar.download_button(
 # label="Baixar Dados Brutos",
-# data=dados2.to_csv(index=False).encode('utf-8'),
+# data=dados2.to_csv(index=False).encode('utf-8'),Boa tarde, Professora Alice,
 # file_name='dados_brutos.csv',
 # key='download_button'
 # )
