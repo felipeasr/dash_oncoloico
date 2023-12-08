@@ -43,7 +43,7 @@ dados2 = pd.read_csv(caminho_do_csv, encoding='utf-8')
 
 st.title('Painel Oncologico Pediatrico :bar_chart:')
 
-st.markdown(''' Os dados estão atualizados até :orange[Julho de 2023]''')
+st.info(''' Os dados estão atualizados até :orange[Julho de 2023]''')
 
 
 # Função para filtrar dados com base no estado selecionado

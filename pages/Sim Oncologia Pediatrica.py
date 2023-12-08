@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-
+import plotly.express as px
 st.set_page_config(
     page_title="Dashboard Oncologico",
     page_icon="bar_chart",
@@ -59,10 +59,74 @@ caminhos_csv = {
 # Verificar se a UF é válida e carregar os dados correspondentes
 caminho_do_csv = caminhos_csv.get(selected_uf)
 
+
+# visualização
 if caminho_do_csv:
-    dados = pd.read_csv(caminho_do_csv, encoding='utf-8')
-    st.write(f'Estado selecionado: {selected_uf}')
-    st.write(dados)
+    df = pd.read_csv(caminho_do_csv, encoding='utf-8')
+    ### Filtros ###
+    casos_com = df[df['CAUSABAS'].str.startswith('C')]
+    # Contar a quantidade de casos
+    quantidade_obitos = len(casos_com)
+    # Converter a coluna de datas para o tipo datetime
+
+    def extrair_ano(data):
+        return int(str(data)[-4:])
+
+    df['Ano'] = df['DTOBITO'].apply(extrair_ano)
+
+    # Agrupar por ano e contar o número de óbitos
+    dados_agrupados = df.groupby('Ano').size().reset_index(name='Quantidade')
+
+    #### Criação de Graficos ####
+
+    # Criar gráfico de barras interativo usando Plotly Express
+    fig_Casos_anos = px.bar(dados_agrupados, x='Ano',
+                            y='Quantidade', title='Óbitos por Ano')
+
+    # Adicionar asterisco com a indicação '*preliminar' sobre a barra correspondente ao ano de 2022
+
+    fig_Casos_anos.add_annotation(
+        x=2022,
+        text='preliminar',
+        showarrow=True,
+        arrowhead=2,
+        # arrowcolor='rgba(50, 171, 96, 0.6)'
+    )
+
+    # Configurar o layout do gráfico
+    fig_Casos_anos.update_layout(
+        showlegend=True,
+        font=dict(size=14),
+        xaxis=dict(tickmode='array', tickvals=df['Ano']),
+    )
+
+    #### View users ####
+    st.info("Os dados são referentes ao período de 2013 a 2022. Os dados do ano de 2022 são preliminares e podem estar sujeitos a alterações.")
+
+    prefixo = "Estado: "
+    sufixo = ""
+    # Defina o tamanho da fonte e a cor de fundo para a variável
+    tamanho_da_fonte = "24px"
+    cor_de_fundo = "#f3b54b"
+    # Cor de fundo laranja
+    # Use HTML embutido para destacar a variável com tamanho de fonte e cor de fundo
+    st.markdown(
+        f"<span style='font-size: {tamanho_da_fonte};'>"
+        f"{prefixo}<span style='background-color: {cor_de_fundo};'>{selected_uf}</span>{sufixo}"
+        "</span>",
+        unsafe_allow_html=True
+    )
+    # st.write(f'Estado selecionado: {selected_uf}')
+    st.markdown(
+        f'<div>'
+        f'<h4>Quantidade de obitos:</h4>'
+        f'<p style="font-size: 25px;font-weight: bold">{quantidade_obitos}</p>'
+        f'</div>',
+        unsafe_allow_html=True
+    )
+    st.plotly_chart(fig_Casos_anos, use_container_width=True)
+
+    st.write(df)
 else:
-    st.write('<u>Selecione um estado na barra Lateral para carregar os dados.</u>',
-             unsafe_allow_html=True)
+    st.warning(
+        'Selecione um estado na barra Lateral para carregar os dados.')
