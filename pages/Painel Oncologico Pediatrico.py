@@ -37,7 +37,7 @@ def cook_breakfast():
 # if st.sidebar.button('Atualizar'):
 #    cook_breakfast()
 # Carregue seus dados CSV aqui
-caminho_do_csv = 'painelIngles.csv'
+caminho_do_csv = 'painelIngles2.csv'
 
 dados2 = pd.read_csv(caminho_do_csv, encoding='utf-8')
 
@@ -184,7 +184,7 @@ def exibir_graficos(data, data2):
     )])
 
     fig_diagnósticos.update_layout(
-        title='10 Doenças diagnosticadas',
+        title='10 Diagnosed diseases',
         legend=dict(
             orientation='v',  # Posição horizontal da legenda
             yanchor="bottom",  # Ancoragem da legenda na parte inferior
@@ -207,7 +207,7 @@ def exibir_graficos(data, data2):
     )])
 
     fig_Trat.update_layout(
-        title='10 Doenças tratadas',
+        title='10 Diseases treated',
         legend=dict(
             orientation='v',  # Posição horizontal da legenda
             yanchor="bottom",  # Ancoragem da legenda na parte inferior
@@ -280,10 +280,10 @@ def exibir_graficos(data, data2):
                              40, 50, 60, 90, 120, 300, 365, 730, 9999, float('inf')]
 
     # Defina as categorias de tempo de tratamento
-    categorias_tempo_tratamento = ['-90 dias a -61 dias', '-60 dias a -31 dias', '-30 dias a -1 dia', 'mesmo dia (tempo 0 dia)',
-                                   '1 a 10 dias', '11 a 20 dias', '21 a 30 dias', '31 a 40 dias', '41 a 50 dias', '51 a 60 dias',
-                                   '61 a 90 dias', '91 a 120 dias', '121 dias a 300 dias', '301 dias a 365 dias', '366 a 730 dias',
-                                   'mais de dois anos', 'Sem Informação']
+    categorias_tempo_tratamento = ['-90 days to -61 days', '-60 days to -31 days', '-30 days to -1 day', 'same day (0 day)',
+                                   '1 to 10 days', '11 to 20 days', '21 to 30 days', '31 to 40 days', '41 to 50 days', '51 to 60 days',
+                                   '61 to 90 days', '91 to 120 days', '121 days to 300 days', '301 days to 365 days', '366 to 730 days',
+                                   'more than two years', 'No Information']
 
     # data2['TEMPO_TRAT'] = data2['TEMPO_TRAT'].replace(['99.999', '9999','99999.0','0.0'], 'Sem Informação')
     data['Categorias Tempo Tratamento'] = pd.cut(
@@ -331,7 +331,7 @@ def exibir_graficos(data, data2):
 
     # Personalize o layout do gráfico, se necessário
     fig4.update_layout(
-        title='Gráfico de Casos por Diagnóstico e Tempo de Tratamento'
+        title='Chart of Cases by Diagnosis and Treatment Time'
     )
 
     # Crie o gráfico de barras
@@ -379,7 +379,7 @@ def exibir_graficos(data, data2):
         variavelauxsexo = data2['SEXO'].value_counts()
 
     # Crie um dicionário que mapeia os rótulos para as cores desejadas
-    cores = {'Masculino': '#ADD8E6', 'Feminino': '#FFC0CB'}
+    cores = {'Male': '#ADD8E6', 'Female': '#FFC0CB'}
 
     # Crie uma lista de cores com base nos rótulos no DataFrame
     cores_grafico = [cores[label] for label in variavelauxsexo.index]
@@ -393,7 +393,7 @@ def exibir_graficos(data, data2):
     )])
 
     fig_donut.update_layout(
-        title='Distribuição de casos por Sexo',
+        title='Distribution of cases by sex',
         legend=dict(
             orientation='v',
 
@@ -448,21 +448,21 @@ def exibir_graficos(data, data2):
     )
 
   # Filtrar os dados para população masculina e feminina
-    dados_masculinos_aux = data[data['SEXO'] == 'Masculino'].copy()
+    dados_masculinos_aux = data[data['SEXO'] == 'Male'].copy()
     if not dados_masculinos_aux.empty:
-        dados_masculinos_aux = data[data['SEXO'] == 'Masculino'].copy()
+        dados_masculinos_aux = data[data['SEXO'] == 'Male'].copy()
     else:
-        dados_masculinos_aux = data2[data2['SEXO'] == 'Masculino'].copy()
+        dados_masculinos_aux = data2[data2['SEXO'] == 'Male'].copy()
 
-    dados_femininos_aux = data[data['SEXO'] == 'Feminino'].copy()
+    dados_femininos_aux = data[data['SEXO'] == 'Female'].copy()
     if not dados_femininos_aux.empty:
-        dados_femininos_aux = data[data['SEXO'] == 'Feminino'].copy()
+        dados_femininos_aux = data[data['SEXO'] == 'Female'].copy()
     else:
-        dados_femininos_aux = data2[data2['SEXO'] == 'Feminino'].copy()
+        dados_femininos_aux = data2[data2['SEXO'] == 'Female'].copy()
 
     # Adicionar uma coluna 'Sexo' para representar o sexo de cada linha
-    dados_masculinos_aux['Sexo'] = 'Masculino'
-    dados_femininos_aux['Sexo'] = 'Feminino'
+    dados_masculinos_aux['Sexo'] = 'Male'
+    dados_femininos_aux['Sexo'] = 'Female'
 
     # Combinar os dados das duas populações
     dados_combinados = pd.concat([dados_masculinos_aux, dados_femininos_aux])
@@ -474,12 +474,12 @@ def exibir_graficos(data, data2):
     # Criar o treemap que mostra a população masculina e feminina
     fig_populacao_sexo = px.treemap(
         contagem_diag_sexo,
-        path=[px.Constant('População'), 'Sexo', 'DIAG_DETH'],
+        path=[px.Constant('Population'), 'Sexo', 'DIAG_DETH'],
         values='Quantidade',
-        title='População Masculina e Feminina por Diagnóstico',
+        title='Male and Female Population by Diagnosis',
         color="Sexo",
         color_discrete_map={
-            "(?)": "white", "Masculino": "#ADD8E6", "Feminino": "#FFC0CB", },
+            "(?)": "white", "Male": " #add8e6", "Female": "#FFC0CB", },
         height=800,
     )
 
