@@ -37,7 +37,7 @@ def cook_breakfast():
 # if st.sidebar.button('Atualizar'):
 #    cook_breakfast()
 # Carregue seus dados CSV aqui
-caminho_do_csv = 'PainelOncoPediatricoBr_Completo.csv'
+caminho_do_csv = 'painelIngles.csv'
 
 dados2 = pd.read_csv(caminho_do_csv, encoding='utf-8')
 
@@ -633,6 +633,7 @@ def exibir_graficos(data, data2):
     # st.plotly_chart(fig_Trat, use_container_width=True)
     # st.write(tabela_relacao)
     st.plotly_chart(fig4)
+
     st.write(
         "Tabela de Contagem de Casos por Diagnóstico e Tempo do diagnostico ao primeiro Tratamento")
     st.dataframe(variaveltabelacontagemaux)

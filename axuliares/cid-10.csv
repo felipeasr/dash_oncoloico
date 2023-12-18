@@ -1,110 +1,110 @@
-diag;CID
-C00;C00- Neoplasia maligna do lábio
-C01;C01- Neoplasia maligna da base da língua
-C02;C02- Neoplasia maligna de outras partes e de partes não especificadas da língua
-C03;C03- Neoplasia maligna da gengiva
-C04;C04- Neoplasia maligna do assoalho da boca
-C05;C05- Neoplasia maligna do palato
-C06;C06- Neoplasia maligna de outras partes e de partes não especificadas da boca
-C07;C07- Neoplasia maligna da glândula parótida
-C08;C08- Neoplasia maligna de outras glândulas salivares maiores e as não especificadas
-C09;C09- Neoplasia maligna da amígdala
-C10;C10- Neoplasia maligna da orofaringe
-C11;C11- Neoplasia maligna da nasofaringe
-C12;C12- Neoplasia maligna do seio piriforme
-C13;C13- Neoplasia maligna da hipofaringe
-C14;C14- Neoplasia maligna de outras localizações e de localizações mal definida
-C15;C15- Neoplasia maligna do esôfago
-C16;C16- Neoplasia maligna do estômago
-C17;C17- Neoplasia maligna do intestino delgado
-C18;C18- Neoplasia maligna do cólon
-C19;C19- Neoplasia maligna da junção retossigmóide
-C20;C20- Neoplasia maligna do reto
-C21;C21- Neoplasia maligna do ânus e do canal anal
-C22;C22- Neoplasia maligna do fígado e das vias biliares intra-hepáticas
-C23;C23- Neoplasia maligna da vesícula biliar
-C24;C24- Neoplasia maligna de outras partes
-C25;C25- Neoplasia maligna do pâncreas
-C26;C26- Neoplasia maligna de outros órgãos digestivos e de localizações mal definidas no aparelho dige
-C30;C30- Neoplasia maligna da cavidade nasal e do ouvido médio
-C31;C31- Neoplasia maligna dos seios da face
-C32;C32- Neoplasia maligna da laringe
-C33;C33- Neoplasia maligna da traquéia
-C34;C34- Neoplasia maligna dos brônquios e dos pulmões
-C37;C37- Neoplasia maligna do timo
-C38;C38- Neoplasia maligna do coração
-C39;C39- Neoplasia maligna de outras localizações e de localizações mal definidas do aparelho respirató
-C40;C40- Neoplasia maligna dos ossos e cartilagens articulares dos membros
-C41;C41- Neoplasia maligna dos ossos e das cartilagens articulares de outras localizações e de localiza
-C43;C43- Melanoma maligno da pele
-C44;C44- Outras neoplasias malignas da pele
-C45;C45- Mesotelioma
-C46;C46- Sarcoma de Kaposi
-C47;C47- Neoplasia maligna dos nervos periféricos e do sistema nervoso autônomo
-C48;C48- Neoplasia maligna dos tecidos moles do retroperitônio e do peritônio
-C49;C49- Neoplasia maligna do tecido conjuntivo e de outros tecidos moles
-C50;C50- Neoplasia maligna da mama
-C51;C51- Neoplasia maligna da vulva
-C52;C52- Neoplasia maligna da vagina
-C53;C53- Neoplasia maligna do colo do útero
-C54;C54- Neoplasia maligna do corpo do útero
-C55;C55- Neoplasia maligna do útero
-C56;C56- Neoplasia maligna do ovário
-C57;C57- Neoplasia maligna de outros órgãos genitais femininos e dos não especificados
-C58;C58- Neoplasia maligna da placenta
-C60;C60- Neoplasia maligna do pênis
-C61;C61- Neoplasia maligna da próstata
-C62;C62- Neoplasia maligna dos testículos
-C63;C63- Neoplasia maligna de outros órgãos genitais masculinos e dos não especificados
-C64;C64- Neoplasia maligna do rim
-C65;C65- Neoplasia maligna da pelve renal
-C66;C66- Neoplasia maligna dos ureteres
-C67;C67- Neoplasia maligna da bexiga
-C68;C68- Neoplasia maligna de outros órgãos urinários e dos não especificados
-C69;C69- Neoplasia maligna do olho e anexos
-C70;C70- Neoplasia maligna das meninges
-C71;C71- Neoplasia maligna do encéfalo
-C72;C72- Neoplasia maligna da medula espinhal
-C73;C73- Neoplasia maligna da glândula tireóide
-C74;C74- Neoplasia maligna da glândula supra-renal [glândula adrenal]
-C75;C75- Neoplasia maligna de outras glândulas endócrinas e de estruturas relacionadas
-C76;C76- Neoplasia maligna de outras localizações e de localizações mal definidas
-C77;C77- Neoplasia maligna secundária e não especificada dos gânglios linfáticos
-C78;C78- Neoplasia maligna secundária dos órgãos respiratórios e digestivos
-C79;C79- Neoplasia maligna secundária de outras localizações
-C80;C80- Neoplasia maligna
-C81;C81- Doença de Hodgkin
-C82;C82- Linfoma não Hodgkin
-C83;C83- Linfoma não Hodgkin difuso
-C84;C84- Linfomas de células T cutâneas e periféricas
-C85;C85- Linfoma não Hodgkin de outros tipos e de tipo não especificado
-C88;C88- Doenças imunoproliferativas malignas
-C90;C90- Mieloma múltiplo e neoplasias malignas de plasmócitos
-C91;C91- Leucemia linfóide
-C92;C92- Leucemia mielóide
-C93;C93- Leucemia monocítica
-C94;C94- Outras leucemias de células de tipo especificado
-C95;C95- Leucemia de tipo celular não especificado
-C96;C96- Outras neoplasias malignas e as não especificadas dos tecidos linfático
-C97;C97- Neoplasias malignas de localizações múltiplas independentes (primárias)
-D00;D00- Carcinoma in situ da cavidade oral
-D01;D01- Carcinoma in situ de outros órgãos digestivos
-D02;D02- Carcinoma in situ do ouvido médio e do aparelho respiratório
-D03;D03- Melanoma in situ
-D04;D04- Carcinoma in situ da pele
-D05;D05- Carcinoma in situ da mama
-D06;D06- Carcinoma in situ do colo do útero (cérvix)
-D07;D07- Carcinoma in situ de outros órgãos genitais e dos não especificados
-D09;D09- Carcinoma in situ de outras localizações e das não especificadas
-D37;D37- Neoplasia de comportamento incerto ou desconhecido da cavidade oral e dos órgãos digestivos
-D38;D38- Neoplasia de comportamento incerto ou desconhecido do ouvido médio e dos órgãos respiratórios
-D39;D39- Neoplasia de comportamento incerto ou desconhecido dos órgãos genitais femininos
-D40;D40- Neoplasia de comportamento incerto ou desconhecido dos órgãos genitais masculinos
-D41;D41- Neoplasia de comportamento incerto ou desconhecido dos órgãos urinários
-D42;D42- Neoplasia de comportamento incerto ou desconhecido das meninges
-D43;D43- Neoplasia de comportamento incerto ou desconhecido do encéfalo e do sistema nervoso central
-D44;D44- Neoplasia de comportamento incerto ou desconhecido das glândulas endócrinas
-D45;D45- Policitemia vera
-D46;D46- Síndromes mielodisplásicas
-D47;D47- Outras neoplasias de comportamento incerto ou desconhecido dos tecidos linfático
-D48;D48- Neoplasia de comportamento incerto ou desconhecido de outras localizações e de localizações nã
+diag,CID2,CID
+C00,C00 - Malignant neoplasm of the lip,C00- Neoplasia maligna do lï¿½bio
+C01,C01 - Malignant neoplasm of the base of the tongue,C01- Neoplasia maligna da base da lï¿½ngua
+C02,C02 - Malignant neoplasm of other and unspecified parts of the tongue,C02- Neoplasia maligna de outras partes e de partes nï¿½o especificadas da lï¿½ngua
+C03,C03 - Malignant neoplasm of the gum,C03- Neoplasia maligna da gengiva
+C04,C04 - Malignant neoplasm of the floor of the mouth,C04- Neoplasia maligna do assoalho da boca
+C05,C05 - Malignant neoplasm of the palate,C05- Neoplasia maligna do palato
+C06,C06 - Malignant neoplasm of other and unspecified parts of the mouth,C06- Neoplasia maligna de outras partes e de partes nï¿½o especificadas da boca
+C07,C07 - Malignant neoplasm of the parotid gland,C07- Neoplasia maligna da glï¿½ndula parï¿½tida
+C08,C08 - Malignant neoplasm of other major salivary glands and unspecified,C08- Neoplasia maligna de outras glï¿½ndulas salivares maiores e as nï¿½o especificadas
+C09,C09 - Malignant neoplasm of the tonsil,C09- Neoplasia maligna da amï¿½gdala
+C10,C10 - Malignant neoplasm of the oropharynx,C10- Neoplasia maligna da orofaringe
+C11,C11 - Malignant neoplasm of the nasopharynx,C11- Neoplasia maligna da nasofaringe
+C12,C12 - Malignant neoplasm of the pyriform sinus,C12- Neoplasia maligna do seio piriforme
+C13,C13 - Malignant neoplasm of the hypopharynx,C13- Neoplasia maligna da hipofaringe
+C14,C14 - Malignant neoplasm of other and ill-defined sites,C14- Neoplasia maligna de outras localizaï¿½ï¿½es e de localizaï¿½ï¿½es mal definida
+C15,C15 - Malignant neoplasm of the esophagus,C15- Neoplasia maligna do esï¿½fago
+C16,C16 - Malignant neoplasm of the stomach,C16- Neoplasia maligna do estï¿½mago
+C17,C17 - Malignant neoplasm of the small intestine,C17- Neoplasia maligna do intestino delgado
+C18,C18 - Malignant neoplasm of the colon,C18- Neoplasia maligna do cï¿½lon
+C19,C19 - Malignant neoplasm of the rectosigmoid junction,C19- Neoplasia maligna da junï¿½ï¿½o retossigmï¿½ide
+C20,C20 - Malignant neoplasm of the rectum,C20- Neoplasia maligna do reto
+C21,C21 - Malignant neoplasm of the anus and anal canal,C21- Neoplasia maligna do ï¿½nus e do canal anal
+C22,C22 - Malignant neoplasm of the liver and intrahepatic bile ducts,C22- Neoplasia maligna do fï¿½gado e das vias biliares intra-hepï¿½ticas
+C23,C23 - Malignant neoplasm of the gallbladder,C23- Neoplasia maligna da vesï¿½cula biliar
+C24,C24 - Malignant neoplasm of other and unspecified parts,C24- Neoplasia maligna de outras partes
+C25,C25 - Malignant neoplasm of the pancreas,C25- Neoplasia maligna do pï¿½ncreas
+C26,C26 - Malignant neoplasm of other digestive organs and ill-defined sites in the digestive system,C26- Neoplasia maligna de outros ï¿½rgï¿½os digestivos e de localizaï¿½ï¿½es mal definidas no aparelho dige
+C30,C30 - Malignant neoplasm of the nasal cavity and middle ear,C30- Neoplasia maligna da cavidade nasal e do ouvido mï¿½dio
+C31,C31 - Malignant neoplasm of the accessory sinuses,C31- Neoplasia maligna dos seios da face
+C32,C32 - Malignant neoplasm of the larynx,C32- Neoplasia maligna da laringe
+C33,C33 - Malignant neoplasm of the trachea,C33- Neoplasia maligna da traquï¿½ia
+C34,C34 - Malignant neoplasm of the bronchus and lung,C34- Neoplasia maligna dos brï¿½nquios e dos pulmï¿½es
+C37,C37 - Malignant neoplasm of the thymus,C37- Neoplasia maligna do timo
+C38,C38 - Malignant neoplasm of the heart,C38- Neoplasia maligna do coraï¿½ï¿½o
+C39,C39 - Malignant neoplasm of other and ill-defined sites in the respiratory system,C39- Neoplasia maligna de outras localizaï¿½ï¿½es e de localizaï¿½ï¿½es mal definidas do aparelho respiratï¿½
+C40,C40 - Malignant neoplasm of bones and articular cartilage of limbs,C40- Neoplasia maligna dos ossos e cartilagens articulares dos membros
+C41,C41 - Malignant neoplasm of bones and articular cartilage of other and unspecified sites,C41- Neoplasia maligna dos ossos e das cartilagens articulares de outras localizaï¿½ï¿½es e de localiza
+C43,C43 - Malignant melanoma of the skin,C43- Melanoma maligno da pele
+C44,C44 - Other malignant neoplasms of the skin,C44- Outras neoplasias malignas da pele
+C45,C45 - Mesothelioma,C45- Mesotelioma
+C46,C46 - Kaposi's sarcoma,C46- Sarcoma de Kaposi
+C47,C47 - Malignant neoplasm of peripheral nerves and autonomic nervous system,C47- Neoplasia maligna dos nervos perifï¿½ricos e do sistema nervoso autï¿½nomo
+C48,C48 - Malignant neoplasm of soft tissues of retroperitoneum and peritoneum,C48- Neoplasia maligna dos tecidos moles do retroperitï¿½nio e do peritï¿½nio
+C49,C49 - Malignant neoplasm of connective and other soft tissues,C49- Neoplasia maligna do tecido conjuntivo e de outros tecidos moles
+C50,C50 - Malignant neoplasm of the breast,C50- Neoplasia maligna da mama
+C51,C51 - Malignant neoplasm of the vulva,C51- Neoplasia maligna da vulva
+C52,C52 - Malignant neoplasm of the vagina,C52- Neoplasia maligna da vagina
+C53,C53 - Malignant neoplasm of the cervix uteri,C53- Neoplasia maligna do colo do ï¿½tero
+C54,C54 - Malignant neoplasm of the corpus uteri,C54- Neoplasia maligna do corpo do ï¿½tero
+C55,"C55 - Malignant neoplasm of the uterus, part unspecified",C55- Neoplasia maligna do ï¿½tero
+C56,C56 - Malignant neoplasm of the ovary,C56- Neoplasia maligna do ovï¿½rio
+C57,C57 - Malignant neoplasm of other female genital organs and unspecified,C57- Neoplasia maligna de outros ï¿½rgï¿½os genitais femininos e dos nï¿½o especificados
+C58,C58 - Malignant neoplasm of the placenta,C58- Neoplasia maligna da placenta
+C60,C60 - Malignant neoplasm of the penis,C60- Neoplasia maligna do pï¿½nis
+C61,C61 - Malignant neoplasm of the prostate,C61- Neoplasia maligna da prï¿½stata
+C62,C62 - Malignant neoplasm of testis,C62- Neoplasia maligna dos testï¿½culos
+C63,C63 - Malignant neoplasm of other male genital organs and unspecified,C63- Neoplasia maligna de outros ï¿½rgï¿½os genitais masculinos e dos nï¿½o especificados
+C64,C64 - Malignant neoplasm of the kidney,C64- Neoplasia maligna do rim
+C65,C65 - Malignant neoplasm of the renal pelvis,C65- Neoplasia maligna da pelve renal
+C66,C66 - Malignant neoplasm of the ureter,C66- Neoplasia maligna dos ureteres
+C67,C67 - Malignant neoplasm of the bladder,C67- Neoplasia maligna da bexiga
+C68,C68 - Malignant neoplasm of other and unspecified urinary organs,C68- Neoplasia maligna de outros ï¿½rgï¿½os urinï¿½rios e dos nï¿½o especificados
+C69,C69 - Malignant neoplasm of the eye and adnexa,C69- Neoplasia maligna do olho e anexos
+C70,C70 - Malignant neoplasm of the meninges,C70- Neoplasia maligna das meninges
+C71,C71 - Malignant neoplasm of the brain,C71- Neoplasia maligna do encï¿½falo
+C72,C72 - Malignant neoplasm of the spinal cord,C72- Neoplasia maligna da medula espinhal
+C73,C73 - Malignant neoplasm of the thyroid gland,C73- Neoplasia maligna da glï¿½ndula tireï¿½ide
+C74,C74 - Malignant neoplasm of the adrenal gland,C74- Neoplasia maligna da glï¿½ndula supra-renal [glï¿½ndula adrenal]
+C75,C75 - Malignant neoplasm of other endocrine glands and related structures,C75- Neoplasia maligna de outras glï¿½ndulas endï¿½crinas e de estruturas relacionadas
+C76,C76 - Malignant neoplasm of other and ill-defined sites,C76- Neoplasia maligna de outras localizaï¿½ï¿½es e de localizaï¿½ï¿½es mal definidas
+C77,C77 - Secondary and unspecified malignant neoplasm of lymph nodes,C77- Neoplasia maligna secundï¿½ria e nï¿½o especificada dos gï¿½nglios linfï¿½ticos
+C78,C78 - Secondary malignant neoplasm of respiratory and digestive organs,C78- Neoplasia maligna secundï¿½ria dos ï¿½rgï¿½os respiratï¿½rios e digestivos
+C79,C79 - Secondary malignant neoplasm of other specified sites,C79- Neoplasia maligna secundï¿½ria de outras localizaï¿½ï¿½es
+C80,"C80 - Malignant neoplasm, unspecified",C80- Neoplasia maligna
+C81,C81 - Hodgkin's disease,C81- Doenï¿½a de Hodgkin
+C82,C82 - Non-Hodgkin lymphoma,C82- Linfoma nï¿½o Hodgkin
+C83,C83 - Diffuse non-Hodgkin lymphoma,C83- Linfoma nï¿½o Hodgkin difuso
+C84,C84 - Peripheral and cutaneous T-cell lymphomas,C84- Linfomas de cï¿½lulas T cutï¿½neas e perifï¿½ricas
+C85,C85 - Other and unspecified types of non-Hodgkin lymphoma,C85- Linfoma nï¿½o Hodgkin de outros tipos e de tipo nï¿½o especificado
+C88,C88 - Malignant immunoproliferative diseases,C88- Doenï¿½as imunoproliferativas malignas
+C90,C90 - Multiple myeloma and malignant plasma cell neoplasms,C90- Mieloma mï¿½ltiplo e neoplasias malignas de plasmï¿½citos
+C91,C91 - Lymphoid leukemia,C91- Leucemia linfï¿½ide
+C92,C92 - Myeloid leukemia,C92- Leucemia mielï¿½ide
+C93,C93 - Monocytic leukemia,C93- Leucemia monocï¿½tica
+C94,C94 - Other leukemias of specified cell type,C94- Outras leucemias de cï¿½lulas de tipo especificado
+C95,C95 - Leukemia of unspecified cell type,C95- Leucemia de tipo celular nï¿½o especificado
+C96,"C96 - Other and unspecified malignant neoplasms of lymphoid, hematopoietic, and related tissue",C96- Outras neoplasias malignas e as nï¿½o especificadas dos tecidos linfï¿½tico
+C97,C97 - Malignant neoplasms of independent (primary) multiple sites,C97- Neoplasias malignas de localizaï¿½ï¿½es mï¿½ltiplas independentes (primï¿½rias)
+D00,D00 - Carcinoma in situ of the oral cavity,D00- Carcinoma in situ da cavidade oral
+D01,D01 - Carcinoma in situ of other digestive organs,D01- Carcinoma in situ de outros ï¿½rgï¿½os digestivos
+D02,D02 - Carcinoma in situ of middle ear and respiratory system,D02- Carcinoma in situ do ouvido mï¿½dio e do aparelho respiratï¿½rio
+D03,D03 - In situ melanoma,D03- Melanoma in situ
+D04,D04 - Carcinoma in situ of skin,D04- Carcinoma in situ da pele
+D05,D05 - Carcinoma in situ of breast,D05- Carcinoma in situ da mama
+D06,D06 - Carcinoma in situ of cervix uteri,D06- Carcinoma in situ do colo do ï¿½tero (cï¿½rvix)
+D07,D07 - Carcinoma in situ of other genital organs and unspecified,D07- Carcinoma in situ de outros ï¿½rgï¿½os genitais e dos nï¿½o especificados
+D09,D09 - Carcinoma in situ of other and unspecified sites,D09- Carcinoma in situ de outras localizaï¿½ï¿½es e das nï¿½o especificadas
+D37,D37 - Neoplasm of uncertain or unknown behavior of the oral cavity and digestive organs,D37- Neoplasia de comportamento incerto ou desconhecido da cavidade oral e dos ï¿½rgï¿½os digestivos
+D38,D38 - Neoplasm of uncertain or unknown behavior of middle ear and respiratory organs,D38- Neoplasia de comportamento incerto ou desconhecido do ouvido mï¿½dio e dos ï¿½rgï¿½os respiratï¿½rios
+D39,D39 - Neoplasm of uncertain or unknown behavior of female genital organs,D39- Neoplasia de comportamento incerto ou desconhecido dos ï¿½rgï¿½os genitais femininos
+D40,D40 - Neoplasm of uncertain or unknown behavior of male genital organs,D40- Neoplasia de comportamento incerto ou desconhecido dos ï¿½rgï¿½os genitais masculinos
+D41,D41 - Neoplasm of uncertain or unknown behavior of urinary organs,D41- Neoplasia de comportamento incerto ou desconhecido dos ï¿½rgï¿½os urinï¿½rios
+D42,D42 - Neoplasm of uncertain or unknown behavior of meninges,D42- Neoplasia de comportamento incerto ou desconhecido das meninges
+D43,D43 - Neoplasm of uncertain or unknown behavior of brain and central nervous system,D43- Neoplasia de comportamento incerto ou desconhecido do encï¿½falo e do sistema nervoso central
+D44,D44 - Neoplasm of uncertain or unknown behavior of endocrine glands,D44- Neoplasia de comportamento incerto ou desconhecido das glï¿½ndulas endï¿½crinas
+D45,D45 - Polycythemia vera,D45- Policitemia vera
+D46,D46 - Myelodysplastic syndromes,D46- Sï¿½ndromes mielodisplï¿½sicas
+D47,D47 - Other neoplasms of uncertain behavior of lymphoid tissue,D47- Outras neoplasias de comportamento incerto ou desconhecido dos tecidos linfï¿½tico
+D48,D48 - Neoplasm of uncertain behavior of other and unspecified sites,D48- Neoplasia de comportamento incerto ou desconhecido de outras localizaï¿½ï¿½es e de localizaï¿½ï¿½es nï¿½

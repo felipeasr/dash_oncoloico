@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+import plotly.graph_objects as go
 st.set_page_config(
     page_title="Dashboard Oncologico",
     page_icon="bar_chart",
@@ -47,7 +48,7 @@ caminhos_csv = {
     'PI': 'caminho_do_csv_PI.csv',
     'RJ': 'caminho_do_csv_RJ.csv',
     'RN': 'caminho_do_csv_RN.csv',
-    'RS': 'Sim/mortalidadeInfantojuvenil.csv',
+    'RS': 'dados_Mortalidade2.csv',
     'RO': 'caminho_do_csv_RO.csv',
     'RR': 'caminho_do_csv_RR.csv',
     'SC': 'caminho_do_csv_SC.csv',
@@ -76,6 +77,14 @@ if caminho_do_csv:
 
     # Agrupar por ano e contar o número de óbitos
     dados_agrupados = df.groupby('Ano').size().reset_index(name='Quantidade')
+    # Criar um DataFrame com os dados
+    top_causas = df['CAUSABAS'].value_counts().nlargest(10)
+    df_top_causas = pd.DataFrame(
+        {'Causa': top_causas.index, 'Quantidade': top_causas.values})
+
+    top_localoco = df['LOCOCOR'].value_counts()
+    df_top_localoco = pd.DataFrame(
+        {'local': top_localoco.index, 'Quantidade': top_localoco.values})
 
     #### Criação de Graficos ####
 
@@ -99,6 +108,17 @@ if caminho_do_csv:
         font=dict(size=14),
         xaxis=dict(tickmode='array', tickvals=df['Ano']),
     )
+
+    # Criar um gráfico de donuts usando Plotly
+    fig_causabase = px.pie(df_top_causas, names='Causa', values='Quantidade', hole=0.4, title='Top 10 Causas Básicas de Óbito',
+                           labels={'Causa': 'Causa Básica', 'Quantidade': 'Quantidade'})
+
+    # Adicionar legenda
+    fig_causabase.update_layout(legend=dict(title=dict(text='Legenda')))
+
+    # Fig localocorrencia
+    fig_localoco = px.pie(df_top_localoco, names='local', values='Quantidade', hole=0.4, title='locais de ocorrencia do Óbito',
+                          labels={'local': 'local de Ocorrência', 'Quantidade': 'Quantidade'})
 
     #### View users ####
     st.info("Os dados são referentes ao período de 2013 a 2022. Os dados do ano de 2022 são preliminares e podem estar sujeitos a alterações.")
@@ -125,6 +145,8 @@ if caminho_do_csv:
         unsafe_allow_html=True
     )
     st.plotly_chart(fig_Casos_anos, use_container_width=True)
+    st.plotly_chart(fig_causabase, use_container_width=True)
+    st.plotly_chart(fig_localoco, use_container_width=True)
 
     st.write(df)
 else:

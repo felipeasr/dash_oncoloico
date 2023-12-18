@@ -1,0 +1,851 @@
+Detalhado,CID
+C001 Labio infer externo,C001
+C002 Labio externo NE,C002
+C003 Labio super face interna,C003
+C004 Labio infer face interna,C004
+C005 Labio s/especificacao face interna,C005
+C006 Comissura labial,C006
+C008 Lesao invasiva do labio,C008
+C009 Labio NE,C009
+C01   Neopl malig da base da lingua,C01
+C02   Neopl malig outr partes e NE da lingua,C02
+C020 Face dorsal da lingua,C020
+C021 Borda da lingua,C021
+C022 Face ventral da lingua,C022
+C023 Dois tercos anteriores da lingua parte NE,C023
+C024 Amigdala lingual,C024
+C028 Lesao invasiva da lingua,C028
+C029 Lingua NE,C029
+C03   Neopl malig da gengiva,C03
+C030 Gengiva super,C030
+C031 Gengiva infer,C031
+C039 Gengiva NE,C039
+C04   Neopl malig do assoalho da boca,C04
+C040 Assoalho anterior da boca,C040
+C041 Assoalho lateral da boca,C041
+C048 Lesao invasiva do assoalho da boca,C048
+C049 Assoalho da boca NE,C049
+C05   Neopl malig do palato,C05
+C050 Palato duro,C050
+C051 Palato mole,C051
+C052 Uvula,C052
+C058 Lesao invasiva do palato,C058
+C059 Palato NE,C059
+C06   Neopl malig outr partes e partes NE da boca,C06
+C060 Mucosa oral,C060
+C061 Vestibulo da boca,C061
+C062 Area retromolar,C062
+C068 Lesao invasiva outr partes e partes NE boca,C068
+C069 Boca NE,C069
+C07   Neopl malig da gland parotida,C07
+C08   Neopl malig outr gland saliv maiores e NE,C08
+C080 Gland submandibular,C080
+C081 Gland sublingual,C081
+C088 Lesao invasiva de gland salivares maiores,C088
+C089 Gland salivar maior NE,C089
+C09   Neopl malig da amigdala,C09
+C090 Fossa amigdaliana,C090
+C091 Pilar amigdaliano,C091
+C098 Lesao invasiva da amigdala,C098
+C099 Amigdala NE,C099
+C10   Neopl malig da orofaringe,C10
+C100 Valecula,C100
+C101 Face anterior da epiglote,C101
+C102 Parede lateral da orofaringe,C102
+C103 Parede posterior da orofaringe,C103
+C104 Fenda branquial,C104
+C108 Lesao invasiva da orofaringe,C108
+C109 Orofaringe NE,C109
+C11   Neopl malig da nasofaringe,C11
+C110 Parede super da nasofaringe,C110
+C111 Parede posterior da nasofaringe,C111
+C112 Parede lateral da nasofaringe,C112
+C113 Parede anterior da nasofaringe,C113
+C118 Lesao invasiva da nasofaringe,C118
+C119 Nasofaringe NE,C119
+C12   Neopl malig do seio piriforme,C12
+C13   Neopl malig da hipofaringe,C13
+C130 Regiao pos-cricoidea,C130
+C131 Prega ariepiglotica face hipofaringea,C131
+C132 Parede posterior da hipofaringe,C132
+C138 Lesao invasiva da hipofaringe,C138
+C139 Hipofaringe NE,C139
+C14   Neop mal out loc mal def labio cav oral far,C14
+C140 Faringe NE,C140
+C142 Anel de Waldeyer,C142
+C148 Lesao invasiva labio cavidade oral e faringe,C148
+C15   Neopl malig do esofago,C15
+C150 Porcao cervical do esofago,C150
+C151 Porcao toracica do esofago,C151
+C152 Porcao abdominal do esofago,C152
+C153 Terco super do esofago,C153
+C154 Terco medio do esofago,C154
+C155 Terco infer do esofago,C155
+C158 Lesao invasiva do esofago,C158
+C159 Esofago NE,C159
+C16   Neopl malig do estomago,C16
+C160 Cardia,C160
+C161 Fundo do estomago,C161
+C162 Corpo do estomago,C162
+C163 Antro pilorico,C163
+C164 Piloro,C164
+C165 Pequena curvatura do estomago NE,C165
+C166 Grande curvatura do estomago NE,C166
+C168 Lesao invasiva do estomago,C168
+C169 Estomago NE,C169
+C17   Neopl malig do intestino delgado,C17
+C170 Duodeno,C170
+C171 Jejuno,C171
+C172 Ileo,C172
+C173 Diverticulo de Meckel,C173
+C178 Lesao invasiva do intestino delgado,C178
+C179 Intestino delgado NE,C179
+C18   Neopl malig do colon,C18
+C180 Ceco,C180
+C181 Apendice,C181
+C182 Colon ascendente,C182
+C183 Flexura hepatica,C183
+C184 Colon transverso,C184
+C185 Flexura esplenica,C185
+C186 Colon descendente,C186
+C187 Colon sigmoide,C187
+C188 Lesao invasiva do colon,C188
+C189 Colon NE,C189
+C19   Neopl malig da juncao retossigmoide,C19
+C20   Neopl malig do reto,C20
+C21   Neopl malig do anus e do canal anal,C21
+C210 Anus NE,C210
+C211 Canal anal,C211
+C212 Zona cloacogenica,C212
+C218 Lesao invasiva do reto anus e do canal anal,C218
+C22   Neopl malig figado vias biliares intra-hepat,C22
+C220 Carcinoma de celulas hepaticas,C220
+C221 Carcinoma de vias biliares intra-hepaticas,C221
+C222 Hepatoblastoma,C222
+C223 Angiossarcoma do figado,C223
+C224 Outr sarcomas do figado,C224
+C227 Outr carcinomas espec do figado,C227
+C229 Neopl malig do figado NE,C229
+C23   Neopl malig da vesicula biliar,C23
+C24   Neopl malig outr partes e NE vias biliares,C24
+C240 Vias biliares extra-hepaticas,C240
+C241 Ampola de Vater,C241
+C248 Lesao invasiva das vias biliares,C248
+C249 Via biliar NE,C249
+C25   Neopl malig do pancreas,C25
+C250 Cabeca do pancreas,C250
+C251 Corpo do pancreas,C251
+C252 Cauda do pancreas,C252
+C253 Canal pancreatico,C253
+C254 Pancreas endocrino,C254
+C257 Neopl malig de outr partes do pancreas,C257
+C258 Lesao invasiva do pancreas,C258
+C259 Pancreas NE,C259
+C26   Neopl malig outr mal def aparelho digestivo,C26
+C260 Trato intestinal parte NE,C260
+C261 Baco,C261
+C268 Lesao invasiva do aparelho digestivo,C268
+C269 Localiz mal def dentro aparelho digestivo,C269
+C30   Neopl malig cavidade nasal e do ouvido medio,C30
+C300 Cavidade nasal,C300
+C301 Ouvido medio,C301
+C31   Neopl malig dos seios da face,C31
+C310 Seio maxilar,C310
+C311 Seio etmoidal,C311
+C312 Seio frontal,C312
+C313 Seio esfenoidal,C313
+C318 Lesao invasiva dos seios da face,C318
+C319 Seio da face NE,C319
+C32   Neopl malig da laringe,C32
+C320 Glote,C320
+C321 Regiao supraglotica,C321
+C322 Regiao subglotica,C322
+C323 Cartilagens da laringe,C323
+C328 Lesao invasiva da laringe,C328
+C329 Laringe NE,C329
+C33   Neopl malig da traqueia,C33
+C34   Neopl malig dos bronquios e dos pulmoes,C34
+C340 Bronquio principal,C340
+C341 Lobo super bronquio ou pulmao,C341
+C342 Lobo medio bronquio ou pulmao,C342
+C343 Lobo infer bronquio ou pulmao,C343
+C348 Lesao invasiva dos bronquios e dos pulmoes,C348
+C349 Bronquios ou pulmoes NE,C349
+C37   Neopl malig do timo,C37
+C38   Neopl malig do coracao mediastino e pleura,C38
+C380 Coracao,C380
+C381 Mediastino anterior,C381
+C382 Mediastino posterior,C382
+C383 Mediastino porcao NE,C383
+C384 Pleura,C384
+C388 Lesao invasiva coracao mediastino e pleura,C388
+C39   Neop mal out loc mal def ap resp org intrat,C39
+C390 Trato respirat super porcao NE,C390
+C398 Lesao invasiva ap respirat org intratoracic,C398
+C399 Localiz mal definidas do aparelho respirat,C399
+C40   Neopl malig ossos/cartilag artic membros,C40
+C400 Omoplata e ossos longos dos membros super,C400
+C401 Ossos curtos dos membros super,C401
+C402 Ossos longos dos membros infer,C402
+C403 Ossos curtos dos membros infer,C403
+C408 Lesao invasiva ossos/cartilag artic membros,C408
+C409 Ossos e cartilagens articulares de membro NE,C409
+C41   Neopl malig ossos/cartil artic outr loc e NE,C41
+C410 Ossos do cranio e da face,C410
+C411 Mandibula,C411
+C412 Coluna vertebral,C412
+C413 Costelas esterno e clavicula,C413
+C414 Ossos da pelve sacro e coccix,C414
+C418 Lesao invasiva ossos e cartilag articulares,C418
+C419 Ossos e cartilagens articulares NE,C419
+C43   Melanoma malig da pele,C43
+C430 Melanoma malig do labio,C430
+C431 Melanoma malig palpebra incl comiss palpebr,C431
+C432 Melanoma malig orelha conduto auditiv extern,C432
+C433 Melanoma malig outr partes e NE da face,C433
+C434 Melanoma malig couro cabeludo e do pescoco,C434
+C435 Melanoma maligno do tronco,C435
+C436 Melanoma maligno do membro super incl ombro,C436
+C437 Melanoma maligno membro infer incl quadril,C437
+C438 Melanoma maligno invasivo da pele,C438
+C439 Melanoma maligno de pele NE,C439
+C44   Outr neopl malig da pele,C44
+C440 Pele do labio,C440
+C441 Pele da palpebra incl o canto,C441
+C442 Pele da orelha e do conduto auditivo externo,C442
+C443 Pele de outr partes e de partes NE da face,C443
+C444 Pele do couro cabeludo e do pescoco,C444
+C445 Pele do tronco,C445
+C446 Pele do membro super incl ombro,C446
+C447 Pele do membro infer incl quadril,C447
+C448 Lesao invasiva da pele,C448
+C449 Neopl malig da pele NE,C449
+C45   Mesotelioma,C45
+C450 Mesotelioma da pleura,C450
+C451 Mesotelioma do peritonio,C451
+C452 Mesotelioma do pericardio,C452
+C457 Mesotelioma de outr localiz,C457
+C459 Mesotelioma NE,C459
+C46   Sarcoma de Kaposi,C46
+C460 Sarcoma de Kaposi da pele,C460
+C461 Sarcoma de Kaposi de tec moles,C461
+C462 Sarcoma de Kaposi do palato,C462
+C463 Sarcoma de Kaposi dos ganglios linfaticos,C463
+C467 Sarcoma de Kaposi de outr localiz,C467
+C468 Sarcoma de Kaposi de mult orgaos,C468
+C469 Sarcoma de Kaposi NE,C469
+C47   Neopl malig nervos perif e sist nerv autonom,C47
+C470 Nervos perifericos da cabeca face e pescoco,C470
+C471 Nervos perifericos membros super incl ombro,C471
+C472 Nervos periferic membros infer incl quadril,C472
+C473 Nervos perifericos do torax,C473
+C474 Nervos perifericos do abdome,C474
+C475 Nervos perifericos da pelve,C475
+C476 Nervos perifericos do tronco,C476
+C478 Lesao invasiva nervos perif e sist nerv auto,C478
+C479 Nervos perifericos e sist nerv autonomo NE,C479
+C48   Neopl malig tec moles retro- e peritonio,C48
+C480 Retroperitonio,C480
+C481 Partes espec do peritonio,C481
+C482 Peritonio,C482
+C488 Lesao invasiva tec moles retro- e peritonio,C488
+C49   Neopl malig tec conjuntivo e outr tec moles,C49
+C490 Tec conjuntivo e moles cabeca face e pescoco,C490
+C491 Tec conjuntivo e moles membr sup incl ombro,C491
+C492 Tec conjuntivo e moles membr inf incl quadr,C492
+C493 Tec conjuntivo e tec moles do torax,C493
+C494 Tec conjuntivo e tec moles do abdome,C494
+C495 Tec conjuntivo e tec moles da pelve,C495
+C496 Tec conjuntivo e tec moles do tronco,C496
+C498 Lesao invasiva tec conjuntivo e tec moles,C498
+C499 Neopl malig tec conjuntivo e tec moles NE,C499
+C50   Neopl malig da mama,C50
+C500 Mamilo e areola,C500
+C501 Porcao central da mama,C501
+C502 Quadrante super interno da mama,C502
+C503 Quadrante infer interno da mama,C503
+C504 Quadrante super externo da mama,C504
+C505 Quadrante infer externo da mama,C505
+C506 Porcao axilar da mama,C506
+C508 Lesao invasiva da mama,C508
+C509 Mama NE,C509
+C51   Neopl malig da vulva,C51
+C510 Grandes labios,C510
+C511 Pequenos labios,C511
+C512 Clitoris,C512
+C518 Lesao invasiva da vulva,C518
+C519 Vulva NE,C519
+C52   Neopl malig da vagina,C52
+C53   Neopl malig do colo do utero,C53
+C530 Endocervix,C530
+C531 Exocervix,C531
+C538 Lesao invasiva do colo do utero,C538
+C539 Colo do utero NE,C539
+C54   Neopl malig do corpo do utero,C54
+C540 Istmo do utero,C540
+C541 Endometrio,C541
+C542 Miometrio,C542
+C543 Fundo do utero,C543
+C548 Lesao invasiva do corpo do utero,C548
+C549 Corpo do utero NE,C549
+C55   Neopl malig do utero porcao NE,C55
+C56   Neopl malig do ovario,C56
+C57   Neopl malig outr org genitais femin e NE,C57
+C570 Trompa de Falopio,C570
+C571 Ligamento largo,C571
+C572 Ligamento redondo,C572
+C573 Parametrio,C573
+C574 Anexos uterinos,C574
+C577 Outr partes espec orgaos genitais femin,C577
+C578 Lesao invasiva dos orgaos genitais femin,C578
+C579 Orgao genital femin NE,C579
+C58   Neopl malig da placenta,C58
+C60   Neopl malig do penis,C60
+C600 Prepucio,C600
+C601 Glande,C601
+C602 Corpo do penis,C602
+C608 Lesao invasiva do penis,C608
+C609 Penis NE,C609
+C61   Neopl malig da prostata,C61
+C62   Neopl malig dos testiculos,C62
+C620 Testiculo criptorquidico,C620
+C621 Testiculo topico,C621
+C629 Testiculo SOE,C629
+C63   Neopl malig outr org genit masc e NE,C63
+C630 Epididimo,C630
+C631 Cordao espermatico,C631
+C632 Escroto,C632
+C637 Outr orgaos genitais masc espec,C637
+C638 Lesao invasiva orgaos genitais masc,C638
+C639 Orgao genital masc NE,C639
+C64   Neopl malig do rim exceto pelve renal,C64
+C65   Neopl malig da pelve renal,C65
+C66   Neopl malig dos ureteres,C66
+C67   Neopl malig da bexiga,C67
+C670 Trigono da bexiga,C670
+C671 Cupula da bexiga,C671
+C672 Parede lateral da bexiga,C672
+C673 Parede anterior da bexiga,C673
+C674 Parede posterior da bexiga,C674
+C675 Colo da bexiga,C675
+C676 Orificio ureterico,C676
+C677 Uraco,C677
+C678 Lesao invasiva da bexiga,C678
+C679 Bexiga SOE,C679
+C68   Neopl malig de outr orgaos urinarios e NE,C68
+C680 Uretra,C680
+C681 Gland parauretral,C681
+C688 Lesao invasiva dos orgaos urinarios,C688
+C689 Orgao urinario NE,C689
+C69   Neopl malig do olho e anexos,C69
+C690 Conjuntiva,C690
+C691 Cornea,C691
+C692 Retina,C692
+C693 Coroide,C693
+C694 Corpo ciliar,C694
+C695 Gland e canal lacrimal,C695
+C696 Orbita,C696
+C698 Lesao invasiva do olho e anexos,C698
+C699 Olho NE,C699
+C70   Neopl malig das meninges,C70
+C700 Meninges cerebrais,C700
+C701 Meninges espinhais,C701
+C709 Meninge NE,C709
+C71   Neopl malig do encefalo,C71
+C710 Cerebro exceto lobos e ventriculos,C710
+C711 Lobo frontal,C711
+C712 Lobo temporal,C712
+C713 Lobo parietal,C713
+C714 Lobo occipital,C714
+C715 Ventriculo cerebral,C715
+C716 Cerebelo,C716
+C717 Tronco cerebral,C717
+C718 Lesao invasiva do encefalo,C718
+C719 Encefalo NE,C719
+C72   Neop mal med esp nerv cran out sist nerv cen,C72
+C720 Medula espinhal,C720
+C721 Cauda equina,C721
+C722 Nervo olfativo,C722
+C723 Nervo optico,C723
+C724 Nervo acustico,C724
+C725 Outr nervos cranianos e os NE,C725
+C728 Lesao invasiva encef out part sist nerv cent,C728
+C729 Sist nervoso central NE,C729
+C73   Neopl malig da gland tireoide,C73
+C74   Neopl malig da gland supra-renal,C74
+C740 Cortex da supra-renal,C740
+C741 Medula da supra-renal,C741
+C749 Gland supra-renal NE,C749
+C75   Neopl malig outr gland endocrinas estr relac,C75
+C750 Gland paratireoide,C750
+C751 Gland hipofise,C751
+C752 Conduto craniofaringeo,C752
+C753 Gland pineal,C753
+C754 Corpo carotideo,C754
+C755 Corpo aortico e outr paraganglios,C755
+C758 Compr pluriglandular SOE,C758
+C759 Gland endocrina NE,C759
+C76   Neopl malig outr localiz e mal definidas,C76
+C760 Cabeca face e pescoco,C760
+C761 Torax,C761
+C762 Abdome,C762
+C763 Pelve,C763
+C764 Membro super,C764
+C765 Membro infer,C765
+C767 Outr localiz mal definidas,C767
+C768 Lesao invasiva outr localiz e mal definidas,C768
+C77   Neopl malig secund e NE gangl linfaticos,C77
+C770 Ganglios linfaticos da cabeca face e pescoco,C770
+C771 Ganglios linfaticos intratoracicos,C771
+C772 Ganglios linfaticos intra-abdominais,C772
+C773 Ganglios linfaticos axilares e membros super,C773
+C774 Ganglios linfaticos inguinais e membr infer,C774
+C775 Ganglios linfaticos intrapelvicos,C775
+C778 Ganglios linfaticos de mult regioes,C778
+C779 Ganglio linfatico NE,C779
+C78   Neopl malig secund org respirat e digestivos,C78
+C780 Neopl malig secund dos pulmoes,C780
+C781 Neopl malig secund do mediastino,C781
+C782 Neopl malig secund da pleura,C782
+C783 Neopl malig secund outr orgaos respirat e NE,C783
+C784 Neopl malig secund do intestino delgado,C784
+C785 Neopl malig secund intestino grosso e reto,C785
+C786 Neopl malig secund retro- e peritonio,C786
+C787 Neopl malig secund do figado,C787
+C788 Neopl malig secund outr org digestivos e NE,C788
+C79   Neopl malig secund de outr localiz,C79
+C790 Neopl malig secund do rim e da pelve renal,C790
+C791 Neopl malig secund bexiga outr org urin e NE,C791
+C792 Neopl malig secund da pele,C792
+C793 Neopl malig secund encefalo e mening cerebr,C793
+C794 Neopl malig secund outr part sist nerv e NE,C794
+C795 Neopl malig secund ossos e medula ossea,C795
+C796 Neopl malig secund do ovario,C796
+C797 Neopl malig secund das gland supra-renais,C797
+C798 Neopl malig secund de outr localiz espec,C798
+C80   Neopl malig s/especificacao de localiz,C80
+C81   Doenc de Hodgkin,C81
+C810 Predom linfocitica,C810
+C811 Esclerose nodular,C811
+C812 Celularidade mista,C812
+C813 Deplecao linfocitica,C813
+C817 Outr form da doenc de Hodgkin,C817
+C819 Doenc de Hodgkin NE,C819
+C82   Linfoma nao-Hodgkin folicular,C82
+C820 Pequenas celulas clivadas folicular,C820
+C821 Misto peq/grandes celulas clivadas folicular,C821
+C822 Grandes celulas folicular,C822
+C827 Outr tipos de linfoma nao-Hodgkin folicular,C827
+C829 Linfoma nao-Hodgkin folicular NE,C829
+C83   Linfoma nao-Hodgkin difuso,C83
+C830 Pequenas celulas,C830
+C831 Pequenas celulas clivadas,C831
+C832 Misto de pequenas e grandes celulas,C832
+C833 Grandes celulas,C833
+C834 Imunoblastico,C834
+C835 Linfoblastico,C835
+C836 Indiferenciado,C836
+C837 Tumor de Burkitt,C837
+C838 Outr tipos de linfoma nao-Hodgkin difuso,C838
+C839 Linfoma nao-Hodgkin difuso NE,C839
+C84   Linfomas de celulas T cutaneas e perifericas,C84
+C840 Micose fungoide,C840
+C841 Doenc de Sezary,C841
+C842 Linfoma da zona T,C842
+C843 Linfoma linfoepitelioide,C843
+C844 Linfoma de celulas T periferico,C844
+C845 Outr linfomas de celulas T e os NE,C845
+C85   Linfoma nao-Hodgkin de outr tipos e tipo NE,C85
+C850 Linfossarcoma,C850
+C851 Linfoma de celulas B NE,C851
+C857 Outr tipos espec de linfoma nao-Hodgkin,C857
+C859 Linfoma nao-Hodgkin de tipo NE,C859
+C88   Doenc imunoproliferativas malignas,C88
+C880 Macroglobulinemia de Waldenstrom,C880
+C881 Doenc de cadeia pesada alfa,C881
+C882 Doenc de cadeia pesada gama,C882
+C883 Doenc imunoproliferativa intestino delgado,C883
+C887 Outr doenc imunoproliferativas malignas,C887
+C889 Doenc imunoproliferativa maligna NE,C889
+C90   Mieloma mult e neopl malig de plasmocitos,C90
+C900 Mieloma mult,C900
+C901 Leucemia plasmocitaria,C901
+C902 Plasmocitoma extramedular,C902
+C91   Leucemia linfoide,C91
+C910 Leucemia linfoblastica aguda,C910
+C911 Leucemia linfocitica cronica,C911
+C912 Leucemia linfocitica subaguda,C912
+C913 Leucemia pro-linfocitica,C913
+C914 Leucemia de celulas pilosas,C914
+C915 Leucemia de celulas T do adulto,C915
+C917 Outr leucemias linfoides,C917
+C919 Leucemia linfoide NE,C919
+C92   Leucemia mieloide,C92
+C920 Leucemia mieloide aguda,C920
+C921 Leucemia mieloide cronica,C921
+C922 Leucemia mieloide subaguda,C922
+C923 Sarcoma mieloide,C923
+C924 Leucemia pro-mielocitica aguda,C924
+C925 Leucemia mielomonocitica aguda,C925
+C927 Outr leucemias mieloides,C927
+C929 Leucemia mieloide NE,C929
+C93   Leucemia monocitica,C93
+C930 Leucemia monocitica aguda,C930
+C931 Leucemia monocitica cronica,C931
+C932 Leucemia monocitica subaguda,C932
+C937 Outr leucemias monociticas,C937
+C939 Leucemia monocitica NE,C939
+C94   Outr leucemias de celulas de tipo espec,C94
+C940 Eritremia e eritroleucemia agudas,C940
+C941 Eritremia cronica,C941
+C942 Leucemia megacarioblastica aguda,C942
+C943 Leucemia de mastocitos,C943
+C944 Panmielose aguda,C944
+C945 Mielofibrose aguda,C945
+C947 Outr leucemias espec,C947
+C95   Leucemia de tipo celular NE,C95
+C950 Leucemia aguda de tipo celular NE,C950
+C951 Leucemia cronica de tipo celular NE,C951
+C952 Leucemia subaguda de tipo celular NE,C952
+C957 Outr leucemias de tipo celular NE,C957
+C959 Leucemia NE,C959
+C96   Outr neopl mal e NE tec linf hematop e corr,C96
+C960 Doenc de Letterer-Siwe,C960
+C961 Histiocitose maligna,C961
+C962 Tumor maligno de mastocitos,C962
+C963 Linfoma histiocitico verdadeiro,C963
+C967 Outr neop mal espec tec linf hematop e corr,C967
+C969 Neop mal tec linf hematop e corr NE,C969
+C97   Neopl malig de localiz mult independentes,C97
+D00   Carcinoma in situ cav oral esofago estomago,D00
+D000 Labios cavidade oral e faringe,D000
+D001 Esofago,D001
+D002 Estomago,D002
+D01   Carcinoma in situ de outr orgaos digestivos,D01
+D010 Colon,D010
+D011 Juncao retossigmoide,D011
+D012 Reto,D012
+D013 Anus e canal anal,D013
+D014 Outr partes do intestino e as NE,D014
+D015 Figado vesicula biliar e vias biliares,D015
+D017 Outr orgaos espec do aparelho digestivo,D017
+D019 Orgaos digestivos NE,D019
+D02   Carcinoma in situ ouvido medio e ap respirat,D02
+D020 Laringe,D020
+D021 Traqueia,D021
+D022 Bronquios e pulmoes,D022
+D023 Outr partes do aparelho respirat,D023
+D029 Aparelho respirat NE,D029
+D03   Melanoma in situ,D03
+D030 Melanoma in situ do labio,D030
+D031 Melanoma in situ da palpebra incl o canto,D031
+D032 Melanoma in situ orelha e conduto audit ext,D032
+D033 Melanoma in situ outr partes e NE da face,D033
+D034 Melanoma in situ couro cabeludo e pescoco,D034
+D035 Melanoma in situ do tronco,D035
+D036 Melanoma in situ membros super incl ombro,D036
+D037 Melanoma in situ membros infer incl quadril,D037
+D038 Melanoma in situ de outr localiz,D038
+D039 Melanoma in situ NE,D039
+D04   Carcinoma in situ da pele,D04
+D040 Pele do labio,D040
+D041 Pele da palpebra incl o canto,D041
+D042 Pele da orelha e do conduto auditivo externo,D042
+D043 Pele de outr partes e de partes NE da face,D043
+D044 Pele do couro cabeludo e do pescoco,D044
+D045 Pele do tronco,D045
+D046 Pele dos membros super incl ombro,D046
+D047 Pele dos membros infer incl quadril,D047
+D048 Pele de outr localiz,D048
+D049 Pele NE,D049
+D05   Carcinoma in situ da mama,D05
+D050 Carcinoma lobular in situ,D050
+D051 Carcinoma intraductal in situ,D051
+D057 Outr carcinomas in situ,D057
+D059 Carcinoma in situ da mama NE,D059
+D06   Carcinoma in situ do colo do utero,D06
+D060 Endocervix,D060
+D061 Exocervix,D061
+D067 Outr partes do colo do utero,D067
+D069 Colo do utero NE,D069
+D07   Carcinoma in situ outr orgaos genitais e NE,D07
+D070 Endometrio,D070
+D071 Vulva,D071
+D072 Vagina,D072
+D073 Outr orgaos genitais femin e os NE,D073
+D074 Penis,D074
+D075 Prostata,D075
+D076 Outr orgaos genitais masc e os NE,D076
+D09   Carcinoma in situ de outr localiz e das NE,D09
+D090 Bexiga,D090
+D091 Outr orgaos urinarios e os NE,D091
+D092 Olho,D092
+D093 Tireoide e de outr gland endocrinas,D093
+D097 Carcinoma in situ de outr localiz espec,D097
+D099 Carcinoma in situ NE,D099
+D10   Neopl benig da boca e da faringe,D10
+D100 Labios,D100
+D101 Lingua,D101
+D102 Assoalho da boca,D102
+D103 Outr partes da boca e as NE,D103
+D104 Amigdala,D104
+D105 Outr partes da orofaringe,D105
+D106 Nasofaringe,D106
+D107 Hipofaringe,D107
+D109 Faringe NE,D109
+D11   Neopl benig de gland salivares maiores,D11
+D110 Gland parotida,D110
+D117 Outr gland salivares maiores,D117
+D119 Gland salivar maior NE,D119
+D12   Neopl benig do colon reto canal anal e anus,D12
+D120 Ceco,D120
+D121 Apendice,D121
+D122 Colon ascendente,D122
+D123 Colon transverso,D123
+D124 Colon descendente,D124
+D125 Colon sigmoide,D125
+D126 Colon NE,D126
+D127 Juncao retossigmoide,D127
+D128 Reto,D128
+D129 Canal anal e anus,D129
+D13   Neopl benig outr part e mal def ap digestivo,D13
+D130 Esofago,D130
+D131 Estomago,D131
+D132 Duodeno,D132
+D133 Outr partes e partes NE do intestino delgado,D133
+D134 Figado,D134
+D135 Vias biliares extra-hepaticas,D135
+D136 Pancreas,D136
+D137 Pancreas endocrino,D137
+D139 Localiz mal definidas do aparelho digestivo,D139
+D14   Neopl benig ouvido medio e aparelho respirat,D14
+D140 Ouvido medio cav nasal e seios paranasais,D140
+D141 Laringe,D141
+D142 Traqueia,D142
+D143 Bronquios e pulmao,D143
+D144 Aparelho respirat NE,D144
+D15   Neopl benig outr orgaos intratoracicos e NE,D15
+D150 Timo,D150
+D151 Coracao,D151
+D152 Mediastino,D152
+D157 Outr orgaos intratoracicos espec,D157
+D159 Orgao intratoracico NE,D159
+D16   Neopl benig de osso e cartilagem articular,D16
+D160 Omoplata e ossos longos dos membros super,D160
+D161 Ossos curtos dos membros super,D161
+D162 Ossos longos dos membros infer,D162
+D163 Ossos curtos dos membros infer,D163
+D164 Ossos do cranio e da face,D164
+D165 Osso da mandibula,D165
+D166 Coluna vertebral,D166
+D167 Costelas do esterno e da clavicula,D167
+D168 Ossos pelvicos sacro e coccix,D168
+D169 Osso e cartilagem articular NE,D169
+D17   Neopl lipomatosa benig,D17
+D170 Neop lipom ben pele tec subcut cab face pesc,D170
+D171 Neopl lipomatosa benig pele tec subcut tronc,D171
+D172 Neopl lipomatosa benig pele tec subcut membr,D172
+D173 Neopl lip benig pele tec subc outr loc e NE,D173
+D174 Neopl lipomatosa benig orgaos intratoracicos,D174
+D175 Neopl lipomatosa benig orgaos intra-abdomin,D175
+D176 Neopl lipomatosa benig do cordao espermatico,D176
+D177 Neoplasia lipomatosa benigna de outr localiz,D177
+D179 Neoplasia lipomatosa benigna de localiz NE,D179
+D18   Hemangioma e linfangioma de qualquer localiz,D18
+D180 Hemangioma de qualquer localiz,D180
+D181 Linfangioma de qualquer localiz,D181
+D19   Neopl benig de tec mesotelial,D19
+D190 Tec mesotelial da pleura,D190
+D191 Tec mesotelial do peritonio,D191
+D197 Tec mesotelial de outr localiz,D197
+D199 Tec mesotelial NE,D199
+D20   Neopl benig tec mole retro- e peritonio,D20
+D200 Retroperitonio,D200
+D201 Peritonio,D201
+D21   Outr neopl benig tec conj e outr tec moles,D21
+D210 Tec conj e outr tec moles cabeca face e pesc,D210
+D211 Tec conj e out tec moles membr sup incl ombr,D211
+D212 Tec conj e out tec moles membr inf incl quad,D212
+D213 Tec conjuntivo e outr tec moles do torax,D213
+D214 Tec conjuntivo e outr tec moles do abdome,D214
+D215 Tec conjuntivo e outr tec moles da pelve,D215
+D216 Tec conjuntivo e outr tec moles do tronco NE,D216
+D219 Tec conjuntivo e outr tec moles s/outr espec,D219
+D22   Nevos melanociticos,D22
+D220 Nevo melanocitico do labio,D220
+D221 Nevo melanocitico da palpebra incl o canto,D221
+D222 Nevo melanocitico orelha e cond auditivo ext,D222
+D223 Nevo melanocitico outr partes e NE da face,D223
+D224 Nevo melanocitico couro cabeludo e pescoco,D224
+D225 Nevo melanocitico do tronco,D225
+D226 Nevo melanocitico membros super incl ombro,D226
+D227 Nevo melanocitico membros infer incl quadril,D227
+D229 Nevo melanocitico NE,D229
+D23   Outr neopl benig da pele,D23
+D230 Pele dos labios,D230
+D231 Pele da palpebra incl o canto,D231
+D232 Pele da orelha e do conduto auditivo externo,D232
+D233 Pele de outr partes e de partes NE da face,D233
+D234 Pele do couro cabeludo e do pescoco,D234
+D235 Pele do tronco,D235
+D236 Pele dos membros super incl o ombro,D236
+D237 Pele dos membros infer incl o quadril,D237
+D239 Pele NE,D239
+D24   Neopl benig da mama,D24
+D25   Leiomioma do utero,D25
+D250 Leiomioma submucoso do utero,D250
+D251 Leiomioma intramural do utero,D251
+D252 Leiomioma subseroso do utero,D252
+D259 Leiomioma do utero NE,D259
+D26   Outr neopl benig do utero,D26
+D260 Colo do utero,D260
+D261 Corpo do utero,D261
+D267 Outr partes do utero,D267
+D269 Utero NE,D269
+D27   Neopl benig do ovario,D27
+D28   Neopl benig outr org genitais femin e NE,D28
+D280 Vulva,D280
+D281 Vagina,D281
+D282 Trompas e ligamentos uterinos,D282
+D287 Outr orgaos genitais femin espec,D287
+D289 Orgao genital femin NE,D289
+D29   Neopl benig dos orgaos genitais masc,D29
+D290 Penis,D290
+D291 Prostata,D291
+D292 Testiculos,D292
+D293 Epididimo,D293
+D294 Escroto,D294
+D297 Outr orgaos genitais masc,D297
+D299 Orgao genital masc NE,D299
+D30   Neopl benig dos orgaos urinarios,D30
+D300 Rim,D300
+D301 Pelve renal,D301
+D302 Ureter,D302
+D303 Bexiga,D303
+D304 Uretra,D304
+D307 Outr orgaos urinarios,D307
+D309 Orgao urinario NE,D309
+D31   Neopl benig do olho e anexos,D31
+D310 Conjuntiva,D310
+D311 Cornea,D311
+D312 Retina,D312
+D313 Coroide,D313
+D314 Corpo ciliar,D314
+D315 Gland e dos canais lacrimais,D315
+D316 Orbita NE,D316
+D319 Olho NE,D319
+D32   Neopl benig das meninges,D32
+D320 Meninges cerebrais,D320
+D321 Meninges espinhais,D321
+D329 Meninges NE,D329
+D33   Neopl benig encef e out part sist nerv centr,D33
+D330 Encefalo supratentorial,D330
+D331 Encefalo infratentorial,D331
+D332 Encefalo NE,D332
+D333 Nervos cranianos,D333
+D334 Medula espinhal,D334
+D337 Outr partes espec do sist nervoso central,D337
+D339 Sist nervoso central NE,D339
+D34   Neopl benig da gland tireoide,D34
+D35   Neopl benig de outr gland endocrinas e NE,D35
+D350 Gland supra-renal,D350
+D351 Gland paratireoide,D351
+D352 Gland hipofise,D352
+D353 Conduto craniofaringeo,D353
+D354 Gland pineal,D354
+D355 Corpo carotideo,D355
+D356 Corpos aorticos e outr paraganglios,D356
+D357 Outr gland endocrinas espec,D357
+D358 Compr pluriglandular,D358
+D359 Gland endocrina NE,D359
+D36   Neopl benig de outr localiz e de localiz NE,D36
+D360 Ganglios linfaticos,D360
+D361 Nervos perifericos e sist nervoso autonomo,D361
+D367 Outr localiz espec,D367
+D369 Neopl benig de localiz NE,D369
+D37   Neopl comp incerto/desc cav oral e org dig,D37
+D370 Labio cavidade oral e faringe,D370
+D371 Estomago,D371
+D372 Intestino delgado,D372
+D373 Apendice,D373
+D374 Colons,D374
+D375 Reto,D375
+D376 Figado vesicula biliar e vias biliares,D376
+D377 Outr orgaos digestivos,D377
+D379 Orgao digestivo NE,D379
+D38   Neopl comp inc/desc ouv med org resp intrat,D38
+D380 Laringe,D380
+D381 Traqueia bronquios e pulmao,D381
+D382 Pleura,D382
+D383 Mediastino,D383
+D384 Timo,D384
+D385 Outr orgaos respirat,D385
+D386 Orgao respirat NE,D386
+D39   Neopl comp incerto/desconh org genitais fem,D39
+D390 Utero,D390
+D391 Ovario,D391
+D392 Placenta,D392
+D397 Outr orgaos genitais femin,D397
+D399 Orgao genital femin NE,D399
+D40   Neopl comp incerto/desconh org genitais masc,D40
+D400 Prostata,D400
+D401 Testiculo,D401
+D407 Outr orgaos genitais masc,D407
+D409 Orgao genital masc NE,D409
+D41   Neopl comp incerto/desconh orgaos urinarios,D41
+D410 Rim,D410
+D411 Pelve renal,D411
+D412 Ureter,D412
+D413 Uretra,D413
+D414 Bexiga,D414
+D417 Outr orgaos urinarios,D417
+D419 Orgao urinario NE,D419
+D42   Neopl comp incerto/desconhecido meninges,D42
+D420 Meninges cerebrais,D420
+D421 Meninges espinhais,D421
+D429 Meninges NE,D429
+D43   Neopl comp inc/desc encefalo sist nerv centr,D43
+D430 Encefalo supratentorial,D430
+D431 Encefalo infratentorial,D431
+D432 Encefalo NE,D432
+D433 Nervos cranianos,D433
+D434 Medula espinhal,D434
+D437 Outr partes do sist nervoso central,D437
+D439 Sist nervoso central NE,D439
+D44   Neopl comp incerto/desconh gland endocrinas,D44
+D440 Gland tireoide,D440
+D441 Gland supra-renal,D441
+D442 Gland paratireoide,D442
+D443 Gland hipofise,D443
+D444 Conduto craniofaringeo,D444
+D445 Gland pineal,D445
+D446 Corpo carotideo,D446
+D447 Corpos aorticos e outr paraganglios,D447
+D448 Compr pluriglandular,D448
+D449 Gland endocrina NE,D449
+D45   Policitemia vera,D45
+D46   Sindr mielodisplasicas,D46
+D460 Anemia refrataria s/sideroblastos,D460
+D461 Anemia refrataria c/sideroblastos,D461
+D462 Anemia refrataria c/excesso de blastos,D462
+D463 Anemia refrataria c/excesso blastos c/transf,D463
+D464 Anemia refrataria NE,D464
+D467 Outr sindr mielodisplasicas,D467
+D469 Sindr mielodisplasica NE,D469
+D47   Out neop comp inc/des tec linf hemat tec cor,D47
+D470 Tum comp inc/desc mastocit celulas histiocit,D470
+D471 Doenc mieloproliferativa cronica,D471
+D472 Gamopatia monoclonal,D472
+D473 Trombocitemia essencial,D473
+D477 Out neop esp comp inc/des linf hemat tec rel,D477
+D479 Neop comp inc/des tec linf hemat tec corr NE,D479
+D48   Neopl comp inc/desconh outr localiz e NE,D48
+D480 Ossos e cartilagens articulares,D480
+D481 Tec conjuntivo e outr tec moles,D481
+D482 Nervos perifericos e sist nervoso periferico,D482
+D483 Retroperitonio,D483
+D484 Peritonio,D484
+D485 Pele,D485
+D486 Mama,D486
+D487 Outr localiz espec,D487
+D489 Neopl comp incerto/desconhecido s/outr espec,D489
