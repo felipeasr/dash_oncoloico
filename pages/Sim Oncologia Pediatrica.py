@@ -48,7 +48,7 @@ caminhos_csv = {
     'PI': 'caminho_do_csv_PI.csv',
     'RJ': 'caminho_do_csv_RJ.csv',
     'RN': 'caminho_do_csv_RN.csv',
-    'RS': 'dados_Mortalidade2.csv',
+    'RS': 'Sim/mortalidade_onco.csv',
     'RO': 'caminho_do_csv_RO.csv',
     'RR': 'caminho_do_csv_RR.csv',
     'SC': 'caminho_do_csv_SC.csv',
@@ -78,7 +78,7 @@ if caminho_do_csv:
     # Agrupar por ano e contar o número de óbitos
     dados_agrupados = df.groupby('Ano').size().reset_index(name='Quantidade')
     # Criar um DataFrame com os dados
-    top_causas = df['CAUSABAS'].value_counts().nlargest(10)
+    top_causas = df['CAUSABAS'].value_counts().nlargest(15)
     df_top_causas = pd.DataFrame(
         {'Causa': top_causas.index, 'Quantidade': top_causas.values})
 
@@ -145,8 +145,11 @@ if caminho_do_csv:
         unsafe_allow_html=True
     )
     st.plotly_chart(fig_Casos_anos, use_container_width=True)
-    st.plotly_chart(fig_causabase, use_container_width=True)
-    st.plotly_chart(fig_localoco, use_container_width=True)
+    col1, col2 = st.columns(2)
+    with col1:
+        st.plotly_chart(fig_causabase, use_container_width=True)
+    with col2:
+        st.plotly_chart(fig_localoco, use_container_width=True)
 
     st.write(df)
 else:
