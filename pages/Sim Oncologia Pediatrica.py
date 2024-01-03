@@ -48,7 +48,7 @@ caminhos_csv = {
     'PI': 'caminho_do_csv_PI.csv',
     'RJ': 'caminho_do_csv_RJ.csv',
     'RN': 'caminho_do_csv_RN.csv',
-    'RS': 'Sim/Motalidade_Onco.csv',
+    'RS': 'Sim/Motalidade_Onco2.csv',
     'RO': 'caminho_do_csv_RO.csv',
     'RR': 'caminho_do_csv_RR.csv',
     'SC': 'caminho_do_csv_SC.csv',
@@ -164,12 +164,33 @@ if caminho_do_csv:
     selected_anos = st.sidebar.multiselect(
         'Selecione os Anos:', anos_unicos, default=anos_unicos)
     # select_Idade = st.sidebar.multiselect('Selecione as Idades:', idades, default=idades)
+    # Substitua a opção "0 anos" por "Menos de 1 ano" para exibição
+    idades_disponiveis = list(range(20))
+
+    idades_disponiveis_display = ['Menos de 1 ano'] + \
+        [str(i) for i in idades_disponiveis[1:]]
+
+    # Use multisseleção para faixa etária
+    selected_idades = st.sidebar.multiselect(
+        "Selecione a Idade:", idades_disponiveis_display, default=idades_disponiveis_display)
+    st.sidebar.markdown('<hr style="border: 0.5px solid #d0d0d3; ; height: 0.5px;" />',
+                        unsafe_allow_html=True)
 
     ##### retonor###########
     def filtrar_por_anos(data, anos):
         return data[data['ANOOBITO'].isin(anos)]
+
+    def filtrar_por_idade(data, idades_selecionadas):
+        # Filtra as idades menores que 1 ano
+        idades_reais = [0 if idade == 'Menos de 1 ano' else int(
+            idade.split()[0]) for idade in idades_selecionadas]
+        return data[data['IDADEOBITO'].isin(idades_reais)]
+
     dados_filtrados_obito = filtrar_por_anos(df, selected_anos)
+    dados_filtrados_obito = filtrar_por_idade(
+        dados_filtrados_obito, selected_idades)
     exibiruser(dados_filtrados_obito)
+
 
 else:
     st.warning(
